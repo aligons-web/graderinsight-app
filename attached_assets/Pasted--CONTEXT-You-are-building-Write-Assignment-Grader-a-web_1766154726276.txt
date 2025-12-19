@@ -1,0 +1,22 @@
+---CONTEXT---
+You are building Write Assignment Grader, a web app that helps teachers, instructors, and professors quickly grade student assignments. 
+
+---WHAT IT DOES---
+Professors will quickly identify where students have made grammar, punctuation, spelling, and capitalization errors. The thesis, topical sentences and supporting  information are evaluated. A quick summary of the writing is provided for the professor’s gauge/assessment of the student’s learning. Plagiarism and AI detection are other elements that are reviewed in the student’s assignment. The initial assignment evaluation based on the listed items above will be in a standard rubric that can be assigned to assignments and the points can be assigned to the categories of the general rubric. The app will allow the general rubric to be duplicated and customized with alternate criteria for the assignment to be graded against the rubric and assess the student’s alignment with the rubric requirements. The app will also use only the first three letters of the student’s first and last name to remove FERPA violations of submitting assignments with the student’s name on the assignment. The web app will have a simple user interface to all professors to easily navigate and utilize to promote proficiency. The professor will have the feature to bulk upload the assignments at $17 per month for 400 assignments. Individual assignments can be uploaded free. Above 400 assignment uploads will require the user to update to the $29 per month plan. The web app serves as a quicker way to obtain obvious errors and assign a grade while the professor looks deeper for the quality of the student’s approach to the assignment. 
+
+
+---WHO USES IT---
+[Describe your ideal user in 2-3 sentences - their situation, pain point, and what they want]
+Professors of universities and colleges and public school teachers who are burned out or unable to get graded assignments completed in a timely manner or do not have personal time because of the time consumption to manually grade assignments need a life outside their work life. They desire a better work-life balance.
+
+---CORE FEATURES---
+1. Grade assignments efficiently with a preview of evaluation of student’s writing assignments against a rubric that includes writing errors, thesis quality, topical sentences, supporting content, AI detection, and plagiarism
+
+2. 400 bulk assignment uploads
+3. Above 400 assignment uploads
+
+---PAGES NEEDED---
+1. Landing Page - hero section, benefits, CTA
+2. Sign Up / Login - email/password auth
+3. Dashboard - [main user interface]
+4. Bulk upload page
