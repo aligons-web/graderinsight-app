@@ -103,3 +103,22 @@ Preferred communication style: Simple, everyday language.
 
 ### Development Tools
 - **Replit Plugins**: Runtime error overlay, cartographer, dev banner (development only)
+
+## Recent Changes
+
+### Rubric Builder MVP (December 2025)
+- Implemented complete Rubric Builder/Editor page with two-panel layout
+- Left panel: Criteria editor with drag-and-drop reordering and expandable proficiency levels
+- Right panel: Rubric summary sidebar with total points, distribution visualization, and quick actions
+- Template import system with 3 pre-built templates (Essay Writing, Research Paper, Presentation)
+- TanStack Query integration for save/load functionality with proper cache invalidation
+- Export functionality to download rubrics as JSON files
+- Full data-testid coverage for automated testing
+- Loading states, skeleton components, and toast notifications for user feedback
+
+### API Endpoints
+- POST /api/rubrics - Create new rubric
+- GET /api/rubrics - List all rubrics
+- GET /api/rubrics/:id - Get specific rubric
+- PUT /api/rubrics/:id - Update rubric
+- DELETE /api/rubrics/:id - Delete rubric
