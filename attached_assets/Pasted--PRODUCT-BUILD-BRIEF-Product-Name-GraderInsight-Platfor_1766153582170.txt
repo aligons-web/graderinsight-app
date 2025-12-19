@@ -1,0 +1,109 @@
+🎯 PRODUCT BUILD BRIEF
+
+Product Name: GraderInsight
+Platform Type: Web Application
+
+═══════════════════════════════════════════════════════════════
+
+WHAT THIS APP DOES
+
+GraderInsight is a web-based application designed to streamline the grading process for writing assignments. It allows educators to efficiently upload assignments in bulk, anonymize student submissions for unbiased grading, and grade against customizable rubrics. The platform will automatically generate quick summaries of writing quality and provide actionable insights, significantly reducing grading time while enhancing the quality and consistency of feedback provided to students.
+
+═══════════════════════════════════════════════════════════════
+
+THE PROBLEM
+Professors, instructors, and teachers face significant time constraints when grading a high volume of writing assignments, often spending hours providing feedback that, while valuable, is time-consuming to generate. This inefficiency not only reduces the time available for other teaching responsibilities but also impacts the depth and consistency of feedback provided, leading to a less refined grading insight. GraderInsight aims to dramatically reduce grading time for 100 assignments across 5 courses from 2 hours to 45 minutes, thereby improving grading efficiency and feedback quality.
+
+TARGET USER
+Our primary target users are Professors, Instructors, and Teachers at universities, colleges, and high schools. These individuals are typically aged 30-65, tech-literate but time-poor, and often responsible for teaching multiple courses with large class sizes. Their main pain points include the overwhelming time commitment for grading written assignments, the challenge of providing consistent and detailed feedback to all students, and the desire to allocate more time to teaching, curriculum development, and student interaction rather than administrative grading tasks.
+
+═══════════════════════════════════════════════════════════════
+
+CORE FEATURES
+1. Bulk Assignment Upload - Allows educators to upload multiple student assignments simultaneously, supporting common document formats like PDF, DOCX, and TXT, and organizing them by course and assignment.
+
+2. Student Anonymization - Automatically redacts or replaces student names on submitted assignments to promote unbiased grading and reduce implicit bias.
+
+3. Customizable Rubric Management - Enables users to create, import, or modify grading rubrics, associating them with specific assignments for consistent and structured evaluation.
+
+4. Efficient Rubric-Based Grading Interface - Provides an intuitive interface for applying rubric criteria to assignments, allowing for quick selection of scores and predefined feedback comments, and the ability to add custom notes.
+
+5. Automated Writing Summary Generation - Utilizes natural language processing (NLP) to generate a concise summary of the writing's strengths and weaknesses based on predefined rubric criteria and common writing issues.
+
+6. Grading Progress and Analytics Dashboard - Offers an overview of grading progress for all courses and assignments, including time spent grading, average scores, and common feedback trends.
+
+7. Export Graded Assignments and Feedback - Allows educators to export graded assignments, scores, and detailed feedback in various formats for easy integration with Learning Management Systems (LMS) or record-keeping.
+
+═══════════════════════════════════════════════════════════════
+
+PAGES TO BUILD
+{"1":"Landing Page - Featuring a hero section highlighting the core value proposition (time-saving grading), a clear explanation of features, pricing plans, testimonials, and prominent call-to-action buttons for 'Sign Up' and 'Learn More'.","2":"Sign Up - A secure registration form requesting email, password, and basic user type information (e.g., 'Professor', 'Instructor').","3":"Login - A standard authentication form for existing users with 'Forgot Password' functionality.","4":"Dashboard - The main user interface providing a quick overview of active courses, pending assignments, grading progress, and shortcuts to key features.","5":"Course Management Page - For creating, editing, and viewing details of courses, including enrolled students and associated assignments.","6":"Assignment Upload & Setup Page - Guided workflow for bulk uploading assignments, selecting a course, and associating/customizing a grading rubric.","7":"Grading Interface Page - The core grading environment where users apply rubrics, add feedback, and view anonymized student submissions. Includes tools for automated summary generation.","8":"Rubric Builder/Editor Page - A dedicated interface for creating new rubrics from scratch, modifying existing ones, or importing templates.","9":"Settings - User preferences, account management (profile, password change), notification settings, and integration options.","10":"Admin Panel - (If applicable for institutional accounts) User management, system-wide settings, and analytics.","11":"Help/Support Page - FAQs, documentation, and contact forms for user assistance."}
+
+═══════════════════════════════════════════════════════════════
+
+ADMIN PANEL (/admin) - For Administrators Only
+
+Purpose: Manage users and system settings
+
+Features:
+- User management table (view all users with email, name, status)
+- Search and filter users by email, name, role, or status
+- User actions: view details, suspend/activate, delete account
+- Role management: promote to admin, demote to user
+- Bulk user creation via CSV upload
+- Password reset and change password for users
+- Admin-only route protection (redirect non-admins)
+
+Security:
+- Admin role verification on all admin routes
+- Prevent self-demotion and removal of last admin
+- Secure edge functions with admin role checks
+
+═══════════════════════════════════════════════════════════════
+
+DESIGN SYSTEM
+
+Color Palette:
+  Primary:    #894596
+  Secondary:  #828282
+  Accent:     #44e489
+  Background: #fafafa
+  Text:       undefined
+  
+Additional Colors to Define:
+  - Success: Green for confirmations
+  - Warning: Amber for alerts
+  - Error: Red for errors
+  - Muted: Gray for secondary text
+  - Border: Subtle border color
+
+Typography:
+  Headings: Poppins
+  Body:     Poppins
+  
+  Sizes: H1 36px | H2 28px | H3 22px | Body 16px | Small 14px
+
+
+Domain: graderinsight.com
+
+Style: Modern and professional with a focus on usability and efficiency. Utilize a clean, minimalist aesthetic with ample whitespace to reduce cognitive load. Employ soft shadows, subtle gradients, and rounded corners for a friendly yet authoritative feel. Typography should be clear and legible, with a hierarchical structure guiding the user's eye. The overall impression should be one of reliability, intelligence, and ease of use.
+
+
+
+═══════════════════════════════════════════════════════════════
+
+FIRST TASK
+Develop the 'Rubric Builder/Editor Page'. This task involves designing the user interface for creating and modifying rubrics, allowing users to define criteria, proficiency levels, and point values. Implement functionality for saving, loading, and associating these rubrics with specific assignments. Ensure the interface is intuitive and allows for both generic rubric creation and modification of existing templates.
+
+═══════════════════════════════════════════════════════════════
+
+WHAT NOT TO DO
+
+❌ Don't build features not in the list above
+❌ Don't over-engineer (no Redux, no microservices for MVP)
+❌ Don't skip error handling or loading states
+❌ Don't forget Row Level Security (RLS) policies
+
+═══════════════════════════════════════════════════════════════
+
+Build GraderInsight to help Our primary target users are Professors, Instructors, and Teachers at universities, colleges, and high schools. These individuals are typically aged 30-65, tech-literate but time-poor, and often responsible for teaching multiple courses with large class sizes. Their main pain points include the overwhelming time commitment for grading written assignments, the challenge of providing consistent and detailed feedback to all students, and the desire to allocate more time to teaching, curriculum development, and student interaction rather than administrative grading tasks.. Keep it simple, make it work, get it shipped! 🚀
