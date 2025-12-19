@@ -4,13 +4,14 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
+import RubricBuilder from "@/pages/rubric-builder";
 
 function Router() {
   return (
     <Switch>
-      {/* Add pages below */}
-      {/* <Route path="/" component={Home}/> */}
-      {/* Fallback to 404 */}
+      <Route path="/" component={RubricBuilder} />
+      <Route path="/rubric-builder" component={RubricBuilder} />
+      <Route path="/rubric-builder/:id" component={RubricBuilder} />
       <Route component={NotFound} />
     </Switch>
   );
