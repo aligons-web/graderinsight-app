@@ -60,8 +60,10 @@ export default function Landing() {
               <span className="font-semibold text-xl" data-testid="text-brand-name">GraderInsight</span>
             </div>
             <nav className="hidden md:flex items-center gap-6">
-              <a href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-benefits">Benefits</a>
               <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-features">Features</a>
+              <a href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-benefits">Benefits</a>
+              <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-pricing">Pricing</a>
+              <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-how-it-works">How It Works</a>
             </nav>
             <div className="flex items-center gap-2">
               <Link href="/login" data-testid="link-login">
@@ -99,7 +101,7 @@ export default function Landing() {
                 </Button>
               </Link>
             </div>
-            <p className="text-sm text-muted-foreground mt-4">No credit card required</p>
+            <p className="text-sm text-muted-foreground mt-4">7-day free trial included</p>
           </div>
         </div>
       </section>
@@ -143,6 +145,100 @@ export default function Landing() {
                 <p className="text-muted-foreground">{benefit.description}</p>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="how-it-works" className="py-16 lg:py-24 bg-muted/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4" data-testid="text-how-it-works-title">How It Works</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Get started in minutes and transform your grading workflow
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center" data-testid="step-1">
+              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">1</div>
+              <h3 className="text-xl font-semibold mb-2">Create Your Rubric</h3>
+              <p className="text-muted-foreground">Build custom grading rubrics or use our templates to define your evaluation criteria.</p>
+            </div>
+            <div className="text-center" data-testid="step-2">
+              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">2</div>
+              <h3 className="text-xl font-semibold mb-2">Upload Assignments</h3>
+              <p className="text-muted-foreground">Bulk upload up to 400+ student assignments at once. We support all common file formats.</p>
+            </div>
+            <div className="text-center" data-testid="step-3">
+              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">3</div>
+              <h3 className="text-xl font-semibold mb-2">Review & Export</h3>
+              <p className="text-muted-foreground">Review AI-generated feedback, make adjustments, and export grades to your LMS.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" className="py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4" data-testid="text-pricing-title">Simple, Transparent Pricing</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Choose the plan that fits your needs. All plans include a 7-day free trial.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <Card className="p-6" data-testid="card-pricing-basic">
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-semibold mb-2">Basic</h3>
+                <div className="text-4xl font-bold mb-1">$9.99<span className="text-lg text-muted-foreground font-normal">/mo</span></div>
+                <p className="text-muted-foreground text-sm">For individual educators</p>
+              </div>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Unlimited grading</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Custom rubrics</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Email support</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Up to 100 assignments/month</li>
+              </ul>
+              <Link href="/signup" data-testid="link-pricing-basic">
+                <Button variant="outline" className="w-full">Start Free Trial</Button>
+              </Link>
+            </Card>
+            <Card className="p-6 border-primary relative" data-testid="card-pricing-pro">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">Most Popular</span>
+              </div>
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-semibold mb-2">Pro</h3>
+                <div className="text-4xl font-bold mb-1">$19.99<span className="text-lg text-muted-foreground font-normal">/mo</span></div>
+                <p className="text-muted-foreground text-sm">For power users</p>
+              </div>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Everything in Basic</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Advanced analytics</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Priority support</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Desktop app access</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Unlimited assignments</li>
+              </ul>
+              <Link href="/signup" data-testid="link-pricing-pro">
+                <Button className="w-full">Start Free Trial</Button>
+              </Link>
+            </Card>
+            <Card className="p-6" data-testid="card-pricing-enterprise">
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
+                <div className="text-4xl font-bold mb-1">$49.99<span className="text-lg text-muted-foreground font-normal">/mo</span></div>
+                <p className="text-muted-foreground text-sm">For departments & teams</p>
+              </div>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Everything in Pro</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Team collaboration</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Custom integrations</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Dedicated support</li>
+                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> LMS integration</li>
+              </ul>
+              <Link href="/signup" data-testid="link-pricing-enterprise">
+                <Button variant="outline" className="w-full">Start Free Trial</Button>
+              </Link>
+            </Card>
           </div>
         </div>
       </section>
