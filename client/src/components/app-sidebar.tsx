@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, Upload, PenTool, Settings, LogOut, GraduationCap } from "lucide-react";
+import { LayoutDashboard, Upload, PenTool, CreditCard, LogOut, GraduationCap } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -30,6 +30,11 @@ const menuItems = [
     title: "Rubric Builder",
     url: "/rubric-builder",
     icon: PenTool,
+  },
+  {
+    title: "Subscriptions",
+    url: "/subscriptions",
+    icon: CreditCard,
   },
 ];
 

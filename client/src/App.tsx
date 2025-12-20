@@ -12,6 +12,7 @@ import Signup from "@/pages/signup";
 import Dashboard from "@/pages/dashboard";
 import BulkUpload from "@/pages/upload";
 import RubricBuilder from "@/pages/rubric-builder";
+import Subscriptions from "@/pages/subscriptions";
 
 function AuthenticatedLayout({ children }: { children: React.ReactNode }) {
   const style = {
@@ -60,6 +61,7 @@ function Router() {
         <Route path="/upload" component={BulkUpload} />
         <Route path="/rubric-builder" component={RubricBuilder} />
         <Route path="/rubric-builder/:id" component={RubricBuilder} />
+        <Route path="/subscriptions" component={Subscriptions} />
         <Route component={NotFound} />
       </Switch>
     </AuthenticatedLayout>
