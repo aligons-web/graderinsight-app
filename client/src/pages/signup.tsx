@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { GraduationCap, Loader2, Eye, EyeOff, CheckCircle } from "lucide-react";
+import { GraduationCap, Loader2, Eye, EyeOff, CheckCircle, CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,6 +16,9 @@ const signupSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
   confirmPassword: z.string(),
+  cardNumber: z.string().min(13, "Please enter a valid card number").max(19, "Card number too long"),
+  cardExpiry: z.string().regex(/^(0[1-9]|1[0-2])\/([0-9]{2})$/, "Use MM/YY format"),
+  cardCvc: z.string().min(3, "CVC must be 3-4 digits").max(4, "CVC must be 3-4 digits"),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",
   path: ["confirmPassword"],
@@ -44,6 +47,9 @@ export default function Signup() {
       email: "",
       password: "",
       confirmPassword: "",
+      cardNumber: "",
+      cardExpiry: "",
+      cardCvc: "",
     },
   });
 
@@ -211,6 +217,71 @@ export default function Signup() {
                       </FormItem>
                     )}
                   />
+
+                  <div className="border-t pt-4 mt-2">
+                    <div className="flex items-center gap-2 mb-3">
+                      <CreditCard className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm font-medium">Payment Information</span>
+                    </div>
+                    <FormField
+                      control={form.control}
+                      name="cardNumber"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Card Number</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder="1234 5678 9012 3456"
+                              data-testid="input-card-number"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <div className="grid grid-cols-2 gap-4 mt-4">
+                      <FormField
+                        control={form.control}
+                        name="cardExpiry"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Expiry Date</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="MM/YY"
+                                data-testid="input-card-expiry"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="cardCvc"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>CVC</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="123"
+                                data-testid="input-card-cvc"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-muted-foreground text-center mt-4">
+                    By signing up, you agree to our Terms of Service. Your card will be charged $19.99/month after your 7-day free trial ends. Cancel anytime before the trial ends to avoid charges.
+                  </p>
+
                   <Button type="submit" className="w-full" disabled={isLoading} data-testid="button-submit-signup">
                     {isLoading ? (
                       <>
@@ -218,7 +289,7 @@ export default function Signup() {
                         Creating account...
                       </>
                     ) : (
-                      "Create Account & Start Trial"
+                      "Start Free Trial"
                     )}
                   </Button>
                 </form>
