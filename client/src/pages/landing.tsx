@@ -82,8 +82,8 @@ export default function Landing() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6" data-testid="text-hero-title">
-              Grade Smarter,<br />
-              <span className="text-primary">Not Harder</span>
+              Grade Quicker and Smarter with<br />
+              <span className="text-primary">Innovation that brings Precision to Grading!</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto" data-testid="text-hero-subtitle">
               AI-powered assignment grading that helps educators save time, maintain consistency, and achieve the work-life balance they deserve.
