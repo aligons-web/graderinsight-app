@@ -86,7 +86,7 @@ export default function Landing() {
               <span className="text-primary">Innovation that brings Precision to Grading!</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto" data-testid="text-hero-subtitle">
-              AI-powered assignment grading that helps educators save time, maintain consistency, and achieve the work-life balance they deserve.
+              Assignment grading that helps educators save time, maintain consistency, and achieve the work-life balance they deserve.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/signup" data-testid="link-cta-primary">
