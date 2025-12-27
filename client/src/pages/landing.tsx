@@ -166,7 +166,7 @@ export default function Landing() {
             <div className="text-center" data-testid="step-2">
               <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">2</div>
               <h3 className="text-xl font-semibold mb-2">Upload Assignments</h3>
-              <p className="text-muted-foreground">Bulk upload up to 400+ student assignments at once. We support all common file formats.</p>
+              <p className="text-muted-foreground">Bulk upload up to 400+ student assignments at once. We support MS Word and PDF formats.</p>
             </div>
             <div className="text-center" data-testid="step-3">
               <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">3</div>
