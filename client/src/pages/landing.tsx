@@ -171,7 +171,7 @@ export default function Landing() {
             <div className="text-center" data-testid="step-3">
               <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">3</div>
               <h3 className="text-xl font-semibold mb-2">Evaluate & Assign</h3>
-              <p className="text-muted-foreground">Review assignment feedback against the professor's assessment, and add grade to the LMS.</p>
+              <p className="text-muted-foreground">Review assignment feedback against the professor's assessment; assign grade.</p>
             </div>
           </div>
         </div>
