@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { CheckCircle, Clock, FileText, Shield, Zap, Users, ArrowRight, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { HeroSlider } from "@/components/hero-slider";
 
 const benefits = [
   {
@@ -77,34 +78,7 @@ export default function Landing() {
         </div>
       </header>
 
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6" data-testid="text-hero-title">
-              Grade Quicker and Smarter with<br />
-              <span className="text-primary">Innovation that brings Precision to Grading!</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto" data-testid="text-hero-subtitle">
-              Assignment grading that helps educators save time, maintain consistency, and achieve the work-life balance they deserve.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/signup" data-testid="link-cta-primary">
-                <Button size="lg" className="text-lg px-8" data-testid="button-cta-primary">
-                  Start Grading Free
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
-              <Link href="/login" data-testid="link-cta-secondary">
-                <Button size="lg" variant="outline" className="text-lg px-8" data-testid="button-cta-secondary">
-                  Sign In
-                </Button>
-              </Link>
-            </div>
-            <p className="text-sm text-muted-foreground mt-4">7-day free trial included</p>
-          </div>
-        </div>
-      </section>
+      <HeroSlider />
 
       <section id="features" className="py-16 lg:py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,0 +1,23 @@
+Use the attached image as a reference sliderimage
+Remove Grade Quicker and Smarter with
+Innovation that brings Precision to Grading!
+And add interactive elements for the home page, slider 
+Include a javascript 4-slide slider with the following statements in each slider 
+Use a 80% transparent #5D3A7A color background text box that overlay the image with the following white text, “Grade precisely and accurately” The text will slide in with a fade in effect that has a quick horizontal bouncy motion in the textbox. After the animation is completed, the slide will hold for 5 seconds before advancing to the next slide 
+Use image1.jpg for the background image
+
+Use a 80% transparent #5D3A7A color background text box that overlay the image with the following white text, “Grade quicker and smarter” The text will slide in with a fade in effect that has a quick horizontal bouncy stop motion in the textbox. After the animation is completed, the  slide will hold for 5 seconds before advancing to the next slide
+Use image2.jpg for the background image
+
+Use a 80% transparent #5D3A7A color background text box that overlay the image with the following whit text, “Grade efficiently and effectively”
+The text will slide in with a fade in effect that has a quick horizontal bouncy stop motion in the textbox. After the animation is completed, the slide will hold for 5 seconds before advancing to the next slide
+Use image3.jpg for the background image
+
+Use a 80% transparent #5D3A7A color background text box that overlay the image with the following white text, Grade and maintain life-work balance!
+The text will slide in with a fade in effect that has a quick horizontal bouncy stop motion in the textbox. After the animation is completed, the slide will hold for 5 seconds before advancing to the next slide following text, Use image4.jpg for the background image 
+and include a button labeled with color #5D3A7A
+with white bold text “Start Your 7-Day Trial” that links to the sign-up page.
+The slider plays automatically or can be toggled with transparent arrows that are the color 
+#ffffff
+
+The slider is compatible with a responsive design
