@@ -63,6 +63,7 @@ export default function Landing() {
               <a href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-benefits">Benefits</a>
               <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-pricing">Pricing</a>
               <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-how-it-works">How It Works</a>
+              <Link href="/rubric-builder" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-rubric">Rubric</Link>
             </nav>
             <div className="flex items-center gap-2">
               <Link href="/login" data-testid="link-login">
