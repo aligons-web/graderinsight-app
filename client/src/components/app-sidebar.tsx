@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, Upload, PenTool, CreditCard, LogOut, GraduationCap } from "lucide-react";
+import { LayoutDashboard, Upload, PenTool, CreditCard, LogOut } from "lucide-react";
+import logoImage from "@assets/logo_1767113130927.jpg";
 import {
   Sidebar,
   SidebarContent,
@@ -46,13 +47,7 @@ export function AppSidebar() {
       <SidebarHeader className="p-4">
         <Link href="/dashboard" data-testid="link-sidebar-brand">
           <div className="flex items-center gap-2 cursor-pointer">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <GraduationCap className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <div>
-              <span className="font-semibold text-lg" data-testid="text-sidebar-brand">GraderInsight</span>
-              <p className="text-xs text-muted-foreground">Assignment Grading</p>
-            </div>
+            <img src={logoImage} alt="GraderInsight" className="h-10" data-testid="img-sidebar-logo" />
           </div>
         </Link>
       </SidebarHeader>
