@@ -12,25 +12,21 @@ const slides = [
     image: image1,
     text: "Grade precisely and accurately",
     showButton: false,
-    offsetY: 200,
   },
   {
     image: image2,
     text: "Grade quicker and smarter",
     showButton: false,
-    offsetY: 200,
   },
   {
     image: image3,
     text: "Grade efficiently and effectively",
     showButton: false,
-    offsetY: 0,
   },
   {
     image: image4,
     text: "Grade and maintain life-work balance!",
     showButton: true,
-    offsetY: 200,
   },
 ];
 
@@ -73,11 +69,8 @@ export function HeroSlider() {
           data-testid={`slide-${index}`}
         >
           <div
-            className="absolute inset-0 bg-cover bg-no-repeat"
-            style={{ 
-              backgroundImage: `url(${slide.image})`,
-              backgroundPosition: `center ${slide.offsetY}px`
-            }}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${slide.image})` }}
           />
           <div className="absolute inset-0 bg-black/30" />
           
