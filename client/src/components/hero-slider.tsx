@@ -59,7 +59,7 @@ export function HeroSlider() {
   }, [currentSlide, nextSlide]);
 
   return (
-    <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden" data-testid="hero-slider">
+    <section className="relative w-full h-[250px] md:h-[300px] lg:h-[350px] overflow-hidden" data-testid="hero-slider">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -88,10 +88,10 @@ export function HeroSlider() {
               }}
             >
               <div
-                className="inline-block px-8 py-6 md:px-12 md:py-8 rounded-lg"
+                className="inline-block px-4 py-3 md:px-6 md:py-4 rounded-lg"
                 style={{ backgroundColor: "rgba(93, 58, 122, 0.8)" }}
               >
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2">
                   {slide.text}
                 </h2>
                 {slide.showButton && (
