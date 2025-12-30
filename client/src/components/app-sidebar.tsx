@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { LayoutDashboard, Upload, PenTool, CreditCard, LogOut } from "lucide-react";
-import logoImage from "@assets/logo_1767113130927.jpg";
+import logoImage from "@assets/logo_1767113786398.png";
 import {
   Sidebar,
   SidebarContent,
