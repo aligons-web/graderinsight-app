@@ -16,7 +16,7 @@ export function getAuthToken() {
   return authToken;
 }
 
-async function fetchWithAuth(url: string, options: RequestInit = {}) {
+async function fetchWithAuth(url: string, options: RequestInit = {}, redirectOnUnauth = false) {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
     ...(options.headers as Record<string, string>),
@@ -31,12 +31,16 @@ async function fetchWithAuth(url: string, options: RequestInit = {}) {
     headers,
   });
 
-  if (response.status === 401) {
+  if (response.status === 401 && redirectOnUnauth) {
     clearAuthToken();
     window.location.href = '/login';
   }
 
   return response;
+}
+
+export function isAuthenticated() {
+  return !!authToken;
 }
 
 export const api = {

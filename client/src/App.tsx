@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation } from "wouter";
+import { Switch, Route, useLocation, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -13,6 +13,7 @@ import Dashboard from "@/pages/dashboard";
 import BulkUpload from "@/pages/upload";
 import RubricBuilder from "@/pages/rubric-builder";
 import Subscriptions from "@/pages/subscriptions";
+import { isAuthenticated } from "@/lib/api";
 
 function AuthenticatedLayout({ children }: { children: React.ReactNode }) {
   const style = {
@@ -52,6 +53,10 @@ function Router() {
         <Route component={NotFound} />
       </Switch>
     );
+  }
+
+  if (!isAuthenticated()) {
+    return <Redirect to="/login" />;
   }
 
   return (
