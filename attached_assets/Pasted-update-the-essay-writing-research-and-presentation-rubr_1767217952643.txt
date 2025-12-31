@@ -1,0 +1,512 @@
+update the essay writing, research, and presentation rubric templates 
+ 
+keep the description area and the rubric summary in the rubric
+keep the export rubric feature but export data as a csv format for excel
+keep the import template button and functionality
+
+update the Quick Actions label to Quick Actions for Rubrics
+
+also provide an option if the late and revision policy
+and Late presentations not accepted without prior approval
+ will be used for each rubric
+
+allow user to select rubric that is for a student in middle school, high school, 2-year technical college, 4-yr college, or graduate school before importing a template, the template imported will reflect correctly if it is for middle school, high school, 2-yr. technical college, 4-yr college, graduate college
+ 
+update the rubric criteria with the following information and use the information for the points criteria
+
+
+Middle School Research Writing Rubric
+Total: 100 Points | Minimum Length: 200 Words
+1. Writing Quality & Clarity — 25 pts
+Complete sentences
+Basic grammar and capitalization
+Appropriate word choice
+Clear meaning
+
+2. Organization & Development — 25 pts
+Clear main idea
+Paragraphs stay on topic
+	Supporting details included
+Simple transitions
+
+3. Source Use & Documentation — 25 pts
+At least 1–2 teacher-approved sources
+Basic in-text citation or attribution
+Sources listed (format flexible)
+Information relates to topic
+
+4. Assignment Requirements — 25 pts
+Minimum word count met (200+ words)
+Instructions followed
+Original work
+Clear ending or summary
+
+Late Policy
+1 day late: −5 pts
+2 days late: −10 pts
+3+ days late: teacher discretion
+
+Revision Policy
+One revision allowed
+Maximum score after revision: 90 pts
+Revision due within 5 days
+
+Middle School General Writing Rubric
+Minimum Length: 75 Words
+Same four criteria as above
+No sources required unless specified
+Focus on clarity and effort
+
+ HIGH SCHOOL RUBRICS
+
+High School Research Paper Rubric
+Total: 100 Points | Minimum Length: 400 Words
+1. Writing Quality & Style — 25 pts
+Correct grammar and sentence structure
+Varied sentence beginnings
+Formal academic tone
+Concise wording
+
+2. Organization & Development — 25 pts
+
+Clear thesis statement
+Topic sentences guide paragraphs
+Evidence supports ideas
+Logical flow
+
+3. Source Use & Citation — 25 pts
+Credible sources (minimum 2–3)
+Correct in-text citations
+Proper works cited page
+Sources integrated smoothly
+
+4. Technical & Assignment Requirements — 25 pts
+Minimum word count met (400+ words)
+Plagiarism check passed
+Assignment instructions followed
+Clear conclusion
+
+Late Policy
+24 hrs late: −10 pts
+2–3 days late: −20 pts
+4+ days late: not accepted without approval
+
+Revision Policy
+One revision allowed for scores under 85
+Max revision score: 85
+Due within 7 days
+
+High School General Writing Rubric
+Minimum Length: 150 Words
+Same four criteria
+Sources optional
+Emphasis on clarity, organization, and development
+
+2-Year Technical College – Research Paper Rubric
+Total: 100 Points | Minimum Length: 300 Words
+Policy Notice: Assignments that do not meet the minimum word count may not earn full credit in Criterion 4.
+
+1. Writing Quality & Clarity — 25 Points
+Evaluates correctness, clarity, and professional tone
+Sentence structure and clarity
+Grammar and subject-verb agreement
+Conciseness (avoids unnecessary wordiness)
+Word choice appropriate for an academic audience
+
+Scoring Guide
+23–25: Clear, polished, and professional
+18–22: Minor errors that do not affect meaning
+13–17: Frequent errors affecting readability
+0–12: Writing significantly interferes with comprehension
+
+2. Organization & Development — 25 Points
+Evaluates logical structure and idea progression
+Clear thesis or purpose statement
+Strong topic sentences
+Supporting details are relevant and sufficient
+Logical transitions between ideas
+
+Scoring Guide
+23–25: Well-organized and fully developed
+18–22: Generally clear with minor gaps
+13–17: Weak structure or limited development
+0–12: Disorganized or incomplete
+
+3. Source Use & Documentation — 25 Points
+Evaluates research integration and citation accuracy
+Credible and relevant sources used
+Accurate in-text citations
+Properly formatted references/works cited page
+Evidence is explained and connected to ideas
+
+Scoring Guide
+23–25: Sources integrated smoothly and correctly
+18–22: Minor citation or integration issues
+13–17: Weak or inconsistent source use
+0–12: Missing, incorrect, or improperly used sources
+
+4. Technical Accuracy & Assignment Requirements — 25 Points
+Ensures originality, compliance, and completeness
+Minimum word count met (300+ words)
+Assignment instructions followed
+Plagiarism check passed
+AI-use compliance (if applicable)
+Clear summary or conclusion
+
+Scoring Guide
+23–25: All requirements fully met
+18–22: One minor requirement issue
+13–17: Multiple requirement issues
+0–12: Major requirements unmet
+
+Late Submission Policy (Research Paper)
+Up to 24 hours late: −10 points
+25–72 hours late: −20 points
+More than 72 hours late: Not accepted unless prior approval is granted
+
+Revision Policy (Research Paper)
+One revision allowed if original submission scored below 85 points
+Maximum revision score: 85 points
+Revised submission must be turned in within 7 days of feedback
+Original feedback must be addressed for revision credit
+
+
+General Writing Assignment Rubric (2-Year Technical College)
+Total: 100 Points | Minimum Length: 100 Words
+Applies to reflections, short essays, discussion posts, or applied writing.
+
+1. Writing Quality & Mechanics — 25 Points
+Sentence structure
+Grammar, punctuation, and capitalization
+Appropriate word choice
+Clarity and conciseness
+
+Scoring Guide
+23–25: Clear and correct throughout
+18–22: Minor mechanical errors
+13–17: Frequent errors affecting clarity
+0–12: Errors significantly interfere with understanding
+
+2. Organization & Flow — 25 Points
+Clear main idea or purpose
+Logical paragraph structure
+Topic sentences
+Smooth transitions
+
+Scoring Guide
+23–25: Strong organization and flow
+18–22: Mostly clear with minor issues
+13–17: Weak or inconsistent organization
+0–12: Disorganized or unclear
+
+3. Content Development — 25 Points
+Ideas are fully explained
+Relevant examples or reasoning
+Evidence of critical thinking or reflection
+Audience awareness
+
+Scoring Guide
+23–25: Thoughtful, complete, and engaging
+18–22: Adequate but could be deeper
+13–17: Limited development
+0–12: Underdeveloped or off-topic
+
+4. Assignment Requirements & Source Use (If Applicable) — 25 Points
+Minimum word count met (100+ words)
+Sources used appropriately (if required)
+Proper citation format (if sources are used)
+Ethical use of information
+Assignment instructions followed
+Note: If sources are not required, scoring is based on word count and instruction compliance only.
+
+Scoring Guide
+23–25: All requirements met
+18–22: One minor issue
+13–17: Multiple issues
+0–12: Major requirements unmet
+
+Late Submission Policy (General Writing)
+Up to 24 hours late: −5 points
+25–72 hours late: −10 points
+More than 72 hours late: Not accepted unless prior approval is granted
+
+Revision Policy (General Writing)
+One revision allowed for scores below 90 points
+Maximum revision score: 90 points
+Revised work due within 5 days of feedback
+Must demonstrate meaningful improvement
+ 
+FOUR-YEAR COLLEGE RUBRICS
+
+4-Year College Research Paper Rubric
+Total: 100 Points | Minimum Length: 600 Words
+
+1. Writing Quality & Precision — 25 pts
+Sophisticated sentence structure
+Minimal grammatical errors
+Academic tone and voice
+Precise word choice
+
+2. Organization & Argumentation — 25 pts
+Clear, arguable thesis
+Logical paragraph sequencing
+Strong topic sentences
+Cohesive transitions
+
+3. Research Quality & Documentation — 25 pts
+Scholarly/credible sources (minimum 4–6)
+Accurate in-text citations (APA/MLA/Chicago)
+Proper references page
+Evidence analyzed, not summarized
+
+4. Technical Accuracy & Compliance — 25 pts
+Minimum word count met (600+ words)
+Plagiarism check passed
+AI-use policy followed
+Assignment objectives met
+Strong conclusion
+
+Late Policy
+24 hrs late: −10 pts
+48 hrs late: −20 pts
+72+ hrs late: zero unless documented exception
+
+Revision Policy
+One revision if score is below 85
+Maximum revised score: 85
+Revision due within 7 days
+
+4-Year College General Writing Rubric
+Minimum Length: 250 Words
+Sources optional unless specified
+Emphasis on reasoning, coherence, and audience awareness
+
+GRADUATE-LEVEL RUBRICS
+
+Graduate Research Paper Rubric
+Total: 100 Points | Minimum Length: 1,000 Words
+1. Scholarly Writing & Style — 25 pts
+Advanced academic tone
+Precision and clarity
+Discipline-appropriate language
+Minimal to no mechanical errors
+
+2. Argumentation & Structure — 25 pts
+Clear, original research focus
+Logical and intentional organization
+Strong synthesis of ideas
+Effective transitions and framing
+
+3. Research Depth & Citation — 25 pts
+Peer-reviewed and scholarly sourcesAccurate citation formatting
+Strong synthesis of literature
+Critical engagement with sources
+
+4. Academic Rigor & Compliance — 25 pts
+Minimum word count met (1,000+ words)
+Plagiarism and originality verified
+AI-use disclosures (if applicable)
+Meets graduate-level expectations
+Insightful conclusion or implications
+
+Late Policy
+Late submissions not accepted without prior approval
+Documented exceptions only
+Revision Policy
+Revisions permitted at instructor discretion
+Maximum revised score: 90
+Revision must substantially improve argument and analysis
+
+Graduate General Writing Rubric
+Minimum Length: 300 Words
+Sources optional depending on assignment
+Emphasis on synthesis, insight, and professional voice
+
+
+update the presentation rubric criteria with the following information and use the information for the points criteria
+
+HIGH SCHOOL PRESENTATION RUBRIC
+Total: 100 Points | Time Target: 3–5 Minutes
+
+1. Content Design & Visual Aids — 25 Points
+Text is readable (generally 24-pt or larger)
+Slides are not overcrowded with text
+Use of images, charts, or visuals
+Slides relate clearly to the topic
+Presenter does not read slides word-for-word
+Scoring
+23–25: Clear, neat, and effective visuals
+18–22: Mostly clear with minor issues
+13–17: Overcrowded or inconsistent
+0–12: Visuals distract or confuse
+
+2. Delivery & Engagement — 30 Points
+Voice is clear and understandable
+Appropriate speaking pace
+Some eye contact with audience
+Limited filler words
+Demonstrates preparation and effort
+Video Presentations (if used):
+Speaker visible and audible
+Minimal background distractions
+Scoring
+27–30: Confident and engaging
+21–26: Clear with some nervousness
+15–20: Limited engagement
+0–14: Difficult to follow
+
+3. Time Management — 15 Points
+Presentation fits within time range (±1 minute allowed)
+Content is balanced
+Clear beginning and ending
+
+4. Content Quality & Flow — 30 Points
+Clear main idea or purpose
+Logical order of ideas
+Accurate and relevant information
+Clear conclusion
+
+Late & Revision Policy (High School)
+1 day late: −10 points
+2+ days late: teacher discretion
+One revision allowed (max score: 85)
+
+
+ 2-YEAR TECHNICAL COLLEGE PRESENTATION RUBRIC
+Total: 100 Points | Time Target: 3–5 Minutes
+
+1. Content Design & Visual Aids — 25 Points
+Professional, readable slide design
+Minimal text (bullet points only)
+Effective use of visuals to support content
+Consistent formatting
+Slides support—not replace—the speaker
+
+2. Delivery & Engagement — 30 Points
+Clear voice and steady pace
+Minimal filler words
+Eye contact or camera focus
+Professional posture and tone
+Engages audience through clarity and examples
+Video Requirements:
+Webcam on
+Good lighting
+Camera at eye level
+No distractions
+
+3. Time Management — 15 Points
+Stays within 3–5 minutes
+Smooth transitions
+Planned opening and closing
+
+4. Content Quality & Flow — 30 Points
+Clear purpose or thesis
+Logical progression of ideas
+Appropriate depth for time limit
+Accurate, relevant information
+Strong takeaway or conclusion
+
+Late & Revision Policy (2-Year College)
+Up to 24 hrs late: −10 points
+25–72 hrs late: −20 points
+One revision allowed if score <85
+Max revised score: 85
+
+
+ 4-YEAR COLLEGE PRESENTATION RUBRIC
+Total: 100 Points | Time Target: 3–5 Minutes
+
+1. Content Design & Visual Aids — 25 Points
+Clean, professional slide design
+Minimal text; visuals used strategically
+High-quality images or data visuals
+Consistent layout and formatting
+Slides enhance comprehension
+
+2. Delivery & Engagement — 30 Points
+Confident, professional delivery
+Strong voice control and pacing
+Minimal filler words
+Sustained audience or camera engagement
+Purposeful gestures and posture
+Video Standards:
+Proper lighting and framing
+Neutral/professional background
+Clear audio
+
+3. Time Management — 15 Points
+Strict adherence to time limits
+Well-paced delivery
+Strong opening and closing
+
+4. Content Quality & Flow — 30 Points
+Clear, arguable focus or thesis
+Logical, cohesive structure
+Appropriate depth and analysis
+Accurate information
+Memorable conclusion
+
+Late & Revision Policy (4-Year College)
+24 hrs late: −10 points
+48 hrs late: −20 points
+72+ hrs late: not accepted without approval
+One revision allowed (max score: 85)
+
+
+ GRADUATE-LEVEL PRESENTATION RUBRIC
+Total: 100 Points | Time Target: 3–5 Minutes
+
+1. Content Design & Visual Aids — 25 Points
+Slides are minimal and intentional
+Visuals support analysis or synthesis
+No unnecessary text
+Professional, discipline-appropriate design
+Slides enhance—not explain—the content
+
+2. Delivery & Engagement — 30 Points
+Authoritative, polished delivery
+Precise language and pacing
+Strong audience or camera presence
+No distracting fillers
+Professional demeanor throughout
+Video Expectations (if applicable):
+High-quality lighting and audio
+Eye-level framing
+Distraction-free environment
+
+3. Time Management — 15 Points
+Strict adherence to time limit
+Efficient use of allotted time
+Purposeful transitions
+Clear, impactful closing
+
+4. Content Quality & Flow — 30 Points
+Clearly defined purpose or research focus
+Logical, intentional structure
+Depth appropriate for graduate study
+Evidence of synthesis or insight
+Strong implications or takeaway
+
+Late & Revision Policy (Graduate Level)
+Late presentations not accepted without prior approval
+Revisions allowed at instructor discretion only
+Maximum revised score: 90
+
+Final Perspective (Straight Talk)
+You now have:
+Vertically aligned presentation rubrics
+Clear differentiation by academic level
+Rubrics that work for live or recorded delivery
+A framework that pairs perfectly with your writing rubrics
+
+
+for the presentation rubric revision, give an option to specify time limit for the presentation for the rubric, also provide an option if the late and revision policy
+and Late presentations not accepted without prior approval
+ will be used for each rubric
+
+Allow users after importing their template to adjust it if needed
+
+Allow users to build a new rubric  
+
+
+

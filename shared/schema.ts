@@ -37,6 +37,34 @@ export const criterionSchema = z.object({
 
 export type Criterion = z.infer<typeof criterionSchema>;
 
+// Education Level enum
+export const educationLevelSchema = z.enum([
+  "middle_school",
+  "high_school", 
+  "tech_college",
+  "four_year_college",
+  "graduate"
+]);
+export type EducationLevel = z.infer<typeof educationLevelSchema>;
+
+// Template Type enum
+export const templateTypeSchema = z.enum(["essay", "presentation"]);
+export type TemplateType = z.infer<typeof templateTypeSchema>;
+
+// Late Policy Schema
+export const latePolicySchema = z.object({
+  enabled: z.boolean().default(false),
+  description: z.string().optional(),
+});
+export type LatePolicy = z.infer<typeof latePolicySchema>;
+
+// Revision Policy Schema  
+export const revisionPolicySchema = z.object({
+  enabled: z.boolean().default(false),
+  description: z.string().optional(),
+});
+export type RevisionPolicy = z.infer<typeof revisionPolicySchema>;
+
 // Rubric Schema
 export const rubricSchema = z.object({
   id: z.string(),
@@ -45,6 +73,12 @@ export const rubricSchema = z.object({
   criteria: z.array(criterionSchema),
   totalPoints: z.number(),
   isTemplate: z.boolean().default(false),
+  educationLevel: educationLevelSchema.optional(),
+  templateType: templateTypeSchema.optional(),
+  latePolicy: latePolicySchema.optional(),
+  revisionPolicy: revisionPolicySchema.optional(),
+  minimumLength: z.string().optional(),
+  timeLimit: z.string().optional(),
 });
 
 export type Rubric = z.infer<typeof rubricSchema>;
