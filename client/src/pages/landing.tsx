@@ -3,7 +3,7 @@ import { CheckCircle, Clock, FileText, Shield, Zap, Users, ArrowRight } from "lu
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HeroSlider } from "@/components/hero-slider";
-import logoImage from "@assets/logo_1767113786398.png";
+import logoImage from "@assets/logo4_1767212330511.png";
 
 const benefits = [
   {
