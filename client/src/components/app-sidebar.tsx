@@ -45,7 +45,7 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="p-4">
-        <Link href="/dashboard" data-testid="link-sidebar-brand">
+        <Link href="/" data-testid="link-sidebar-brand">
           <div className="flex items-center gap-2 cursor-pointer">
             <img src={logoImage} alt="GraderInsight" className="h-10" data-testid="img-sidebar-logo" />
           </div>
