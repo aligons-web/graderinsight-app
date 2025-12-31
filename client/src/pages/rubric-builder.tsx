@@ -34,10 +34,10 @@ const TEMPLATE_TYPES: { value: TemplateType; label: string }[] = [
 ];
 
 const DEFAULT_PROFICIENCY_LEVELS: Omit<ProficiencyLevel, "id">[] = [
-  { name: "Excellent", score: 4, description: "" },
+  { name: "Excel", score: 4, description: "" },
   { name: "Good", score: 3, description: "" },
-  { name: "Satisfactory", score: 2, description: "" },
-  { name: "Needs Improvement", score: 1, description: "" },
+  { name: "Average", score: 2, description: "" },
+  { name: "Below Avg.", score: 1, description: "" },
 ];
 
 function generateId(): string {
@@ -87,37 +87,37 @@ const ESSAY_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "ms-c1", name: "Writing Quality & Clarity", weight: 25,
         levels: [
-          { id: "ms-l1", name: "Excellent (23-25)", score: 25, description: "Complete sentences, basic grammar and capitalization, appropriate word choice, clear meaning" },
+          { id: "ms-l1", name: "Excel (23-25)", score: 25, description: "Complete sentences, basic grammar and capitalization, appropriate word choice, clear meaning" },
           { id: "ms-l2", name: "Good (18-22)", score: 22, description: "Mostly complete sentences with minor errors" },
-          { id: "ms-l3", name: "Satisfactory (13-17)", score: 17, description: "Some sentence issues affecting clarity" },
-          { id: "ms-l4", name: "Needs Improvement (0-12)", score: 12, description: "Significant writing issues" },
+          { id: "ms-l3", name: "Average (13-17)", score: 17, description: "Some sentence issues affecting clarity" },
+          { id: "ms-l4", name: "Below Avg. (0-12)", score: 12, description: "Significant writing issues" },
         ],
       },
       {
         id: "ms-c2", name: "Organization & Development", weight: 25,
         levels: [
-          { id: "ms-l5", name: "Excellent (23-25)", score: 25, description: "Clear main idea, paragraphs stay on topic, supporting details included, simple transitions" },
+          { id: "ms-l5", name: "Excel (23-25)", score: 25, description: "Clear main idea, paragraphs stay on topic, supporting details included, simple transitions" },
           { id: "ms-l6", name: "Good (18-22)", score: 22, description: "Generally clear organization with minor gaps" },
-          { id: "ms-l7", name: "Satisfactory (13-17)", score: 17, description: "Some organizational issues" },
-          { id: "ms-l8", name: "Needs Improvement (0-12)", score: 12, description: "Disorganized or incomplete" },
+          { id: "ms-l7", name: "Average (13-17)", score: 17, description: "Some organizational issues" },
+          { id: "ms-l8", name: "Below Avg. (0-12)", score: 12, description: "Disorganized or incomplete" },
         ],
       },
       {
         id: "ms-c3", name: "Source Use & Documentation", weight: 25,
         levels: [
-          { id: "ms-l9", name: "Excellent (23-25)", score: 25, description: "At least 1-2 teacher-approved sources, basic in-text citation, sources listed, information relates to topic" },
+          { id: "ms-l9", name: "Excel (23-25)", score: 25, description: "At least 1-2 teacher-approved sources, basic in-text citation, sources listed, information relates to topic" },
           { id: "ms-l10", name: "Good (18-22)", score: 22, description: "Sources present with minor citation issues" },
-          { id: "ms-l11", name: "Satisfactory (13-17)", score: 17, description: "Limited source use or citation problems" },
-          { id: "ms-l12", name: "Needs Improvement (0-12)", score: 12, description: "Missing or improperly used sources" },
+          { id: "ms-l11", name: "Average (13-17)", score: 17, description: "Limited source use or citation problems" },
+          { id: "ms-l12", name: "Below Avg. (0-12)", score: 12, description: "Missing or improperly used sources" },
         ],
       },
       {
         id: "ms-c4", name: "Assignment Requirements", weight: 25,
         levels: [
-          { id: "ms-l13", name: "Excellent (23-25)", score: 25, description: "Minimum word count met (200+ words), instructions followed, original work, clear ending or summary" },
+          { id: "ms-l13", name: "Excel (23-25)", score: 25, description: "Minimum word count met (200+ words), instructions followed, original work, clear ending or summary" },
           { id: "ms-l14", name: "Good (18-22)", score: 22, description: "Most requirements met" },
-          { id: "ms-l15", name: "Satisfactory (13-17)", score: 17, description: "Some requirements missing" },
-          { id: "ms-l16", name: "Needs Improvement (0-12)", score: 12, description: "Major requirements unmet" },
+          { id: "ms-l15", name: "Average (13-17)", score: 17, description: "Some requirements missing" },
+          { id: "ms-l16", name: "Below Avg. (0-12)", score: 12, description: "Major requirements unmet" },
         ],
       },
     ],
@@ -137,37 +137,37 @@ const ESSAY_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "hs-c1", name: "Writing Quality & Style", weight: 25,
         levels: [
-          { id: "hs-l1", name: "Excellent (23-25)", score: 25, description: "Correct grammar and sentence structure, varied sentence beginnings, formal academic tone, concise wording" },
+          { id: "hs-l1", name: "Excel (23-25)", score: 25, description: "Correct grammar and sentence structure, varied sentence beginnings, formal academic tone, concise wording" },
           { id: "hs-l2", name: "Good (18-22)", score: 22, description: "Minor errors that don't affect meaning" },
-          { id: "hs-l3", name: "Satisfactory (13-17)", score: 17, description: "Frequent errors affecting readability" },
-          { id: "hs-l4", name: "Needs Improvement (0-12)", score: 12, description: "Writing significantly interferes with comprehension" },
+          { id: "hs-l3", name: "Average (13-17)", score: 17, description: "Frequent errors affecting readability" },
+          { id: "hs-l4", name: "Below Avg. (0-12)", score: 12, description: "Writing significantly interferes with comprehension" },
         ],
       },
       {
         id: "hs-c2", name: "Organization & Development", weight: 25,
         levels: [
-          { id: "hs-l5", name: "Excellent (23-25)", score: 25, description: "Clear thesis statement, topic sentences guide paragraphs, evidence supports ideas, logical flow" },
+          { id: "hs-l5", name: "Excel (23-25)", score: 25, description: "Clear thesis statement, topic sentences guide paragraphs, evidence supports ideas, logical flow" },
           { id: "hs-l6", name: "Good (18-22)", score: 22, description: "Generally clear with minor gaps" },
-          { id: "hs-l7", name: "Satisfactory (13-17)", score: 17, description: "Weak structure or limited development" },
-          { id: "hs-l8", name: "Needs Improvement (0-12)", score: 12, description: "Disorganized or incomplete" },
+          { id: "hs-l7", name: "Average (13-17)", score: 17, description: "Weak structure or limited development" },
+          { id: "hs-l8", name: "Below Avg. (0-12)", score: 12, description: "Disorganized or incomplete" },
         ],
       },
       {
         id: "hs-c3", name: "Source Use & Citation", weight: 25,
         levels: [
-          { id: "hs-l9", name: "Excellent (23-25)", score: 25, description: "Credible sources (minimum 2-3), correct in-text citations, proper works cited page, sources integrated smoothly" },
+          { id: "hs-l9", name: "Excel (23-25)", score: 25, description: "Credible sources (minimum 2-3), correct in-text citations, proper works cited page, sources integrated smoothly" },
           { id: "hs-l10", name: "Good (18-22)", score: 22, description: "Minor citation or integration issues" },
-          { id: "hs-l11", name: "Satisfactory (13-17)", score: 17, description: "Weak or inconsistent source use" },
-          { id: "hs-l12", name: "Needs Improvement (0-12)", score: 12, description: "Missing, incorrect, or improperly used sources" },
+          { id: "hs-l11", name: "Average (13-17)", score: 17, description: "Weak or inconsistent source use" },
+          { id: "hs-l12", name: "Below Avg. (0-12)", score: 12, description: "Missing, incorrect, or improperly used sources" },
         ],
       },
       {
         id: "hs-c4", name: "Technical & Assignment Requirements", weight: 25,
         levels: [
-          { id: "hs-l13", name: "Excellent (23-25)", score: 25, description: "Minimum word count met (400+ words), plagiarism check passed, assignment instructions followed, clear conclusion" },
+          { id: "hs-l13", name: "Excel (23-25)", score: 25, description: "Minimum word count met (400+ words), plagiarism check passed, assignment instructions followed, clear conclusion" },
           { id: "hs-l14", name: "Good (18-22)", score: 22, description: "One minor requirement issue" },
-          { id: "hs-l15", name: "Satisfactory (13-17)", score: 17, description: "Multiple requirement issues" },
-          { id: "hs-l16", name: "Needs Improvement (0-12)", score: 12, description: "Major requirements unmet" },
+          { id: "hs-l15", name: "Average (13-17)", score: 17, description: "Multiple requirement issues" },
+          { id: "hs-l16", name: "Below Avg. (0-12)", score: 12, description: "Major requirements unmet" },
         ],
       },
     ],
@@ -187,37 +187,37 @@ const ESSAY_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "tc-c1", name: "Writing Quality & Clarity", weight: 25,
         levels: [
-          { id: "tc-l1", name: "Excellent (23-25)", score: 25, description: "Clear, polished, and professional. Sentence structure and clarity, grammar and subject-verb agreement, conciseness, word choice appropriate for academic audience" },
+          { id: "tc-l1", name: "Excel (23-25)", score: 25, description: "Clear, polished, and professional. Sentence structure and clarity, grammar and subject-verb agreement, conciseness, word choice appropriate for academic audience" },
           { id: "tc-l2", name: "Good (18-22)", score: 22, description: "Minor errors that do not affect meaning" },
-          { id: "tc-l3", name: "Satisfactory (13-17)", score: 17, description: "Frequent errors affecting readability" },
-          { id: "tc-l4", name: "Needs Improvement (0-12)", score: 12, description: "Writing significantly interferes with comprehension" },
+          { id: "tc-l3", name: "Average (13-17)", score: 17, description: "Frequent errors affecting readability" },
+          { id: "tc-l4", name: "Below Avg. (0-12)", score: 12, description: "Writing significantly interferes with comprehension" },
         ],
       },
       {
         id: "tc-c2", name: "Organization & Development", weight: 25,
         levels: [
-          { id: "tc-l5", name: "Excellent (23-25)", score: 25, description: "Well-organized and fully developed. Clear thesis or purpose statement, strong topic sentences, supporting details are relevant and sufficient, logical transitions" },
+          { id: "tc-l5", name: "Excel (23-25)", score: 25, description: "Well-organized and fully developed. Clear thesis or purpose statement, strong topic sentences, supporting details are relevant and sufficient, logical transitions" },
           { id: "tc-l6", name: "Good (18-22)", score: 22, description: "Generally clear with minor gaps" },
-          { id: "tc-l7", name: "Satisfactory (13-17)", score: 17, description: "Weak structure or limited development" },
-          { id: "tc-l8", name: "Needs Improvement (0-12)", score: 12, description: "Disorganized or incomplete" },
+          { id: "tc-l7", name: "Average (13-17)", score: 17, description: "Weak structure or limited development" },
+          { id: "tc-l8", name: "Below Avg. (0-12)", score: 12, description: "Disorganized or incomplete" },
         ],
       },
       {
         id: "tc-c3", name: "Source Use & Documentation", weight: 25,
         levels: [
-          { id: "tc-l9", name: "Excellent (23-25)", score: 25, description: "Sources integrated smoothly and correctly. Credible and relevant sources used, accurate in-text citations, properly formatted references/works cited page, evidence is explained and connected to ideas" },
+          { id: "tc-l9", name: "Excel (23-25)", score: 25, description: "Sources integrated smoothly and correctly. Credible and relevant sources used, accurate in-text citations, properly formatted references/works cited page, evidence is explained and connected to ideas" },
           { id: "tc-l10", name: "Good (18-22)", score: 22, description: "Minor citation or integration issues" },
-          { id: "tc-l11", name: "Satisfactory (13-17)", score: 17, description: "Weak or inconsistent source use" },
-          { id: "tc-l12", name: "Needs Improvement (0-12)", score: 12, description: "Missing, incorrect, or improperly used sources" },
+          { id: "tc-l11", name: "Average (13-17)", score: 17, description: "Weak or inconsistent source use" },
+          { id: "tc-l12", name: "Below Avg. (0-12)", score: 12, description: "Missing, incorrect, or improperly used sources" },
         ],
       },
       {
         id: "tc-c4", name: "Technical Accuracy & Assignment Requirements", weight: 25,
         levels: [
-          { id: "tc-l13", name: "Excellent (23-25)", score: 25, description: "All requirements fully met. Minimum word count met (300+ words), assignment instructions followed, plagiarism check passed, AI-use compliance (if applicable), clear summary or conclusion" },
+          { id: "tc-l13", name: "Excel (23-25)", score: 25, description: "All requirements fully met. Minimum word count met (300+ words), assignment instructions followed, plagiarism check passed, AI-use compliance (if applicable), clear summary or conclusion" },
           { id: "tc-l14", name: "Good (18-22)", score: 22, description: "One minor requirement issue" },
-          { id: "tc-l15", name: "Satisfactory (13-17)", score: 17, description: "Multiple requirement issues" },
-          { id: "tc-l16", name: "Needs Improvement (0-12)", score: 12, description: "Major requirements unmet" },
+          { id: "tc-l15", name: "Average (13-17)", score: 17, description: "Multiple requirement issues" },
+          { id: "tc-l16", name: "Below Avg. (0-12)", score: 12, description: "Major requirements unmet" },
         ],
       },
     ],
@@ -237,37 +237,37 @@ const ESSAY_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "4yr-c1", name: "Writing Quality & Precision", weight: 25,
         levels: [
-          { id: "4yr-l1", name: "Excellent (23-25)", score: 25, description: "Sophisticated sentence structure, minimal grammatical errors, academic tone and voice, precise word choice" },
+          { id: "4yr-l1", name: "Excel (23-25)", score: 25, description: "Sophisticated sentence structure, minimal grammatical errors, academic tone and voice, precise word choice" },
           { id: "4yr-l2", name: "Good (18-22)", score: 22, description: "Clear writing with minor issues" },
-          { id: "4yr-l3", name: "Satisfactory (13-17)", score: 17, description: "Acceptable writing with some problems" },
-          { id: "4yr-l4", name: "Needs Improvement (0-12)", score: 12, description: "Unclear or poorly written" },
+          { id: "4yr-l3", name: "Average (13-17)", score: 17, description: "Acceptable writing with some problems" },
+          { id: "4yr-l4", name: "Below Avg. (0-12)", score: 12, description: "Unclear or poorly written" },
         ],
       },
       {
         id: "4yr-c2", name: "Organization & Argumentation", weight: 25,
         levels: [
-          { id: "4yr-l5", name: "Excellent (23-25)", score: 25, description: "Clear, arguable thesis, logical paragraph sequencing, strong topic sentences, cohesive transitions" },
+          { id: "4yr-l5", name: "Excel (23-25)", score: 25, description: "Clear, arguable thesis, logical paragraph sequencing, strong topic sentences, cohesive transitions" },
           { id: "4yr-l6", name: "Good (18-22)", score: 22, description: "Generally well-organized with minor gaps" },
-          { id: "4yr-l7", name: "Satisfactory (13-17)", score: 17, description: "Some organizational issues present" },
-          { id: "4yr-l8", name: "Needs Improvement (0-12)", score: 12, description: "Disorganized, hard to follow" },
+          { id: "4yr-l7", name: "Average (13-17)", score: 17, description: "Some organizational issues present" },
+          { id: "4yr-l8", name: "Below Avg. (0-12)", score: 12, description: "Disorganized, hard to follow" },
         ],
       },
       {
         id: "4yr-c3", name: "Research Quality & Documentation", weight: 25,
         levels: [
-          { id: "4yr-l9", name: "Excellent (23-25)", score: 25, description: "Scholarly/credible sources (minimum 4-6), accurate in-text citations (APA/MLA/Chicago), proper references page, evidence analyzed, not summarized" },
+          { id: "4yr-l9", name: "Excel (23-25)", score: 25, description: "Scholarly/credible sources (minimum 4-6), accurate in-text citations (APA/MLA/Chicago), proper references page, evidence analyzed, not summarized" },
           { id: "4yr-l10", name: "Good (18-22)", score: 22, description: "Good range of sources, well-integrated" },
-          { id: "4yr-l11", name: "Satisfactory (13-17)", score: 17, description: "Adequate sources, some integration issues" },
-          { id: "4yr-l12", name: "Needs Improvement (0-12)", score: 12, description: "Limited sources or poor integration" },
+          { id: "4yr-l11", name: "Average (13-17)", score: 17, description: "Adequate sources, some integration issues" },
+          { id: "4yr-l12", name: "Below Avg. (0-12)", score: 12, description: "Limited sources or poor integration" },
         ],
       },
       {
         id: "4yr-c4", name: "Technical Accuracy & Compliance", weight: 25,
         levels: [
-          { id: "4yr-l13", name: "Excellent (23-25)", score: 25, description: "Minimum word count met (600+ words), plagiarism check passed, AI-use policy followed, assignment objectives met, strong conclusion" },
+          { id: "4yr-l13", name: "Excel (23-25)", score: 25, description: "Minimum word count met (600+ words), plagiarism check passed, AI-use policy followed, assignment objectives met, strong conclusion" },
           { id: "4yr-l14", name: "Good (18-22)", score: 22, description: "One minor requirement issue" },
-          { id: "4yr-l15", name: "Satisfactory (13-17)", score: 17, description: "Multiple requirement issues" },
-          { id: "4yr-l16", name: "Needs Improvement (0-12)", score: 12, description: "Major requirements unmet" },
+          { id: "4yr-l15", name: "Average (13-17)", score: 17, description: "Multiple requirement issues" },
+          { id: "4yr-l16", name: "Below Avg. (0-12)", score: 12, description: "Major requirements unmet" },
         ],
       },
     ],
@@ -287,37 +287,37 @@ const ESSAY_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "grad-c1", name: "Scholarly Writing & Style", weight: 25,
         levels: [
-          { id: "grad-l1", name: "Excellent (23-25)", score: 25, description: "Advanced academic tone, precision and clarity, discipline-appropriate language, minimal to no mechanical errors" },
+          { id: "grad-l1", name: "Excel (23-25)", score: 25, description: "Advanced academic tone, precision and clarity, discipline-appropriate language, minimal to no mechanical errors" },
           { id: "grad-l2", name: "Good (18-22)", score: 22, description: "Clear writing with minor issues" },
-          { id: "grad-l3", name: "Satisfactory (13-17)", score: 17, description: "Acceptable writing with some problems" },
-          { id: "grad-l4", name: "Needs Improvement (0-12)", score: 12, description: "Below graduate-level expectations" },
+          { id: "grad-l3", name: "Average (13-17)", score: 17, description: "Acceptable writing with some problems" },
+          { id: "grad-l4", name: "Below Avg. (0-12)", score: 12, description: "Below graduate-level expectations" },
         ],
       },
       {
         id: "grad-c2", name: "Argumentation & Structure", weight: 25,
         levels: [
-          { id: "grad-l5", name: "Excellent (23-25)", score: 25, description: "Clear, original research focus, logical and intentional organization, strong synthesis of ideas, effective transitions and framing" },
+          { id: "grad-l5", name: "Excel (23-25)", score: 25, description: "Clear, original research focus, logical and intentional organization, strong synthesis of ideas, effective transitions and framing" },
           { id: "grad-l6", name: "Good (18-22)", score: 22, description: "Generally well-organized with minor gaps" },
-          { id: "grad-l7", name: "Satisfactory (13-17)", score: 17, description: "Some organizational issues present" },
-          { id: "grad-l8", name: "Needs Improvement (0-12)", score: 12, description: "Lacks coherent structure" },
+          { id: "grad-l7", name: "Average (13-17)", score: 17, description: "Some organizational issues present" },
+          { id: "grad-l8", name: "Below Avg. (0-12)", score: 12, description: "Lacks coherent structure" },
         ],
       },
       {
         id: "grad-c3", name: "Research Depth & Citation", weight: 25,
         levels: [
-          { id: "grad-l9", name: "Excellent (23-25)", score: 25, description: "Peer-reviewed and scholarly sources, accurate citation formatting, strong synthesis of literature, critical engagement with sources" },
+          { id: "grad-l9", name: "Excel (23-25)", score: 25, description: "Peer-reviewed and scholarly sources, accurate citation formatting, strong synthesis of literature, critical engagement with sources" },
           { id: "grad-l10", name: "Good (18-22)", score: 22, description: "Good research with minor citation issues" },
-          { id: "grad-l11", name: "Satisfactory (13-17)", score: 17, description: "Adequate sources, limited synthesis" },
-          { id: "grad-l12", name: "Needs Improvement (0-12)", score: 12, description: "Insufficient research depth" },
+          { id: "grad-l11", name: "Average (13-17)", score: 17, description: "Adequate sources, limited synthesis" },
+          { id: "grad-l12", name: "Below Avg. (0-12)", score: 12, description: "Insufficient research depth" },
         ],
       },
       {
         id: "grad-c4", name: "Academic Rigor & Compliance", weight: 25,
         levels: [
-          { id: "grad-l13", name: "Excellent (23-25)", score: 25, description: "Minimum word count met (1,000+ words), plagiarism and originality verified, AI-use disclosures (if applicable), meets graduate-level expectations, insightful conclusion or implications" },
+          { id: "grad-l13", name: "Excel (23-25)", score: 25, description: "Minimum word count met (1,000+ words), plagiarism and originality verified, AI-use disclosures (if applicable), meets graduate-level expectations, insightful conclusion or implications" },
           { id: "grad-l14", name: "Good (18-22)", score: 22, description: "One minor requirement issue" },
-          { id: "grad-l15", name: "Satisfactory (13-17)", score: 17, description: "Multiple requirement issues" },
-          { id: "grad-l16", name: "Needs Improvement (0-12)", score: 12, description: "Major requirements unmet" },
+          { id: "grad-l15", name: "Average (13-17)", score: 17, description: "Multiple requirement issues" },
+          { id: "grad-l16", name: "Below Avg. (0-12)", score: 12, description: "Major requirements unmet" },
         ],
       },
     ],
@@ -340,37 +340,37 @@ const PRESENTATION_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "ms-p1", name: "Content Design & Visual Aids", weight: 25,
         levels: [
-          { id: "ms-pl1", name: "Excellent (23-25)", score: 25, description: "Clear, neat, and effective visuals. Text is readable, slides not overcrowded, use of images/charts, slides relate clearly to topic" },
+          { id: "ms-pl1", name: "Excel (23-25)", score: 25, description: "Clear, neat, and effective visuals. Text is readable, slides not overcrowded, use of images/charts, slides relate clearly to topic" },
           { id: "ms-pl2", name: "Good (18-22)", score: 22, description: "Mostly clear with minor issues" },
-          { id: "ms-pl3", name: "Satisfactory (13-17)", score: 17, description: "Overcrowded or inconsistent" },
-          { id: "ms-pl4", name: "Needs Improvement (0-12)", score: 12, description: "Visuals distract or confuse" },
+          { id: "ms-pl3", name: "Average (13-17)", score: 17, description: "Overcrowded or inconsistent" },
+          { id: "ms-pl4", name: "Below Avg. (0-12)", score: 12, description: "Visuals distract or confuse" },
         ],
       },
       {
         id: "ms-p2", name: "Delivery & Engagement", weight: 30,
         levels: [
-          { id: "ms-pl5", name: "Excellent (27-30)", score: 30, description: "Confident and engaging. Voice is clear, appropriate pace, eye contact, limited filler words, demonstrates preparation" },
+          { id: "ms-pl5", name: "Excel (27-30)", score: 30, description: "Confident and engaging. Voice is clear, appropriate pace, eye contact, limited filler words, demonstrates preparation" },
           { id: "ms-pl6", name: "Good (21-26)", score: 26, description: "Clear with some nervousness" },
-          { id: "ms-pl7", name: "Satisfactory (15-20)", score: 20, description: "Limited engagement" },
-          { id: "ms-pl8", name: "Needs Improvement (0-14)", score: 14, description: "Difficult to follow" },
+          { id: "ms-pl7", name: "Average (15-20)", score: 20, description: "Limited engagement" },
+          { id: "ms-pl8", name: "Below Avg. (0-14)", score: 14, description: "Difficult to follow" },
         ],
       },
       {
         id: "ms-p3", name: "Time Management", weight: 15,
         levels: [
-          { id: "ms-pl9", name: "Excellent (14-15)", score: 15, description: "Presentation fits within time range, content is balanced, clear beginning and ending" },
+          { id: "ms-pl9", name: "Excel (14-15)", score: 15, description: "Presentation fits within time range, content is balanced, clear beginning and ending" },
           { id: "ms-pl10", name: "Good (11-13)", score: 13, description: "Slightly over/under but well-paced" },
-          { id: "ms-pl11", name: "Satisfactory (8-10)", score: 10, description: "Noticeable timing issues" },
-          { id: "ms-pl12", name: "Needs Improvement (0-7)", score: 7, description: "Significantly over/under time" },
+          { id: "ms-pl11", name: "Average (8-10)", score: 10, description: "Noticeable timing issues" },
+          { id: "ms-pl12", name: "Below Avg. (0-7)", score: 7, description: "Significantly over/under time" },
         ],
       },
       {
         id: "ms-p4", name: "Content Quality & Flow", weight: 30,
         levels: [
-          { id: "ms-pl13", name: "Excellent (27-30)", score: 30, description: "Clear main idea or purpose, logical order of ideas, accurate and relevant information, clear conclusion" },
+          { id: "ms-pl13", name: "Excel (27-30)", score: 30, description: "Clear main idea or purpose, logical order of ideas, accurate and relevant information, clear conclusion" },
           { id: "ms-pl14", name: "Good (21-26)", score: 26, description: "Generally clear with minor gaps" },
-          { id: "ms-pl15", name: "Satisfactory (15-20)", score: 20, description: "Some organizational issues" },
-          { id: "ms-pl16", name: "Needs Improvement (0-14)", score: 14, description: "Disorganized or incomplete" },
+          { id: "ms-pl15", name: "Average (15-20)", score: 20, description: "Some organizational issues" },
+          { id: "ms-pl16", name: "Below Avg. (0-14)", score: 14, description: "Disorganized or incomplete" },
         ],
       },
     ],
@@ -390,37 +390,37 @@ const PRESENTATION_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "hs-p1", name: "Content Design & Visual Aids", weight: 25,
         levels: [
-          { id: "hs-pl1", name: "Excellent (23-25)", score: 25, description: "Clear, neat, and effective visuals. Text readable (24-pt or larger), slides not overcrowded, use of images/charts/visuals, presenter does not read slides word-for-word" },
+          { id: "hs-pl1", name: "Excel (23-25)", score: 25, description: "Clear, neat, and effective visuals. Text readable (24-pt or larger), slides not overcrowded, use of images/charts/visuals, presenter does not read slides word-for-word" },
           { id: "hs-pl2", name: "Good (18-22)", score: 22, description: "Mostly clear with minor issues" },
-          { id: "hs-pl3", name: "Satisfactory (13-17)", score: 17, description: "Overcrowded or inconsistent" },
-          { id: "hs-pl4", name: "Needs Improvement (0-12)", score: 12, description: "Visuals distract or confuse" },
+          { id: "hs-pl3", name: "Average (13-17)", score: 17, description: "Overcrowded or inconsistent" },
+          { id: "hs-pl4", name: "Below Avg. (0-12)", score: 12, description: "Visuals distract or confuse" },
         ],
       },
       {
         id: "hs-p2", name: "Delivery & Engagement", weight: 30,
         levels: [
-          { id: "hs-pl5", name: "Excellent (27-30)", score: 30, description: "Confident and engaging. Voice clear and understandable, appropriate speaking pace, eye contact with audience, limited filler words, demonstrates preparation" },
+          { id: "hs-pl5", name: "Excel (27-30)", score: 30, description: "Confident and engaging. Voice clear and understandable, appropriate speaking pace, eye contact with audience, limited filler words, demonstrates preparation" },
           { id: "hs-pl6", name: "Good (21-26)", score: 26, description: "Clear with some nervousness" },
-          { id: "hs-pl7", name: "Satisfactory (15-20)", score: 20, description: "Limited engagement" },
-          { id: "hs-pl8", name: "Needs Improvement (0-14)", score: 14, description: "Difficult to follow" },
+          { id: "hs-pl7", name: "Average (15-20)", score: 20, description: "Limited engagement" },
+          { id: "hs-pl8", name: "Below Avg. (0-14)", score: 14, description: "Difficult to follow" },
         ],
       },
       {
         id: "hs-p3", name: "Time Management", weight: 15,
         levels: [
-          { id: "hs-pl9", name: "Excellent (14-15)", score: 15, description: "Presentation fits within time range (plus/minus 1 minute allowed), content is balanced, clear beginning and ending" },
+          { id: "hs-pl9", name: "Excel (14-15)", score: 15, description: "Presentation fits within time range (plus/minus 1 minute allowed), content is balanced, clear beginning and ending" },
           { id: "hs-pl10", name: "Good (11-13)", score: 13, description: "Slightly over/under but well-paced" },
-          { id: "hs-pl11", name: "Satisfactory (8-10)", score: 10, description: "Noticeable timing issues" },
-          { id: "hs-pl12", name: "Needs Improvement (0-7)", score: 7, description: "Significantly over/under time" },
+          { id: "hs-pl11", name: "Average (8-10)", score: 10, description: "Noticeable timing issues" },
+          { id: "hs-pl12", name: "Below Avg. (0-7)", score: 7, description: "Significantly over/under time" },
         ],
       },
       {
         id: "hs-p4", name: "Content Quality & Flow", weight: 30,
         levels: [
-          { id: "hs-pl13", name: "Excellent (27-30)", score: 30, description: "Clear main idea or purpose, logical order of ideas, accurate and relevant information, clear conclusion" },
+          { id: "hs-pl13", name: "Excel (27-30)", score: 30, description: "Clear main idea or purpose, logical order of ideas, accurate and relevant information, clear conclusion" },
           { id: "hs-pl14", name: "Good (21-26)", score: 26, description: "Generally clear with minor gaps" },
-          { id: "hs-pl15", name: "Satisfactory (15-20)", score: 20, description: "Some organizational issues" },
-          { id: "hs-pl16", name: "Needs Improvement (0-14)", score: 14, description: "Disorganized or incomplete" },
+          { id: "hs-pl15", name: "Average (15-20)", score: 20, description: "Some organizational issues" },
+          { id: "hs-pl16", name: "Below Avg. (0-14)", score: 14, description: "Disorganized or incomplete" },
         ],
       },
     ],
@@ -440,37 +440,37 @@ const PRESENTATION_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "tc-p1", name: "Content Design & Visual Aids", weight: 25,
         levels: [
-          { id: "tc-pl1", name: "Excellent (23-25)", score: 25, description: "Professional, readable slide design. Minimal text (bullet points only), effective use of visuals, consistent formatting, slides support - not replace - the speaker" },
+          { id: "tc-pl1", name: "Excel (23-25)", score: 25, description: "Professional, readable slide design. Minimal text (bullet points only), effective use of visuals, consistent formatting, slides support - not replace - the speaker" },
           { id: "tc-pl2", name: "Good (18-22)", score: 22, description: "Mostly professional with minor issues" },
-          { id: "tc-pl3", name: "Satisfactory (13-17)", score: 17, description: "Inconsistent or unprofessional elements" },
-          { id: "tc-pl4", name: "Needs Improvement (0-12)", score: 12, description: "Unprofessional or distracting design" },
+          { id: "tc-pl3", name: "Average (13-17)", score: 17, description: "Inconsistent or unprofessional elements" },
+          { id: "tc-pl4", name: "Below Avg. (0-12)", score: 12, description: "Unprofessional or distracting design" },
         ],
       },
       {
         id: "tc-p2", name: "Delivery & Engagement", weight: 30,
         levels: [
-          { id: "tc-pl5", name: "Excellent (27-30)", score: 30, description: "Clear voice and steady pace, minimal filler words, eye contact or camera focus, professional posture and tone, engages audience through clarity and examples. Video: webcam on, good lighting, camera at eye level, no distractions" },
+          { id: "tc-pl5", name: "Excel (27-30)", score: 30, description: "Clear voice and steady pace, minimal filler words, eye contact or camera focus, professional posture and tone, engages audience through clarity and examples. Video: webcam on, good lighting, camera at eye level, no distractions" },
           { id: "tc-pl6", name: "Good (21-26)", score: 26, description: "Clear with minor delivery issues" },
-          { id: "tc-pl7", name: "Satisfactory (15-20)", score: 20, description: "Limited engagement or professionalism" },
-          { id: "tc-pl8", name: "Needs Improvement (0-14)", score: 14, description: "Difficult to follow or unprofessional" },
+          { id: "tc-pl7", name: "Average (15-20)", score: 20, description: "Limited engagement or professionalism" },
+          { id: "tc-pl8", name: "Below Avg. (0-14)", score: 14, description: "Difficult to follow or unprofessional" },
         ],
       },
       {
         id: "tc-p3", name: "Time Management", weight: 15,
         levels: [
-          { id: "tc-pl9", name: "Excellent (14-15)", score: 15, description: "Stays within 3-5 minutes, smooth transitions, planned opening and closing" },
+          { id: "tc-pl9", name: "Excel (14-15)", score: 15, description: "Stays within 3-5 minutes, smooth transitions, planned opening and closing" },
           { id: "tc-pl10", name: "Good (11-13)", score: 13, description: "Slightly over/under but well-paced" },
-          { id: "tc-pl11", name: "Satisfactory (8-10)", score: 10, description: "Noticeable timing issues" },
-          { id: "tc-pl12", name: "Needs Improvement (0-7)", score: 7, description: "Significantly over/under time" },
+          { id: "tc-pl11", name: "Average (8-10)", score: 10, description: "Noticeable timing issues" },
+          { id: "tc-pl12", name: "Below Avg. (0-7)", score: 7, description: "Significantly over/under time" },
         ],
       },
       {
         id: "tc-p4", name: "Content Quality & Flow", weight: 30,
         levels: [
-          { id: "tc-pl13", name: "Excellent (27-30)", score: 30, description: "Clear purpose or thesis, logical progression of ideas, appropriate depth for time limit, accurate relevant information, strong takeaway or conclusion" },
+          { id: "tc-pl13", name: "Excel (27-30)", score: 30, description: "Clear purpose or thesis, logical progression of ideas, appropriate depth for time limit, accurate relevant information, strong takeaway or conclusion" },
           { id: "tc-pl14", name: "Good (21-26)", score: 26, description: "Generally clear with minor gaps" },
-          { id: "tc-pl15", name: "Satisfactory (15-20)", score: 20, description: "Some organizational issues" },
-          { id: "tc-pl16", name: "Needs Improvement (0-14)", score: 14, description: "Disorganized or incomplete" },
+          { id: "tc-pl15", name: "Average (15-20)", score: 20, description: "Some organizational issues" },
+          { id: "tc-pl16", name: "Below Avg. (0-14)", score: 14, description: "Disorganized or incomplete" },
         ],
       },
     ],
@@ -490,37 +490,37 @@ const PRESENTATION_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "4yr-p1", name: "Content Design & Visual Aids", weight: 25,
         levels: [
-          { id: "4yr-pl1", name: "Excellent (23-25)", score: 25, description: "Clean, professional slide design. Minimal text with strategic visuals, high-quality images or data visuals, consistent layout and formatting, slides enhance comprehension" },
+          { id: "4yr-pl1", name: "Excel (23-25)", score: 25, description: "Clean, professional slide design. Minimal text with strategic visuals, high-quality images or data visuals, consistent layout and formatting, slides enhance comprehension" },
           { id: "4yr-pl2", name: "Good (18-22)", score: 22, description: "Mostly professional with minor issues" },
-          { id: "4yr-pl3", name: "Satisfactory (13-17)", score: 17, description: "Inconsistent or unprofessional elements" },
-          { id: "4yr-pl4", name: "Needs Improvement (0-12)", score: 12, description: "Unprofessional or distracting design" },
+          { id: "4yr-pl3", name: "Average (13-17)", score: 17, description: "Inconsistent or unprofessional elements" },
+          { id: "4yr-pl4", name: "Below Avg. (0-12)", score: 12, description: "Unprofessional or distracting design" },
         ],
       },
       {
         id: "4yr-p2", name: "Delivery & Engagement", weight: 30,
         levels: [
-          { id: "4yr-pl5", name: "Excellent (27-30)", score: 30, description: "Confident, professional delivery. Strong voice control and pacing, minimal filler words, sustained audience or camera engagement, purposeful gestures and posture. Video: proper lighting/framing, neutral/professional background, clear audio" },
+          { id: "4yr-pl5", name: "Excel (27-30)", score: 30, description: "Confident, professional delivery. Strong voice control and pacing, minimal filler words, sustained audience or camera engagement, purposeful gestures and posture. Video: proper lighting/framing, neutral/professional background, clear audio" },
           { id: "4yr-pl6", name: "Good (21-26)", score: 26, description: "Clear with minor delivery issues" },
-          { id: "4yr-pl7", name: "Satisfactory (15-20)", score: 20, description: "Limited engagement or professionalism" },
-          { id: "4yr-pl8", name: "Needs Improvement (0-14)", score: 14, description: "Difficult to follow or unprofessional" },
+          { id: "4yr-pl7", name: "Average (15-20)", score: 20, description: "Limited engagement or professionalism" },
+          { id: "4yr-pl8", name: "Below Avg. (0-14)", score: 14, description: "Difficult to follow or unprofessional" },
         ],
       },
       {
         id: "4yr-p3", name: "Time Management", weight: 15,
         levels: [
-          { id: "4yr-pl9", name: "Excellent (14-15)", score: 15, description: "Strict adherence to time limits, well-paced delivery, strong opening and closing" },
+          { id: "4yr-pl9", name: "Excel (14-15)", score: 15, description: "Strict adherence to time limits, well-paced delivery, strong opening and closing" },
           { id: "4yr-pl10", name: "Good (11-13)", score: 13, description: "Slightly over/under but well-paced" },
-          { id: "4yr-pl11", name: "Satisfactory (8-10)", score: 10, description: "Noticeable timing issues" },
-          { id: "4yr-pl12", name: "Needs Improvement (0-7)", score: 7, description: "Significantly over/under time" },
+          { id: "4yr-pl11", name: "Average (8-10)", score: 10, description: "Noticeable timing issues" },
+          { id: "4yr-pl12", name: "Below Avg. (0-7)", score: 7, description: "Significantly over/under time" },
         ],
       },
       {
         id: "4yr-p4", name: "Content Quality & Flow", weight: 30,
         levels: [
-          { id: "4yr-pl13", name: "Excellent (27-30)", score: 30, description: "Clear, arguable focus or thesis. Logical, cohesive structure, appropriate depth and analysis, accurate information, memorable conclusion" },
+          { id: "4yr-pl13", name: "Excel (27-30)", score: 30, description: "Clear, arguable focus or thesis. Logical, cohesive structure, appropriate depth and analysis, accurate information, memorable conclusion" },
           { id: "4yr-pl14", name: "Good (21-26)", score: 26, description: "Generally clear with minor gaps" },
-          { id: "4yr-pl15", name: "Satisfactory (15-20)", score: 20, description: "Some organizational issues" },
-          { id: "4yr-pl16", name: "Needs Improvement (0-14)", score: 14, description: "Disorganized or incomplete" },
+          { id: "4yr-pl15", name: "Average (15-20)", score: 20, description: "Some organizational issues" },
+          { id: "4yr-pl16", name: "Below Avg. (0-14)", score: 14, description: "Disorganized or incomplete" },
         ],
       },
     ],
@@ -540,37 +540,37 @@ const PRESENTATION_TEMPLATES: Record<EducationLevel, Rubric> = {
       {
         id: "grad-p1", name: "Content Design & Visual Aids", weight: 25,
         levels: [
-          { id: "grad-pl1", name: "Excellent (23-25)", score: 25, description: "Slides are minimal and intentional. Visuals support analysis or synthesis, no unnecessary text, professional discipline-appropriate design, slides enhance - not explain - the content" },
+          { id: "grad-pl1", name: "Excel (23-25)", score: 25, description: "Slides are minimal and intentional. Visuals support analysis or synthesis, no unnecessary text, professional discipline-appropriate design, slides enhance - not explain - the content" },
           { id: "grad-pl2", name: "Good (18-22)", score: 22, description: "Mostly professional with minor issues" },
-          { id: "grad-pl3", name: "Satisfactory (13-17)", score: 17, description: "Inconsistent or unprofessional elements" },
-          { id: "grad-pl4", name: "Needs Improvement (0-12)", score: 12, description: "Below graduate-level expectations" },
+          { id: "grad-pl3", name: "Average (13-17)", score: 17, description: "Inconsistent or unprofessional elements" },
+          { id: "grad-pl4", name: "Below Avg. (0-12)", score: 12, description: "Below graduate-level expectations" },
         ],
       },
       {
         id: "grad-p2", name: "Delivery & Engagement", weight: 30,
         levels: [
-          { id: "grad-pl5", name: "Excellent (27-30)", score: 30, description: "Authoritative, polished delivery. Precise language and pacing, strong audience or camera presence, no distracting fillers, professional demeanor throughout. Video: high-quality lighting and audio, eye-level framing, distraction-free environment" },
+          { id: "grad-pl5", name: "Excel (27-30)", score: 30, description: "Authoritative, polished delivery. Precise language and pacing, strong audience or camera presence, no distracting fillers, professional demeanor throughout. Video: high-quality lighting and audio, eye-level framing, distraction-free environment" },
           { id: "grad-pl6", name: "Good (21-26)", score: 26, description: "Clear with minor delivery issues" },
-          { id: "grad-pl7", name: "Satisfactory (15-20)", score: 20, description: "Limited engagement or professionalism" },
-          { id: "grad-pl8", name: "Needs Improvement (0-14)", score: 14, description: "Below graduate-level expectations" },
+          { id: "grad-pl7", name: "Average (15-20)", score: 20, description: "Limited engagement or professionalism" },
+          { id: "grad-pl8", name: "Below Avg. (0-14)", score: 14, description: "Below graduate-level expectations" },
         ],
       },
       {
         id: "grad-p3", name: "Time Management", weight: 15,
         levels: [
-          { id: "grad-pl9", name: "Excellent (14-15)", score: 15, description: "Strict adherence to time limit, efficient use of allotted time, purposeful transitions, clear impactful closing" },
+          { id: "grad-pl9", name: "Excel (14-15)", score: 15, description: "Strict adherence to time limit, efficient use of allotted time, purposeful transitions, clear impactful closing" },
           { id: "grad-pl10", name: "Good (11-13)", score: 13, description: "Slightly over/under but well-paced" },
-          { id: "grad-pl11", name: "Satisfactory (8-10)", score: 10, description: "Noticeable timing issues" },
-          { id: "grad-pl12", name: "Needs Improvement (0-7)", score: 7, description: "Significantly over/under time" },
+          { id: "grad-pl11", name: "Average (8-10)", score: 10, description: "Noticeable timing issues" },
+          { id: "grad-pl12", name: "Below Avg. (0-7)", score: 7, description: "Significantly over/under time" },
         ],
       },
       {
         id: "grad-p4", name: "Content Quality & Flow", weight: 30,
         levels: [
-          { id: "grad-pl13", name: "Excellent (27-30)", score: 30, description: "Clearly defined purpose or research focus. Logical, intentional structure, depth appropriate for graduate study, evidence of synthesis or insight, strong implications or takeaway" },
+          { id: "grad-pl13", name: "Excel (27-30)", score: 30, description: "Clearly defined purpose or research focus. Logical, intentional structure, depth appropriate for graduate study, evidence of synthesis or insight, strong implications or takeaway" },
           { id: "grad-pl14", name: "Good (21-26)", score: 26, description: "Generally clear with minor gaps" },
-          { id: "grad-pl15", name: "Satisfactory (15-20)", score: 20, description: "Some organizational issues" },
-          { id: "grad-pl16", name: "Needs Improvement (0-14)", score: 14, description: "Below graduate-level expectations" },
+          { id: "grad-pl15", name: "Average (15-20)", score: 20, description: "Some organizational issues" },
+          { id: "grad-pl16", name: "Below Avg. (0-14)", score: 14, description: "Below graduate-level expectations" },
         ],
       },
     ],
@@ -758,7 +758,7 @@ function CriterionCard({
                           id={`level-name-${index}-${levelIndex}`}
                           value={level.name}
                           onChange={(e) => handleLevelUpdate(levelIndex, { name: e.target.value })}
-                          placeholder="e.g., Excellent, Good, Satisfactory"
+                          placeholder="e.g., Excel, Good, Average"
                           data-testid={`input-level-name-${index}-${levelIndex}`}
                         />
                       </div>
