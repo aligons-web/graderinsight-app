@@ -9,6 +9,7 @@ import {
   comparePassword, 
   authenticateToken,
   checkSubscription,
+  verifyToken,  // ← FIXED: Added this import
   type AuthRequest 
 } from "./auth";
 
@@ -52,6 +53,7 @@ export async function registerRoutes(
         .single();
 
       if (userError || !user) {
+        console.error('User creation error:', userError);
         throw new Error("Failed to create user");
       }
 
@@ -59,7 +61,7 @@ export async function registerRoutes(
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + 7);
 
-      await supabaseAdmin
+      const { error: subError } = await supabaseAdmin
         .from('subscriptions')
         .insert({
           user_id: user.id,
@@ -67,6 +69,10 @@ export async function registerRoutes(
           status: 'active',
           expires_at: expiresAt.toISOString()
         });
+
+      if (subError) {
+        console.error('Subscription creation error:', subError);
+      }
 
       // Generate token
       const token = generateToken(user.id, user.email);
@@ -80,9 +86,9 @@ export async function registerRoutes(
           name: user.name
         }
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Registration error:', error);
-      res.status(500).json({ error: "Registration failed" });
+      res.status(500).json({ error: error.message || "Registration failed" });
     }
   });
 
@@ -96,13 +102,13 @@ export async function registerRoutes(
       }
 
       // Get user
-      const { data: user } = await supabaseAdmin
+      const { data: user, error: userError } = await supabaseAdmin
         .from('users')
         .select('*')
         .eq('email', email)
         .single();
 
-      if (!user) {
+      if (userError || !user) {
         return res.status(401).json({ error: "Invalid credentials" });
       }
 
@@ -128,9 +134,9 @@ export async function registerRoutes(
           subscription
         }
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Login error:', error);
-      res.status(500).json({ error: "Login failed" });
+      res.status(500).json({ error: error.message || "Login failed" });
     }
   });
 
@@ -151,6 +157,7 @@ export async function registerRoutes(
 
       res.json({ user, subscription });
     } catch (error) {
+      console.error('Profile fetch error:', error);
       res.status(500).json({ error: "Failed to fetch profile" });
     }
   });
@@ -178,6 +185,7 @@ export async function registerRoutes(
         expiresAt: subscription.expires_at
       });
     } catch (error) {
+      console.error('Subscription fetch error:', error);
       res.status(500).json({ error: "Failed to fetch subscription" });
     }
   });
@@ -200,7 +208,7 @@ export async function registerRoutes(
       const expiresAt = new Date();
       expiresAt.setDate(expiresAt.getDate() + durations[tier]);
 
-      const { data: subscription } = await supabaseAdmin
+      const { data: subscription, error } = await supabaseAdmin
         .from('subscriptions')
         .insert({
           user_id: req.user!.userId,
@@ -211,13 +219,18 @@ export async function registerRoutes(
         .select()
         .single();
 
+      if (error) {
+        throw error;
+      }
+
       res.json({
         success: true,
         message: `${tier} subscription activated!`,
         subscription
       });
-    } catch (error) {
-      res.status(500).json({ error: "Failed to upgrade subscription" });
+    } catch (error: any) {
+      console.error('Subscription upgrade error:', error);
+      res.status(500).json({ error: error.message || "Failed to upgrade subscription" });
     }
   });
 
@@ -270,8 +283,9 @@ export async function registerRoutes(
           expiresAt: subscription.expires_at
         }
       });
-    } catch (error) {
-      res.status(500).json({ message: "Login failed" });
+    } catch (error: any) {
+      console.error('Desktop login error:', error);
+      res.status(500).json({ message: error.message || "Login failed" });
     }
   });
 
@@ -284,7 +298,7 @@ export async function registerRoutes(
     }
 
     try {
-      const decoded = verifyToken(token);
+      const decoded = verifyToken(token);  // ← Now properly imported
       if (!decoded) {
         return res.json({ subscriptionActive: false });
       }
@@ -307,6 +321,7 @@ export async function registerRoutes(
         expiresAt: subscription.expires_at
       });
     } catch (error) {
+      console.error('Desktop validation error:', error);
       res.json({ subscriptionActive: false });
     }
   });
@@ -320,6 +335,7 @@ export async function registerRoutes(
       const rubrics = await storage.getAllRubrics();
       res.json(rubrics);
     } catch (error) {
+      console.error('Rubrics fetch error:', error);
       res.status(500).json({ error: "Failed to fetch rubrics" });
     }
   });
@@ -332,6 +348,7 @@ export async function registerRoutes(
       }
       res.json(rubric);
     } catch (error) {
+      console.error('Rubric fetch error:', error);
       res.status(500).json({ error: "Failed to fetch rubric" });
     }
   });
@@ -346,6 +363,7 @@ export async function registerRoutes(
       const rubric = await storage.createRubric(parsed.data);
       res.status(201).json(rubric);
     } catch (error) {
+      console.error('Rubric creation error:', error);
       res.status(500).json({ error: "Failed to create rubric" });
     }
   });
@@ -362,6 +380,7 @@ export async function registerRoutes(
       }
       res.json(rubric);
     } catch (error) {
+      console.error('Rubric update error:', error);
       res.status(500).json({ error: "Failed to update rubric" });
     }
   });
@@ -374,6 +393,7 @@ export async function registerRoutes(
       }
       res.status(204).send();
     } catch (error) {
+      console.error('Rubric deletion error:', error);
       res.status(500).json({ error: "Failed to delete rubric" });
     }
   });
