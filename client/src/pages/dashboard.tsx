@@ -387,6 +387,17 @@ export default function Dashboard() {
                 <span className="text-sm font-semibold text-muted-foreground">3</span>
               </div>
               <div className="flex-1">
+                <p className="font-medium text-muted-foreground">Download the Anonymizer</p>
+                <p className="text-sm text-muted-foreground">Install the desktop app for anonymizing files before uploading</p>
+              </div>
+              <Badge variant="outline">Upcoming</Badge>
+            </div>
+
+            <div className="flex items-center gap-4" data-testid="row-step-4">
+              <div className="w-8 h-8 rounded-full border-2 border-muted flex items-center justify-center flex-shrink-0">
+                <span className="text-sm font-semibold text-muted-foreground">4</span>
+              </div>
+              <div className="flex-1">
                 <p className="font-medium text-muted-foreground">Upload assignments</p>
                 <p className="text-sm text-muted-foreground">Bulk upload your student submissions</p>
               </div>
