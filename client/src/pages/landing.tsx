@@ -130,7 +130,7 @@ export default function Landing() {
               Get started in minutes and transform your grading workflow
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center" data-testid="step-1">
               <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">1</div>
               <h3 className="text-xl font-semibold mb-2">Create Your Rubric</h3>
@@ -138,13 +138,18 @@ export default function Landing() {
             </div>
             <div className="text-center" data-testid="step-2">
               <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">2</div>
-              <h3 className="text-xl font-semibold mb-2">Upload Assignments</h3>
-              <p className="text-muted-foreground">Bulk upload up to 400+ student assignments at once. We support MS Word and PDF formats.</p>
+              <h3 className="text-xl font-semibold mb-2">Evaluate & Assign</h3>
+              <p className="text-muted-foreground">Review assignment feedback against the professor's assessment; assign grade.</p>
             </div>
             <div className="text-center" data-testid="step-3">
               <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">3</div>
-              <h3 className="text-xl font-semibold mb-2">Evaluate & Assign</h3>
-              <p className="text-muted-foreground">Review assignment feedback against the professor's assessment; assign grade.</p>
+              <h3 className="text-xl font-semibold mb-2">Download the Anonymizer App</h3>
+              <p className="text-muted-foreground">Install the desktop app for anonymizing files before uploading.</p>
+            </div>
+            <div className="text-center" data-testid="step-4">
+              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">4</div>
+              <h3 className="text-xl font-semibold mb-2">Upload Assignments</h3>
+              <p className="text-muted-foreground">Bulk upload up to 400+ student assignments at once. We support MS Word and PDF formats.</p>
             </div>
           </div>
         </div>
