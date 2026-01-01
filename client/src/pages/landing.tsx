@@ -143,13 +143,13 @@ export default function Landing() {
             </div>
             <div className="text-center" data-testid="step-3">
               <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">3</div>
-              <h3 className="text-xl font-semibold mb-2">Download the Anonymizer App</h3>
-              <p className="text-muted-foreground">Install the desktop app for anonymizing files before uploading.</p>
+              <h3 className="text-xl font-semibold mb-2">Download the Anonymizer</h3>
+              <p className="text-muted-foreground">Install the desktop app for anonymizing files before uploading (based on subscription plan).</p>
             </div>
             <div className="text-center" data-testid="step-4">
               <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">4</div>
               <h3 className="text-xl font-semibold mb-2">Upload Assignments</h3>
-              <p className="text-muted-foreground">Bulk upload up to 400+ student assignments at once. We support MS Word and PDF formats.</p>
+              <p className="text-muted-foreground">Bulk upload up to 1500+ student assignments at once (based on subscription plan). MS Word and PDF formats supported.</p>
             </div>
           </div>
         </div>
