@@ -9,18 +9,19 @@ export interface AuthRequest extends Request {
   user?: {
     userId: string;
     email: string;
+    role?: string;
   };
 }
 
 // Generate JWT token
-export function generateToken(userId: string, email: string): string {
-  return jwt.sign({ userId, email }, JWT_SECRET, { expiresIn: '7d' });
+export function generateToken(userId: string, email: string, role: string = 'user'): string {
+  return jwt.sign({ userId, email, role }, JWT_SECRET, { expiresIn: '7d' });
 }
 
 // Verify JWT token
 export function verifyToken(token: string) {
   try {
-    return jwt.verify(token, JWT_SECRET) as { userId: string; email: string };
+    return jwt.verify(token, JWT_SECRET) as { userId: string; email: string; role?: string };
   } catch (error) {
     return null;
   }
@@ -54,7 +55,23 @@ export async function authenticateToken(
     return res.status(401).json({ error: 'Invalid or expired token' });
   }
 
-  req.user = decoded;
+  // Fetch fresh user data including role
+  const { data: user } = await supabaseAdmin
+    .from('users')
+    .select('id, email, role')
+    .eq('id', decoded.userId)
+    .single();
+
+  if (!user) {
+    return res.status(401).json({ error: 'User not found' });
+  }
+
+  req.user = {
+    userId: user.id,
+    email: user.email,
+    role: user.role || 'user',
+  };
+
   next();
 }
 
@@ -71,4 +88,15 @@ export async function checkSubscription(userId: string) {
     .single();
 
   return subscription;
+}
+
+// Check if user is admin
+export async function isUserAdmin(userId: string): Promise<boolean> {
+  const { data: user } = await supabaseAdmin
+    .from('users')
+    .select('role')
+    .eq('id', userId)
+    .single();
+
+  return user?.role === 'admin';
 }
