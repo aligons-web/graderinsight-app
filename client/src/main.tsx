@@ -22,7 +22,7 @@ function PasswordGate() {
       <div style={{ textAlign: "center" }}>
         <h2>Coming Soon!</h2>
         <p style={{ color: "#666", marginBottom: "20px" }}>
-          Great and exciting things are on the horizon for 2026.
+          Great and exciting things are on the horizon for 2026. Web app testers enter your password below.
         </p>
         <input
           type="password"
