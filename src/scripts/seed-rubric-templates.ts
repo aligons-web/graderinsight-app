@@ -19,17 +19,17 @@ async function seedRubricTemplates() {
     {
       name: 'Middle School Research Writing',
       description: 'Research paper rubric for middle school students',
-      rubricType: 'essay',
-      academicLevel: 'middle_school',
-      totalPoints: 100,
-      isTemplate: true,
+      rubric_type: 'essay',
+      academic_level: 'middle_school',
+      total_points: 100,
+      is_template: true,
       criteria: [
         {
-          criterionName: 'Thesis Statement',
-          criterionDescription: 'Clear and focused main argument',
-          maxPoints: 20,
-          orderPosition: 0,
-          scoringGuide: [
+          criterion_name: 'Thesis Statement',
+          criterion_description: 'Clear and focused main argument',
+          max_points: 20,
+          order_position: 0,
+          scoring_guide: [
             { range: '18-20', description: 'Exceptional thesis' },
             { range: '15-17', description: 'Strong thesis' },
             { range: '12-14', description: 'Adequate thesis' },
@@ -37,11 +37,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Evidence & Sources',
-          criterionDescription: 'Use of credible sources and evidence',
-          maxPoints: 30,
-          orderPosition: 1,
-          scoringGuide: [
+          criterion_name: 'Evidence & Sources',
+          criterion_description: 'Use of credible sources and evidence',
+          max_points: 30,
+          order_position: 1,
+          scoring_guide: [
             { range: '27-30', description: 'Excellent use of sources' },
             { range: '24-26', description: 'Good use of sources' },
             { range: '18-23', description: 'Adequate sources' },
@@ -49,11 +49,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Organization',
-          criterionDescription: 'Logical flow and structure',
-          maxPoints: 25,
-          orderPosition: 2,
-          scoringGuide: [
+          criterion_name: 'Organization',
+          criterion_description: 'Logical flow and structure',
+          max_points: 25,
+          order_position: 2,
+          scoring_guide: [
             { range: '23-25', description: 'Excellent organization' },
             { range: '20-22', description: 'Good organization' },
             { range: '15-19', description: 'Adequate organization' },
@@ -61,11 +61,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Writing Quality',
-          criterionDescription: 'Grammar, spelling, and clarity',
-          maxPoints: 25,
-          orderPosition: 3,
-          scoringGuide: [
+          criterion_name: 'Writing Quality',
+          criterion_description: 'Grammar, spelling, and clarity',
+          max_points: 25,
+          order_position: 3,
+          scoring_guide: [
             { range: '23-25', description: 'Excellent writing' },
             { range: '20-22', description: 'Good writing' },
             { range: '15-19', description: 'Adequate writing' },
@@ -77,17 +77,17 @@ async function seedRubricTemplates() {
     {
       name: 'Middle School General Writing',
       description: 'General writing rubric for middle school',
-      rubricType: 'essay',
-      academicLevel: 'middle_school',
-      totalPoints: 100,
-      isTemplate: true,
+      rubric_type: 'essay',
+      academic_level: 'middle_school',
+      total_points: 100,
+      is_template: true,
       criteria: [
         {
-          criterionName: 'Content',
-          criterionDescription: 'Ideas and information presented',
-          maxPoints: 40,
-          orderPosition: 0,
-          scoringGuide: [
+          criterion_name: 'Content',
+          criterion_description: 'Ideas and information presented',
+          max_points: 40,
+          order_position: 0,
+          scoring_guide: [
             { range: '36-40', description: 'Excellent content' },
             { range: '32-35', description: 'Good content' },
             { range: '24-31', description: 'Adequate content' },
@@ -95,11 +95,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Organization',
-          criterionDescription: 'Structure and flow',
-          maxPoints: 30,
-          orderPosition: 1,
-          scoringGuide: [
+          criterion_name: 'Organization',
+          criterion_description: 'Structure and flow',
+          max_points: 30,
+          order_position: 1,
+          scoring_guide: [
             { range: '27-30', description: 'Excellent organization' },
             { range: '24-26', description: 'Good organization' },
             { range: '18-23', description: 'Adequate organization' },
@@ -107,11 +107,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Grammar & Mechanics',
-          criterionDescription: 'Spelling, punctuation, grammar',
-          maxPoints: 30,
-          orderPosition: 2,
-          scoringGuide: [
+          criterion_name: 'Grammar & Mechanics',
+          criterion_description: 'Spelling, punctuation, grammar',
+          max_points: 30,
+          order_position: 2,
+          scoring_guide: [
             { range: '27-30', description: 'Excellent mechanics' },
             { range: '24-26', description: 'Good mechanics' },
             { range: '18-23', description: 'Adequate mechanics' },
@@ -123,17 +123,17 @@ async function seedRubricTemplates() {
     {
       name: 'High School Research Paper',
       description: 'Comprehensive research paper rubric',
-      rubricType: 'essay',
-      academicLevel: 'high_school',
-      totalPoints: 100,
-      isTemplate: true,
+      rubric_type: 'essay',
+      academic_level: 'high_school',
+      total_points: 100,
+      is_template: true,
       criteria: [
         {
-          criterionName: 'Thesis & Argument',
-          criterionDescription: 'Clear, arguable thesis with strong reasoning',
-          maxPoints: 25,
-          orderPosition: 0,
-          scoringGuide: [
+          criterion_name: 'Thesis & Argument',
+          criterion_description: 'Clear, arguable thesis with strong reasoning',
+          max_points: 25,
+          order_position: 0,
+          scoring_guide: [
             { range: '23-25', description: 'Exceptional argument' },
             { range: '20-22', description: 'Strong argument' },
             { range: '15-19', description: 'Adequate argument' },
@@ -141,11 +141,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Research & Evidence',
-          criterionDescription: 'Quality and integration of sources',
-          maxPoints: 30,
-          orderPosition: 1,
-          scoringGuide: [
+          criterion_name: 'Research & Evidence',
+          criterion_description: 'Quality and integration of sources',
+          max_points: 30,
+          order_position: 1,
+          scoring_guide: [
             { range: '27-30', description: 'Excellent research' },
             { range: '24-26', description: 'Good research' },
             { range: '18-23', description: 'Adequate research' },
@@ -153,11 +153,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Analysis',
-          criterionDescription: 'Critical thinking and interpretation',
-          maxPoints: 25,
-          orderPosition: 2,
-          scoringGuide: [
+          criterion_name: 'Analysis',
+          criterion_description: 'Critical thinking and interpretation',
+          max_points: 25,
+          order_position: 2,
+          scoring_guide: [
             { range: '23-25', description: 'Insightful analysis' },
             { range: '20-22', description: 'Good analysis' },
             { range: '15-19', description: 'Basic analysis' },
@@ -165,11 +165,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Writing Quality',
-          criterionDescription: 'Style, grammar, and clarity',
-          maxPoints: 20,
-          orderPosition: 3,
-          scoringGuide: [
+          criterion_name: 'Writing Quality',
+          criterion_description: 'Style, grammar, and clarity',
+          max_points: 20,
+          order_position: 3,
+          scoring_guide: [
             { range: '18-20', description: 'Excellent writing' },
             { range: '16-17', description: 'Good writing' },
             { range: '12-15', description: 'Adequate writing' },
@@ -181,17 +181,17 @@ async function seedRubricTemplates() {
     {
       name: 'High School Presentation',
       description: 'Oral presentation rubric',
-      rubricType: 'presentation',
-      academicLevel: 'high_school',
-      totalPoints: 100,
-      isTemplate: true,
+      rubric_type: 'presentation',
+      academic_level: 'high_school',
+      total_points: 100,
+      is_template: true,
       criteria: [
         {
-          criterionName: 'Content Knowledge',
-          criterionDescription: 'Understanding and accuracy of information',
-          maxPoints: 30,
-          orderPosition: 0,
-          scoringGuide: [
+          criterion_name: 'Content Knowledge',
+          criterion_description: 'Understanding and accuracy of information',
+          max_points: 30,
+          order_position: 0,
+          scoring_guide: [
             { range: '27-30', description: 'Expert knowledge' },
             { range: '24-26', description: 'Strong knowledge' },
             { range: '18-23', description: 'Adequate knowledge' },
@@ -199,11 +199,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Delivery',
-          criterionDescription: 'Voice, pace, eye contact, body language',
-          maxPoints: 30,
-          orderPosition: 1,
-          scoringGuide: [
+          criterion_name: 'Delivery',
+          criterion_description: 'Voice, pace, eye contact, body language',
+          max_points: 30,
+          order_position: 1,
+          scoring_guide: [
             { range: '27-30', description: 'Excellent delivery' },
             { range: '24-26', description: 'Good delivery' },
             { range: '18-23', description: 'Adequate delivery' },
@@ -211,11 +211,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Visual Aids',
-          criterionDescription: 'Quality and effectiveness of slides/materials',
-          maxPoints: 20,
-          orderPosition: 2,
-          scoringGuide: [
+          criterion_name: 'Visual Aids',
+          criterion_description: 'Quality and effectiveness of slides/materials',
+          max_points: 20,
+          order_position: 2,
+          scoring_guide: [
             { range: '18-20', description: 'Excellent visuals' },
             { range: '16-17', description: 'Good visuals' },
             { range: '12-15', description: 'Adequate visuals' },
@@ -223,11 +223,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Organization',
-          criterionDescription: 'Structure and flow of presentation',
-          maxPoints: 20,
-          orderPosition: 3,
-          scoringGuide: [
+          criterion_name: 'Organization',
+          criterion_description: 'Structure and flow of presentation',
+          max_points: 20,
+          order_position: 3,
+          scoring_guide: [
             { range: '18-20', description: 'Excellent organization' },
             { range: '16-17', description: 'Good organization' },
             { range: '12-15', description: 'Adequate organization' },
@@ -239,17 +239,17 @@ async function seedRubricTemplates() {
     {
       name: '2-Year Technical College Research Paper',
       description: 'Research paper rubric for technical college',
-      rubricType: 'essay',
-      academicLevel: 'tech_college',
-      totalPoints: 100,
-      isTemplate: true,
+      rubric_type: 'essay',
+      academic_level: 'tech_college',
+      total_points: 100,
+      is_template: true,
       criteria: [
         {
-          criterionName: 'Technical Content',
-          criterionDescription: 'Accuracy and depth of technical information',
-          maxPoints: 35,
-          orderPosition: 0,
-          scoringGuide: [
+          criterion_name: 'Technical Content',
+          criterion_description: 'Accuracy and depth of technical information',
+          max_points: 35,
+          order_position: 0,
+          scoring_guide: [
             { range: '32-35', description: 'Excellent technical content' },
             { range: '28-31', description: 'Good technical content' },
             { range: '21-27', description: 'Adequate technical content' },
@@ -257,11 +257,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Research & Sources',
-          criterionDescription: 'Use of credible technical sources',
-          maxPoints: 30,
-          orderPosition: 1,
-          scoringGuide: [
+          criterion_name: 'Research & Sources',
+          criterion_description: 'Use of credible technical sources',
+          max_points: 30,
+          order_position: 1,
+          scoring_guide: [
             { range: '27-30', description: 'Excellent sources' },
             { range: '24-26', description: 'Good sources' },
             { range: '18-23', description: 'Adequate sources' },
@@ -269,11 +269,11 @@ async function seedRubricTemplates() {
           ],
         },
         {
-          criterionName: 'Professional Writing',
-          criterionDescription: 'Technical writing style and clarity',
-          maxPoints: 35,
-          orderPosition: 2,
-          scoringGuide: [
+          criterion_name: 'Professional Writing',
+          criterion_description: 'Technical writing style and clarity',
+          max_points: 35,
+          order_position: 2,
+          scoring_guide: [
             { range: '32-35', description: 'Excellent professional writing' },
             { range: '28-31', description: 'Good professional writing' },
             { range: '21-27', description: 'Adequate writing' },
@@ -295,8 +295,12 @@ async function seedRubricTemplates() {
 
       for (const criterion of criteria) {
         await db.insert(rubricCriteria).values({
-          ...criterion,
-          rubricId: createdRubric.id,
+          rubric_id: createdRubric.id,
+          criterion_name: criterion.criterion_name,
+          criterion_description: criterion.criterion_description,
+          max_points: criterion.max_points,
+          order_position: criterion.order_position,
+          scoring_guide: criterion.scoring_guide,
         });
       }
 
