@@ -318,7 +318,7 @@ export default function BulkUpload() {
         </Card>
       )}
 
-      {allUploaded && (
+      {files.length > 0 && (
         <Card className="border-primary/30">
           <CardHeader>
             <CardTitle className="text-lg">Grading Configuration</CardTitle>
@@ -397,6 +397,28 @@ export default function BulkUpload() {
                   </>
                 )}
               </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {files.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Grading Results</CardTitle>
+            <CardDescription>
+              Results will appear here after processing is complete
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col items-center justify-center py-12 text-center">
+              <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mb-4">
+                <FileText className="w-8 h-8 text-muted-foreground" />
+              </div>
+              <h4 className="font-medium mb-2" data-testid="text-no-results">No Results Yet</h4>
+              <p className="text-sm text-muted-foreground max-w-md">
+                Upload your assignments, configure grading options, and click "Submit for Grading" to see AI-powered evaluation results here.
+              </p>
             </div>
           </CardContent>
         </Card>
