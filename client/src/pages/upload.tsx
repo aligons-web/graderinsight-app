@@ -18,6 +18,13 @@ interface UploadedFile {
   progress: number;
 }
 
+interface CategoryScore {
+  name: string;
+  score: number;
+  maxScore: number;
+  level: string;
+}
+
 interface GradingResult {
   fileId: string;
   fileName: string;
@@ -25,6 +32,7 @@ interface GradingResult {
   maxScore: number;
   grade: string;
   feedback: string;
+  categoryScores: CategoryScore[];
 }
 
 function formatFileSize(bytes: number): string {
@@ -218,6 +226,7 @@ export default function BulkUpload() {
     const uploadedFiles = files.filter(f => f.status === "complete");
     const results: GradingResult[] = [];
     const grades = ["A", "A-", "B+", "B", "B-", "C+", "C"];
+    const levels = ["Excel", "Good", "Average", "Below Avg"];
     const feedbackOptions = [
       "Well-structured argument with clear thesis statement. Consider adding more supporting evidence.",
       "Good use of sources but needs stronger transitions between paragraphs.",
@@ -226,21 +235,61 @@ export default function BulkUpload() {
       "Strong introduction and conclusion. Body paragraphs could be more developed.",
     ];
 
+    const rubricCategories: Record<string, { name: string; maxScore: number }[]> = {
+      "essay": [
+        { name: "Thesis Statement", maxScore: 20 },
+        { name: "Supporting Evidence", maxScore: 25 },
+        { name: "Organization", maxScore: 20 },
+        { name: "Grammar & Mechanics", maxScore: 15 },
+        { name: "Style & Voice", maxScore: 20 },
+      ],
+      "research-paper": [
+        { name: "Research Quality", maxScore: 25 },
+        { name: "Argument Development", maxScore: 20 },
+        { name: "Source Integration", maxScore: 20 },
+        { name: "Citations & Format", maxScore: 15 },
+        { name: "Clarity & Organization", maxScore: 20 },
+      ],
+      "presentation": [
+        { name: "Content Knowledge", maxScore: 25 },
+        { name: "Visual Design", maxScore: 20 },
+        { name: "Delivery & Engagement", maxScore: 20 },
+        { name: "Organization", maxScore: 15 },
+        { name: "Time Management", maxScore: 20 },
+      ],
+    };
+
+    const categories = rubricCategories[selectedRubric] || rubricCategories["essay"];
+
     for (let i = 0; i < uploadedFiles.length; i++) {
       const file = uploadedFiles[i];
       await new Promise((resolve) => setTimeout(resolve, 800));
       
-      const score = Math.floor(Math.random() * 30) + 70;
-      const maxScore = 100;
-      const gradeIndex = Math.min(Math.floor((100 - score) / 5), grades.length - 1);
+      const categoryScores: CategoryScore[] = categories.map((cat) => {
+        const percentage = Math.random() * 0.35 + 0.65;
+        const score = Math.round(cat.maxScore * percentage);
+        const levelIndex = Math.min(Math.floor((1 - percentage) * 4), 3);
+        return {
+          name: cat.name,
+          score,
+          maxScore: cat.maxScore,
+          level: levels[levelIndex],
+        };
+      });
+
+      const totalScore = categoryScores.reduce((sum, c) => sum + c.score, 0);
+      const totalMaxScore = categoryScores.reduce((sum, c) => sum + c.maxScore, 0);
+      const percentage = totalScore / totalMaxScore;
+      const gradeIndex = Math.min(Math.floor((1 - percentage) * 7), grades.length - 1);
       
       results.push({
         fileId: file.id,
         fileName: file.name,
-        score,
-        maxScore,
+        score: totalScore,
+        maxScore: totalMaxScore,
         grade: grades[gradeIndex],
         feedback: feedbackOptions[Math.floor(Math.random() * feedbackOptions.length)],
+        categoryScores,
       });
 
       setProcessingProgress(Math.round(((i + 1) / uploadedFiles.length) * 100));
@@ -517,33 +566,55 @@ export default function BulkUpload() {
             )}
 
             {gradingResults.length > 0 ? (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {gradingResults.map((result, index) => (
                   <div
                     key={result.fileId}
-                    className="flex items-start gap-4 p-4 rounded-lg bg-muted/30"
+                    className="p-4 rounded-lg bg-muted/30 space-y-4"
                     data-testid={`row-result-${index}`}
                   >
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Award className="w-6 h-6 text-primary" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2 mb-1">
-                        <p className="font-medium truncate" data-testid={`text-result-filename-${index}`}>
-                          {result.fileName}
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Award className="w-6 h-6 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2 mb-1">
+                          <p className="font-medium truncate" data-testid={`text-result-filename-${index}`}>
+                            {result.fileName}
+                          </p>
+                          <div className="flex items-center gap-2 flex-shrink-0">
+                            <Badge variant="outline" data-testid={`badge-score-${index}`}>
+                              {result.score}/{result.maxScore}
+                            </Badge>
+                            <Badge data-testid={`badge-grade-${index}`}>
+                              {result.grade}
+                            </Badge>
+                          </div>
+                        </div>
+                        <p className="text-sm text-muted-foreground" data-testid={`text-feedback-${index}`}>
+                          {result.feedback}
                         </p>
-                        <div className="flex items-center gap-2 flex-shrink-0">
-                          <Badge variant="outline" data-testid={`badge-score-${index}`}>
-                            {result.score}/{result.maxScore}
-                          </Badge>
-                          <Badge data-testid={`badge-grade-${index}`}>
-                            {result.grade}
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-2 pt-2 border-t">
+                      {result.categoryScores.map((cat, catIndex) => (
+                        <div
+                          key={cat.name}
+                          className="p-2 rounded bg-background text-center"
+                          data-testid={`category-${index}-${catIndex}`}
+                        >
+                          <p className="text-xs text-muted-foreground truncate mb-1">{cat.name}</p>
+                          <p className="text-sm font-medium">{cat.score}/{cat.maxScore}</p>
+                          <Badge 
+                            variant="secondary" 
+                            className="text-xs mt-1"
+                            data-testid={`badge-level-${index}-${catIndex}`}
+                          >
+                            {cat.level}
                           </Badge>
                         </div>
-                      </div>
-                      <p className="text-sm text-muted-foreground" data-testid={`text-feedback-${index}`}>
-                        {result.feedback}
-                      </p>
+                      ))}
                     </div>
                   </div>
                 ))}
