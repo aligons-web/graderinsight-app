@@ -1263,5 +1263,58 @@ app.delete("/api/admin/users/:userId", authenticateToken, requireAdmin, async (r
   }
 });
 
+  // Anonymizer app download endpoint
+  app.get('/api/apps/anonymizer/download', authenticateToken, async (req: AuthRequest, res: Response) => {
+    try {
+      const userId = req.user?.userId;
+
+      if (!userId) {
+        return res.status(401).json({ error: 'Unauthorized' });
+      }
+
+      // Get user's subscription
+      const { data: subscription, error: subError } = await supabaseAdmin
+        .from('subscriptions')
+        .select('tier, status, expires_at')
+        .eq('user_id', userId)
+        .single();
+
+      if (subError || !subscription) {
+        return res.status(403).json({ error: 'No active subscription found' });
+      }
+
+      const { tier, status, expires_at } = subscription;
+
+      // Check if Pro, Plus, or Admin
+      if (!['pro', 'plus', 'admin'].includes(tier)) {
+        return res.status(403).json({ 
+          error: 'Anonymizer requires Pro or Plus subscription',
+          requiredTier: 'pro'
+        });
+      }
+
+      // Check if subscription is active and not expired
+      if (status !== 'active' || new Date(expires_at) < new Date()) {
+        return res.status(403).json({ error: 'Subscription expired or inactive' });
+      }
+
+      // Path to the anonymizer file
+      const path = require('path');
+      const fs = require('fs');
+      const filePath = path.join(__dirname, '../../downloads/anonymizer.zip');
+
+      // Check if file exists
+      if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ error: 'Anonymizer file not found' });
+      }
+
+      // Send the file
+      res.download(filePath, 'grader-anonymizer.zip');
+    } catch (error: any) {
+      console.error('Anonymizer download error:', error);
+      res.status(500).json({ error: 'Download failed' });
+    }
+  });
+
   return httpServer;
 }
