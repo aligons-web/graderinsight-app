@@ -1,10 +1,14 @@
 import { useState, useCallback } from "react";
-import { Upload, FileText, X, CheckCircle, AlertCircle, Loader2, FolderUp } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { Upload, FileText, X, CheckCircle, AlertCircle, Loader2, FolderUp, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import type { Rubric } from "@shared/schema";
 
 interface UploadedFile {
   id: string;
@@ -20,11 +24,26 @@ function formatFileSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+const academicLevels = [
+  { value: "middle-school", label: "Middle School" },
+  { value: "high-school", label: "High School" },
+  { value: "2-year-college", label: "2-Year Technical College" },
+  { value: "4-year-college", label: "4-Year College" },
+  { value: "graduate-school", label: "Graduate School" },
+];
+
 export default function BulkUpload() {
   const { toast } = useToast();
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [selectedRubric, setSelectedRubric] = useState<string>("essay");
+  const [selectedAcademicLevel, setSelectedAcademicLevel] = useState<string>("2-year-college");
+
+  const { data: rubrics } = useQuery<Rubric[]>({
+    queryKey: ['/api/rubrics'],
+  });
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -131,6 +150,28 @@ export default function BulkUpload() {
 
   const completedCount = files.filter((f) => f.status === "complete").length;
   const pendingCount = files.filter((f) => f.status === "pending" || f.status === "uploading").length;
+  const allUploaded = files.length > 0 && completedCount === files.length;
+
+  const handleProcessAssignments = async () => {
+    if (!selectedRubric) {
+      toast({
+        title: "Rubric required",
+        description: "Please select a rubric before processing.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsProcessing(true);
+    
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    
+    setIsProcessing(false);
+    toast({
+      title: "Processing started",
+      description: `${completedCount} assignment(s) are being evaluated using the selected rubric.`,
+    });
+  };
 
   return (
     <div className="space-y-8">
@@ -272,6 +313,90 @@ export default function BulkUpload() {
                   </div>
                 </div>
               ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {allUploaded && (
+        <Card className="border-primary/30">
+          <CardHeader>
+            <CardTitle className="text-lg">Grading Configuration</CardTitle>
+            <CardDescription>
+              Configure how your {completedCount} assignment(s) will be evaluated
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <Label htmlFor="rubric-select">Rubric Type</Label>
+                <Select
+                  value={selectedRubric}
+                  onValueChange={setSelectedRubric}
+                >
+                  <SelectTrigger id="rubric-select" data-testid="select-rubric">
+                    <SelectValue placeholder="Select a rubric" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="essay">Essay Writing</SelectItem>
+                    <SelectItem value="research-paper">Research Paper</SelectItem>
+                    <SelectItem value="presentation">Presentation</SelectItem>
+                    {rubrics?.filter(r => !r.is_template).map((rubric) => (
+                      <SelectItem key={rubric.id} value={rubric.id.toString()}>
+                        {rubric.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-muted-foreground">
+                  Select the rubric to use for evaluating assignments
+                </p>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="level-select">Academic Level</Label>
+                <Select
+                  value={selectedAcademicLevel}
+                  onValueChange={setSelectedAcademicLevel}
+                >
+                  <SelectTrigger id="level-select" data-testid="select-academic-level">
+                    <SelectValue placeholder="Select academic level" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {academicLevels.map((level) => (
+                      <SelectItem key={level.value} value={level.value}>
+                        {level.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-muted-foreground">
+                  Grading expectations will be adjusted based on academic level
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-4 border-t">
+              <div className="text-sm text-muted-foreground">
+                Ready to process <span className="font-medium text-foreground">{completedCount}</span> assignment(s)
+              </div>
+              <Button
+                onClick={handleProcessAssignments}
+                disabled={isProcessing || !selectedRubric}
+                data-testid="button-process-assignments"
+              >
+                {isProcessing ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Processing...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Submit for Grading
+                  </>
+                )}
+              </Button>
             </div>
           </CardContent>
         </Card>
