@@ -1,6 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Upload, FileText, X, CheckCircle, AlertCircle, Loader2, FolderUp, Send } from "lucide-react";
+import { Upload, FileText, X, CheckCircle, AlertCircle, Loader2, FolderUp, Send, Clock, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -16,6 +16,15 @@ interface UploadedFile {
   size: number;
   status: "pending" | "uploading" | "complete" | "error";
   progress: number;
+}
+
+interface GradingResult {
+  fileId: string;
+  fileName: string;
+  score: number;
+  maxScore: number;
+  grade: string;
+  feedback: string;
 }
 
 function formatFileSize(bytes: number): string {
@@ -40,10 +49,47 @@ export default function BulkUpload() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [selectedRubric, setSelectedRubric] = useState<string>("essay");
   const [selectedAcademicLevel, setSelectedAcademicLevel] = useState<string>("2-year-college");
+  const [gradingResults, setGradingResults] = useState<GradingResult[]>([]);
+  const [processingProgress, setProcessingProgress] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [usedRubric, setUsedRubric] = useState<string>("");
+  const [usedAcademicLevel, setUsedAcademicLevel] = useState<string>("");
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const { data: rubrics } = useQuery<Rubric[]>({
     queryKey: ['/api/rubrics'],
   });
+
+  useEffect(() => {
+    if (isProcessing) {
+      timerRef.current = setInterval(() => {
+        setElapsedTime((prev) => prev + 1);
+      }, 1000);
+    } else if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [isProcessing]);
+
+  const formatTime = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const getRubricLabel = (value: string): string => {
+    if (value === "essay") return "Essay Writing";
+    if (value === "research-paper") return "Research Paper";
+    if (value === "presentation") return "Presentation";
+    const customRubric = rubrics?.find(r => r.id.toString() === value);
+    return customRubric?.name || value;
+  };
+
+  const getAcademicLevelLabel = (value: string): string => {
+    return academicLevels.find(l => l.value === value)?.label || value;
+  };
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -163,13 +209,48 @@ export default function BulkUpload() {
     }
 
     setIsProcessing(true);
-    
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setProcessingProgress(0);
+    setElapsedTime(0);
+    setGradingResults([]);
+    setUsedRubric(selectedRubric);
+    setUsedAcademicLevel(selectedAcademicLevel);
+
+    const uploadedFiles = files.filter(f => f.status === "complete");
+    const results: GradingResult[] = [];
+    const grades = ["A", "A-", "B+", "B", "B-", "C+", "C"];
+    const feedbackOptions = [
+      "Well-structured argument with clear thesis statement. Consider adding more supporting evidence.",
+      "Good use of sources but needs stronger transitions between paragraphs.",
+      "Excellent analysis and critical thinking demonstrated throughout.",
+      "Solid work overall. Focus on improving grammar and sentence variety.",
+      "Strong introduction and conclusion. Body paragraphs could be more developed.",
+    ];
+
+    for (let i = 0; i < uploadedFiles.length; i++) {
+      const file = uploadedFiles[i];
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      
+      const score = Math.floor(Math.random() * 30) + 70;
+      const maxScore = 100;
+      const gradeIndex = Math.min(Math.floor((100 - score) / 5), grades.length - 1);
+      
+      results.push({
+        fileId: file.id,
+        fileName: file.name,
+        score,
+        maxScore,
+        grade: grades[gradeIndex],
+        feedback: feedbackOptions[Math.floor(Math.random() * feedbackOptions.length)],
+      });
+
+      setProcessingProgress(Math.round(((i + 1) / uploadedFiles.length) * 100));
+      setGradingResults([...results]);
+    }
     
     setIsProcessing(false);
     toast({
-      title: "Processing started",
-      description: `${completedCount} assignment(s) are being evaluated using the selected rubric.`,
+      title: "Grading complete",
+      description: `${uploadedFiles.length} assignment(s) evaluated successfully.`,
     });
   };
 
@@ -407,19 +488,77 @@ export default function BulkUpload() {
           <CardHeader>
             <CardTitle className="text-lg">Grading Results</CardTitle>
             <CardDescription>
-              Results will appear here after processing is complete
+              {gradingResults.length > 0 
+                ? `${gradingResults.length} assignment(s) graded using ${getRubricLabel(usedRubric)} at ${getAcademicLevelLabel(usedAcademicLevel)} level`
+                : "Results will appear here after processing is complete"}
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mb-4">
-                <FileText className="w-8 h-8 text-muted-foreground" />
+          <CardContent className="space-y-4">
+            {(isProcessing || gradingResults.length > 0) && (
+              <div className="space-y-2 p-4 rounded-lg bg-muted/30">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-muted-foreground" />
+                    <span className="text-sm font-medium" data-testid="text-elapsed-time">
+                      Processing Time: {formatTime(elapsedTime)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-muted-foreground">
+                      {gradingResults.length} / {completedCount} graded
+                    </span>
+                    <Badge variant={isProcessing ? "secondary" : "default"} data-testid="badge-processing-status">
+                      {isProcessing ? "Processing" : "Complete"}
+                    </Badge>
+                  </div>
+                </div>
+                <Progress value={processingProgress} className="h-2" data-testid="progress-grading" />
               </div>
-              <h4 className="font-medium mb-2" data-testid="text-no-results">No Results Yet</h4>
-              <p className="text-sm text-muted-foreground max-w-md">
-                Upload your assignments, configure grading options, and click "Submit for Grading" to see AI-powered evaluation results here.
-              </p>
-            </div>
+            )}
+
+            {gradingResults.length > 0 ? (
+              <div className="space-y-3">
+                {gradingResults.map((result, index) => (
+                  <div
+                    key={result.fileId}
+                    className="flex items-start gap-4 p-4 rounded-lg bg-muted/30"
+                    data-testid={`row-result-${index}`}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Award className="w-6 h-6 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <p className="font-medium truncate" data-testid={`text-result-filename-${index}`}>
+                          {result.fileName}
+                        </p>
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                          <Badge variant="outline" data-testid={`badge-score-${index}`}>
+                            {result.score}/{result.maxScore}
+                          </Badge>
+                          <Badge data-testid={`badge-grade-${index}`}>
+                            {result.grade}
+                          </Badge>
+                        </div>
+                      </div>
+                      <p className="text-sm text-muted-foreground" data-testid={`text-feedback-${index}`}>
+                        {result.feedback}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mb-4">
+                  <FileText className="w-8 h-8 text-muted-foreground" />
+                </div>
+                <h4 className="font-medium mb-2" data-testid="text-no-results">No Results Yet</h4>
+                <p className="text-sm text-muted-foreground max-w-md">
+                  Upload your assignments, configure grading options, and click "Submit for Grading" to see AI-powered evaluation results here.
+                </p>
+              </div>
+            )}
           </CardContent>
         </Card>
       )}
