@@ -4,26 +4,21 @@ const SUPABASE_URL = process.env.GRADER_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.GRADER_SUPABASE_ANON_KEY;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.GRADER_SUPABASE_SERVICE_ROLE_KEY;
 
-// Temporarily disabled for database migration
-// TODO: Re-enable once new database is configured
-/*
 if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
   throw new Error('Missing Supabase environment variables');
 }
-*/
-
-// Use dummy values temporarily to prevent crashes during migration
-const url = SUPABASE_URL || 'https://placeholder.supabase.co';
-const anonKey = SUPABASE_ANON_KEY || 'placeholder-key';
-const serviceKey = SUPABASE_SERVICE_ROLE_KEY || anonKey;
 
 // Public client for client-side operations
-export const supabase = createClient(url, anonKey);
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Admin client for server-side operations (bypasses RLS)
+if (!SUPABASE_SERVICE_ROLE_KEY) {
+  console.warn('⚠️  GRADER_SUPABASE_SERVICE_ROLE_KEY not set - admin operations may fail');
+}
+
 export const supabaseAdmin = createClient(
-  url, 
-  serviceKey,
+  SUPABASE_URL, 
+  SUPABASE_SERVICE_ROLE_KEY || SUPABASE_ANON_KEY,
   {
     auth: {
       autoRefreshToken: false,
@@ -31,7 +26,3 @@ export const supabaseAdmin = createClient(
     }
   }
 );
-
-if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-  console.warn('⚠️  Supabase not configured - using placeholder. Database operations will fail until configured.');
-}
