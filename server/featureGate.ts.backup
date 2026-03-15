@@ -1,16 +1,18 @@
 import type { Response, NextFunction } from 'express';
 import type { AuthRequest } from './auth';
-import { queryOne, query, queryCount, execute } from './db';
+import { supabaseAdmin } from './supabase';
 
 /**
  * Check if user is an admin
  */
 export async function isAdmin(userId: string): Promise<boolean> {
   try {
-    const user = await queryOne<{ role: string }>(
-      'SELECT role FROM users WHERE id = $1',
-      [userId]
-    );
+    const { data: user } = await supabaseAdmin
+      .from('users')
+      .select('role')
+      .eq('id', userId)
+      .single();
+
     return user?.role === 'admin';
   } catch (error) {
     console.error('Error checking admin status:', error);
@@ -51,36 +53,44 @@ export async function checkFeatureAccess(
   featureName: string
 ): Promise<{ hasAccess: boolean; tier: string | null; reason?: string; isAdmin?: boolean }> {
   try {
-    // Check if user is admin first — admins bypass all checks
+    // Check if user is admin first - admins bypass all checks
     const adminStatus = await isAdmin(userId);
     if (adminStatus) {
-      return { hasAccess: true, tier: 'admin', isAdmin: true };
+      return {
+        hasAccess: true,
+        tier: 'admin',
+        isAdmin: true,
+      };
     }
 
     // Get user's active subscription with plan details
-    const subscription = await queryOne<{
-      id: string;
-      tier: string;
-      plan_features: any;
-    }>(
-      `SELECT s.*, sp.features AS plan_features
-       FROM subscriptions s
-       LEFT JOIN subscription_plans sp ON sp.id = s.plan_id
-       WHERE s.user_id = $1
-         AND s.status = 'active'
-         AND s.expires_at > NOW()
-       ORDER BY s.created_at DESC
-       LIMIT 1`,
-      [userId]
-    );
+    const { data: subscription } = await supabaseAdmin
+      .from('subscriptions')
+      .select(`
+        *,
+        subscription_plans (
+          tier,
+          features
+        )
+      `)
+      .eq('user_id', userId)
+      .eq('status', 'active')
+      .gt('expires_at', new Date().toISOString())
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
 
     if (!subscription) {
-      return { hasAccess: false, tier: null, reason: 'No active subscription' };
+      return {
+        hasAccess: false,
+        tier: null,
+        reason: 'No active subscription',
+      };
     }
 
-    const features = subscription.plan_features;
+    const plan = subscription.subscription_plans;
 
-    if (!features) {
+    if (!plan?.features) {
       return {
         hasAccess: false,
         tier: subscription.tier,
@@ -88,6 +98,7 @@ export async function checkFeatureAccess(
       };
     }
 
+    const features = plan.features as Record<string, any>;
     const hasFeature = features[featureName] === true;
 
     return {
@@ -97,7 +108,11 @@ export async function checkFeatureAccess(
     };
   } catch (error) {
     console.error('Error checking feature access:', error);
-    return { hasAccess: false, tier: null, reason: 'Error checking subscription' };
+    return {
+      hasAccess: false,
+      tier: null,
+      reason: 'Error checking subscription',
+    };
   }
 }
 
@@ -108,10 +123,12 @@ export async function checkFeatureAccess(
 export function requireFeature(featureName: string) {
   return async (req: AuthRequest, res: Response, next: NextFunction) => {
     if (!req.user?.userId) {
-      return res.status(401).json({ error: 'Authentication required' });
+      return res.status(401).json({
+        error: 'Authentication required',
+      });
     }
 
-    const { hasAccess, tier, reason, isAdmin: isAdminUser } = await checkFeatureAccess(
+    const { hasAccess, tier, reason, isAdmin } = await checkFeatureAccess(
       req.user.userId,
       featureName
     );
@@ -122,7 +139,7 @@ export function requireFeature(featureName: string) {
         feature: featureName,
         currentTier: tier,
         reason,
-        upgradeRequired: !isAdminUser,
+        upgradeRequired: !isAdmin,
         upgradeUrl: '/subscription',
       });
     }
@@ -145,40 +162,56 @@ export async function checkRubricLimit(userId: string): Promise<{
   try {
     const adminStatus = await isAdmin(userId);
     if (adminStatus) {
-      return { canCreate: true, currentCount: 0, limit: null, isAdmin: true };
+      return {
+        canCreate: true,
+        currentCount: 0,
+        limit: null,
+        isAdmin: true,
+      };
     }
 
-    const subscription = await queryOne<{
-      plan_features: any;
-    }>(
-      `SELECT sp.features AS plan_features
-       FROM subscriptions s
-       LEFT JOIN subscription_plans sp ON sp.id = s.plan_id
-       WHERE s.user_id = $1
-         AND s.status = 'active'
-         AND s.expires_at > NOW()
-       ORDER BY s.created_at DESC
-       LIMIT 1`,
-      [userId]
-    );
+    const { data: subscription } = await supabaseAdmin
+      .from('subscriptions')
+      .select(`
+        *,
+        subscription_plans (
+          features
+        )
+      `)
+      .eq('user_id', userId)
+      .eq('status', 'active')
+      .gt('expires_at', new Date().toISOString())
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
 
     if (!subscription) {
-      return { canCreate: false, currentCount: 0, limit: 0, reason: 'No active subscription' };
+      return {
+        canCreate: false,
+        currentCount: 0,
+        limit: 0,
+        reason: 'No active subscription',
+      };
     }
 
-    const features = subscription.plan_features as Record<string, any>;
+    const features = subscription.subscription_plans?.features as Record<string, any>;
     const maxRubrics = features?.max_rubrics;
 
     if (maxRubrics === null || maxRubrics === undefined) {
-      return { canCreate: true, currentCount: 0, limit: null };
+      return {
+        canCreate: true,
+        currentCount: 0,
+        limit: null,
+      };
     }
 
-    const currentCount = await queryCount(
-      `SELECT COUNT(*) FROM rubrics
-       WHERE user_id = $1 AND is_template = false`,
-      [userId]
-    );
+    const { count } = await supabaseAdmin
+      .from('rubrics')
+      .select('*', { count: 'exact', head: true })
+      .eq('user_id', userId)
+      .eq('is_template', false);
 
+    const currentCount = count || 0;
     const canCreate = currentCount < maxRubrics;
 
     return {
@@ -189,7 +222,12 @@ export async function checkRubricLimit(userId: string): Promise<{
     };
   } catch (error) {
     console.error('Error checking rubric limit:', error);
-    return { canCreate: false, currentCount: 0, limit: 0, reason: 'Error checking limit' };
+    return {
+      canCreate: false,
+      currentCount: 0,
+      limit: 0,
+      reason: 'Error checking limit',
+    };
   }
 }
 
@@ -235,43 +273,60 @@ export async function checkAssignmentUploadLimit(userId: string): Promise<{
   try {
     const adminStatus = await isAdmin(userId);
     if (adminStatus) {
-      return { canUpload: true, currentCount: 0, limit: null, isAdmin: true };
+      return {
+        canUpload: true,
+        currentCount: 0,
+        limit: null,
+        isAdmin: true,
+      };
     }
 
-    const subscription = await queryOne<{
-      plan_features: any;
-    }>(
-      `SELECT sp.features AS plan_features
-       FROM subscriptions s
-       LEFT JOIN subscription_plans sp ON sp.id = s.plan_id
-       WHERE s.user_id = $1
-         AND s.status = 'active'
-         AND s.expires_at > NOW()
-       ORDER BY s.created_at DESC
-       LIMIT 1`,
-      [userId]
-    );
+    const { data: subscription } = await supabaseAdmin
+      .from('subscriptions')
+      .select(`
+        *,
+        subscription_plans (
+          features
+        )
+      `)
+      .eq('user_id', userId)
+      .eq('status', 'active')
+      .gt('expires_at', new Date().toISOString())
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
 
     if (!subscription) {
-      return { canUpload: false, currentCount: 0, limit: 0, reason: 'No active subscription' };
+      return {
+        canUpload: false,
+        currentCount: 0,
+        limit: 0,
+        reason: 'No active subscription',
+      };
     }
 
-    const features = subscription.plan_features as Record<string, any>;
+    const features = subscription.subscription_plans?.features as Record<string, any>;
     const uploadLimit = features?.assignment_uploads_limit;
 
     if (uploadLimit === null || uploadLimit === undefined) {
-      return { canUpload: true, currentCount: 0, limit: null };
+      return {
+        canUpload: true,
+        currentCount: 0,
+        limit: null,
+      };
     }
 
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth() + 1;
 
-    const uploadRecord = await queryOne<{ upload_count: number }>(
-      `SELECT upload_count FROM assignment_uploads
-       WHERE user_id = $1 AND year = $2 AND month = $3`,
-      [userId, year, month]
-    );
+    const { data: uploadRecord } = await supabaseAdmin
+      .from('assignment_uploads')
+      .select('upload_count')
+      .eq('user_id', userId)
+      .eq('year', year)
+      .eq('month', month)
+      .single();
 
     const currentCount = uploadRecord?.upload_count || 0;
     const canUpload = currentCount < uploadLimit;
@@ -284,7 +339,12 @@ export async function checkAssignmentUploadLimit(userId: string): Promise<{
     };
   } catch (error) {
     console.error('Error checking upload limit:', error);
-    return { canUpload: false, currentCount: 0, limit: 0, reason: 'Error checking limit' };
+    return {
+      canUpload: false,
+      currentCount: 0,
+      limit: 0,
+      reason: 'Error checking limit',
+    };
   }
 }
 
@@ -297,25 +357,31 @@ export async function incrementAssignmentUpload(userId: string): Promise<void> {
   const month = now.getMonth() + 1;
 
   try {
-    const existing = await queryOne<{ id: string; upload_count: number }>(
-      `SELECT id, upload_count FROM assignment_uploads
-       WHERE user_id = $1 AND year = $2 AND month = $3`,
-      [userId, year, month]
-    );
+    const { data: existing } = await supabaseAdmin
+      .from('assignment_uploads')
+      .select('id, upload_count')
+      .eq('user_id', userId)
+      .eq('year', year)
+      .eq('month', month)
+      .single();
 
     if (existing) {
-      await execute(
-        `UPDATE assignment_uploads
-         SET upload_count = $1, updated_at = NOW()
-         WHERE id = $2`,
-        [existing.upload_count + 1, existing.id]
-      );
+      await supabaseAdmin
+        .from('assignment_uploads')
+        .update({
+          upload_count: existing.upload_count + 1,
+          updated_at: new Date().toISOString(),
+        })
+        .eq('id', existing.id);
     } else {
-      await execute(
-        `INSERT INTO assignment_uploads (user_id, year, month, upload_count)
-         VALUES ($1, $2, $3, 1)`,
-        [userId, year, month]
-      );
+      await supabaseAdmin
+        .from('assignment_uploads')
+        .insert({
+          user_id: userId,
+          year,
+          month,
+          upload_count: 1,
+        });
     }
   } catch (error) {
     console.error('Error incrementing upload count:', error);
@@ -368,28 +434,29 @@ export async function getUserFeatures(userId: string): Promise<{
   };
 } | null> {
   try {
-    const user = await queryOne<{ role: string }>(
-      'SELECT role FROM users WHERE id = $1',
-      [userId]
-    );
+    const { data: user } = await supabaseAdmin
+      .from('users')
+      .select('role')
+      .eq('id', userId)
+      .single();
 
     const userIsAdmin = user?.role === 'admin';
 
-    const subscription = await queryOne<{
-      tier: string;
-      expires_at: string;
-      plan_features: any;
-    }>(
-      `SELECT s.tier, s.expires_at, sp.features AS plan_features
-       FROM subscriptions s
-       LEFT JOIN subscription_plans sp ON sp.id = s.plan_id
-       WHERE s.user_id = $1
-         AND s.status = 'active'
-         AND s.expires_at > NOW()
-       ORDER BY s.created_at DESC
-       LIMIT 1`,
-      [userId]
-    );
+    const { data: subscription } = await supabaseAdmin
+      .from('subscriptions')
+      .select(`
+        tier,
+        expires_at,
+        subscription_plans (
+          features
+        )
+      `)
+      .eq('user_id', userId)
+      .eq('status', 'active')
+      .gt('expires_at', new Date().toISOString())
+      .order('created_at', { ascending: false })
+      .limit(1)
+      .single();
 
     if (!subscription) {
       if (userIsAdmin) {
@@ -423,14 +490,16 @@ export async function getUserFeatures(userId: string): Promise<{
       return null;
     }
 
-    const features = subscription.plan_features || {};
+    const features = subscription.subscription_plans?.features || {};
 
     const now = new Date();
-    const uploadRecord = await queryOne<{ upload_count: number }>(
-      `SELECT upload_count FROM assignment_uploads
-       WHERE user_id = $1 AND year = $2 AND month = $3`,
-      [userId, now.getFullYear(), now.getMonth() + 1]
-    );
+    const { data: uploadRecord } = await supabaseAdmin
+      .from('assignment_uploads')
+      .select('upload_count')
+      .eq('user_id', userId)
+      .eq('year', now.getFullYear())
+      .eq('month', now.getMonth() + 1)
+      .single();
 
     const currentUploads = uploadRecord?.upload_count || 0;
     const uploadLimit = userIsAdmin ? null : features.assignment_uploads_limit;
@@ -466,11 +535,16 @@ export async function logAdminAction(
   ipAddress?: string
 ): Promise<void> {
   try {
-    await execute(
-      `INSERT INTO audit_logs (user_id, action, entity_type, entity_id, details, ip_address)
-       VALUES ($1, $2, $3, $4, $5, $6)`,
-      [userId, action, entityType, entityId, JSON.stringify(details), ipAddress || null]
-    );
+    await supabaseAdmin
+      .from('audit_logs')
+      .insert({
+        user_id: userId,
+        action,
+        entity_type: entityType,
+        entity_id: entityId,
+        details,
+        ip_address: ipAddress,
+      });
   } catch (error) {
     console.error('Error logging admin action:', error);
   }
