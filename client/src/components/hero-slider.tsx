@@ -2,10 +2,10 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "wouter";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import image1 from "@assets/image1_1767111780441.jpg";
-import image2 from "@assets/image2_1767111780441.jpg";
-import image3 from "@assets/image3_1767110758724.jpg";
-import image4 from "@assets/image4_1767111780441.jpg";
+import image1 from "@assets/image1r_1778623148758.jpg";
+import image2 from "@assets/image2r_1778623148758.jpg";
+import image3 from "@assets/image3r_1778623148759.jpg";
+import image4 from "@assets/image4r_1778623148759.jpg";
 
 const slides = [
   {
