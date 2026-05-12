@@ -1,51 +1,106 @@
 import { Link } from "wouter";
-import { CheckCircle, Clock, FileText, Shield, Zap, Users, ArrowRight } from "lucide-react";
+import {
+  CheckCircle, Clock, FileText, Zap, Users, ArrowRight,
+  SpellCheck, BookOpen, AlignLeft, Quote, LayoutTemplate, Upload,
+  Zap as ZapIcon, Shield, BarChart2, Heart, UploadCloud, GraduationCap, Star, Award
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { HeroSlider } from "@/components/hero-slider";
 import logoImage from "@assets/logo4_1767212330511.png";
 
-const benefits = [
+const DARK_BG = "#0c0b1d";
+const CARD_BG = "#13122a";
+const CARD_BORDER = "#2a2850";
+
+const featureCards = [
   {
-    icon: Clock,
-    title: "Save Hours Every Week",
-    description: "Grade assignments in minutes instead of hours with AI-powered evaluation and instant feedback generation.",
+    icon: SpellCheck,
+    title: "Grammar & Punctuation Checking",
+    description: "Identify grammar issues, spelling errors, and punctuation mistakes with precision.",
   },
   {
-    icon: FileText,
-    title: "Consistent Rubric-Based Grading",
-    description: "Apply custom rubrics consistently across all assignments, ensuring fair and objective evaluations.",
+    icon: BookOpen,
+    title: "Thesis Statement Evaluation",
+    description: "Get detailed feedback on thesis clarity, strength, and overall effectiveness.",
   },
   {
-    icon: Zap,
-    title: "Bulk Assignment Processing",
-    description: "Upload and process up to 400+ assignments at once, perfect for large classes and multiple sections.",
+    icon: AlignLeft,
+    title: "Topic Sentence Analysis",
+    description: "Analyze topic sentences for relevance, clarity, and paragraph focus.",
   },
   {
-    icon: CheckCircle,
-    title: "Comprehensive Writing Analysis",
-    description: "Evaluate grammar, punctuation, thesis quality, topic sentences, and supporting evidence in one pass.",
+    icon: Quote,
+    title: "Supporting Content Review",
+    description: "Evaluate evidence quality, relevance, and support for arguments.",
   },
   {
-    icon: Users,
-    title: "Work-Life Balance",
-    description: "Spend less time grading and more time teaching, mentoring, or enjoying your personal life.",
+    icon: LayoutTemplate,
+    title: "Custom Rubric Builder",
+    description: "Create, customize, and save rubrics that align with your evaluation criteria.",
+  },
+  {
+    icon: Upload,
+    title: "Bulk Assignment Uploads",
+    description: "Upload and process up to 400+ assignments at once with ease and efficiency.",
   },
 ];
 
-const features = [
-  "Grammar & punctuation checking",
-  "Thesis statement evaluation",
-  "Topic sentence analysis",
-  "Supporting content review",
-  "Custom rubric builder",
-  "Bulk assignment uploads",
+const benefitCards = [
+  {
+    icon: Clock,
+    title: "Save Hours Every Week",
+    description: "Grade assignments in minutes instead of hours with intelligent evaluation and instant feedback.",
+    stat: "10+",
+    statLabel: "Hours Saved Weekly",
+    color: "#894596",
+  },
+  {
+    icon: CheckCircle,
+    title: "Consistent Rubric-Based Grading",
+    description: "Apply custom rubrics consistently across all assignments for fair and objective evaluations.",
+    stat: "95%",
+    statLabel: "Consistency Achieved",
+    color: "#22d3ee",
+  },
+  {
+    icon: ZapIcon,
+    title: "Bulk Assignment Processing",
+    description: "Upload and process up to 400+ assignments at once, perfect for large classes and multiple sections.",
+    stat: "400+",
+    statLabel: "Assignments at Once",
+    color: "#f5c518",
+  },
+  {
+    icon: BarChart2,
+    title: "Comprehensive Writing Analysis",
+    description: "Evaluate grammar, punctuation, thesis quality, topic sentences, and supporting evidence in one pass.",
+    stat: "6",
+    statLabel: "Analysis Areas",
+    color: "#4ade80",
+  },
+  {
+    icon: Heart,
+    title: "Work–Life Balance",
+    description: "Spend less time grading and more time teaching, mentoring, or enjoying your personal life.",
+    stat: "Less Stress",
+    statLabel: "More Impact",
+    color: "#d946ef",
+  },
+];
+
+const stats = [
+  { icon: Users, value: "10,000+", label: "Educators Trust Us" },
+  { icon: GraduationCap, value: "500K+", label: "Students Impacted" },
+  { icon: Star, value: "4.9/5", label: "Average Rating" },
+  { icon: Award, value: "2M+", label: "Assignments Graded" },
 ];
 
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 border-b border-white/10" style={{ background: "#0c0b1d" }}>
+    <div className="min-h-screen" style={{ background: DARK_BG }}>
+      {/* ─── Header ─── */}
+      <header className="sticky top-0 z-50 border-b border-white/10" style={{ background: DARK_BG }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 gap-4">
             <div className="flex items-center gap-2">
@@ -72,158 +127,372 @@ export default function Landing() {
 
       <HeroSlider />
 
-      <section id="features" className="py-16 lg:py-24 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4" data-testid="text-features-title">Everything You Need to Grade Efficiently</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Comprehensive writing analysis and evaluation tools designed specifically for educators.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {features.map((feature, index) => (
-              <Card key={index} className="p-4 text-center" data-testid={`card-feature-${index}`}>
-                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                  <CheckCircle className="w-5 h-5 text-primary" />
+      {/* ─── Features ─── */}
+      <section id="features" className="py-20 lg:py-28" style={{ background: DARK_BG }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex flex-col lg:flex-row gap-14 items-start">
+
+            {/* Left: title + feature cards */}
+            <div className="flex-1 min-w-0">
+              <span className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5 border border-white/20 text-white/60">Features</span>
+              <h2 className="text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4" data-testid="text-features-title">
+                Everything You Need to<br />
+                <span className="text-[#4ade80]">Grade Efficiently</span>
+              </h2>
+              <p className="text-white/60 text-base mb-10 max-w-md leading-relaxed">
+                Comprehensive writing analysis and evaluation tools designed specifically for educators.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {featureCards.map((f, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl p-5 border transition-colors hover:border-[#894596]/60"
+                    style={{ background: CARD_BG, borderColor: CARD_BORDER }}
+                    data-testid={`card-feature-${i}`}
+                  >
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ background: "#894596" + "33" }}>
+                      <f.icon className="w-5 h-5" style={{ color: "#894596" }} />
+                    </div>
+                    <h3 className="text-white font-semibold text-sm mb-1.5 leading-snug">{f.title}</h3>
+                    <p className="text-white/50 text-xs leading-relaxed">{f.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Dashboard mockup */}
+            <div className="lg:w-[420px] flex-shrink-0 relative">
+              {/* AI badge */}
+              <div className="absolute -top-3 -right-3 z-10 flex items-center gap-2 px-3 py-2 rounded-xl border border-[#894596] text-xs font-semibold text-white shadow-lg" style={{ background: "#894596" }}>
+                <ZapIcon className="w-3.5 h-3.5" />
+                AI-Powered Grading Assistant
+              </div>
+
+              {/* Mock dashboard card */}
+              <div className="rounded-2xl border overflow-hidden shadow-2xl" style={{ background: CARD_BG, borderColor: CARD_BORDER }}>
+                {/* Dashboard header bar */}
+                <div className="flex items-center gap-2 px-4 py-3 border-b" style={{ borderColor: CARD_BORDER }}>
+                  <img src={logoImage} alt="" className="h-5" />
+                  <span className="text-white/60 text-xs ml-auto">Dashboard</span>
                 </div>
-                <p className="font-medium text-sm">{feature}</p>
-              </Card>
-            ))}
+
+                <div className="p-4 space-y-4">
+                  {/* Stat cards row */}
+                  <div className="grid grid-cols-4 gap-2">
+                    {[
+                      { label: "Assignments", value: "1,248", color: "#894596" },
+                      { label: "Quality Score", value: "82.5", color: "#22d3ee" },
+                      { label: "Students", value: "320", color: "#4ade80" },
+                      { label: "Avg Score", value: "87%", color: "#f5c518" },
+                    ].map((s) => (
+                      <div key={s.label} className="rounded-lg p-2 text-center border" style={{ background: "#0c0b1d", borderColor: CARD_BORDER }}>
+                        <p className="text-[10px] text-white/40 leading-tight mb-0.5">{s.label}</p>
+                        <p className="text-sm font-bold" style={{ color: s.color }}>{s.value}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Recent assignments */}
+                  <div className="rounded-lg border overflow-hidden" style={{ borderColor: CARD_BORDER }}>
+                    <div className="px-3 py-2 border-b" style={{ borderColor: CARD_BORDER }}>
+                      <p className="text-white/60 text-[10px] font-semibold uppercase tracking-wide">Recent Assignments</p>
+                    </div>
+                    {[
+                      { name: "Research Paper – Climate Change", score: "88", status: "Graded" },
+                      { name: "Essay – Social Media Impact", score: "74", status: "Graded" },
+                      { name: "Literary Analysis – The Great Gatsby", score: "92", status: "Completed" },
+                      { name: "Argumentative Essay – Education", score: "79", status: "Completed" },
+                    ].map((a, i) => (
+                      <div key={i} className="flex items-center justify-between px-3 py-2 border-b last:border-0 text-[10px]" style={{ borderColor: CARD_BORDER }}>
+                        <span className="text-white/60 truncate mr-2 flex-1">{a.name}</span>
+                        <span className="text-white/80 font-semibold mr-2">{a.score}</span>
+                        <span className="text-[#4ade80] font-medium">{a.status}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Scores distribution */}
+                  <div className="rounded-lg border p-3" style={{ borderColor: CARD_BORDER }}>
+                    <p className="text-white/60 text-[10px] font-semibold uppercase tracking-wide mb-3">Scores Distribution</p>
+                    <div className="flex items-center gap-3">
+                      {/* Donut placeholder */}
+                      <div className="w-16 h-16 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold text-white" style={{ background: "conic-gradient(#894596 0% 38%, #22d3ee 38% 70%, #4ade80 70% 90%, #f5c518 90% 100%)" }}>
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center text-[9px] font-bold" style={{ background: CARD_BG }}>1,248</div>
+                      </div>
+                      <div className="space-y-1.5 text-[9px] text-white/60">
+                        {[
+                          { label: "90–100%", pct: "38%", color: "#894596" },
+                          { label: "80–89%", pct: "32%", color: "#22d3ee" },
+                          { label: "70–79%", pct: "20%", color: "#4ade80" },
+                          { label: "Below 70%", pct: "10%", color: "#f5c518" },
+                        ].map((d) => (
+                          <div key={d.label} className="flex items-center gap-1.5">
+                            <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: d.color }} />
+                            <span>{d.label}</span>
+                            <span className="ml-auto pl-2 font-semibold text-white/80">{d.pct}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="benefits" className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ─── Benefits ─── */}
+      <section id="benefits" className="py-20 lg:py-28 border-t" style={{ background: "#0f0e22", borderColor: CARD_BORDER }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4" data-testid="text-benefits-title">Why Educators Love GraderInsight</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5 border border-white/20 text-white/60">Benefits</span>
+            <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-4" data-testid="text-benefits-title">
+              Why Educators <span style={{ color: "#894596" }}>Love</span> GraderInsight
+            </h2>
+            <p className="text-white/50 text-base max-w-xl mx-auto leading-relaxed">
               Join thousands of professors, instructors, and teachers who have transformed their grading workflow.
             </p>
           </div>
-          <div className="flex flex-wrap justify-center gap-6">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="w-full md:w-[calc(33.333%-16px)]">
-                <Card className="p-6 h-full" data-testid={`card-benefit-${index}`}>
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <benefit.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{benefit.title}</h3>
-                  <p className="text-muted-foreground">{benefit.description}</p>
-                </Card>
+
+          {/* Benefit cards */}
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
+            {benefitCards.map((b, i) => (
+              <div
+                key={i}
+                className="rounded-2xl border p-5 flex flex-col items-center text-center w-full md:w-[calc(20%-16px)] min-w-[180px]"
+                style={{ background: CARD_BG, borderColor: CARD_BORDER }}
+                data-testid={`card-benefit-${i}`}
+              >
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-3" style={{ background: b.color + "22", border: `1.5px solid ${b.color}44` }}>
+                  <b.icon className="w-6 h-6" style={{ color: b.color }} />
+                </div>
+                <h3 className="text-white font-semibold text-sm mb-2 leading-snug">{b.title}</h3>
+                <p className="text-white/50 text-xs leading-relaxed mb-4">{b.description}</p>
+                <div className="mt-auto">
+                  <p className="text-2xl font-extrabold" style={{ color: b.color }}>{b.stat}</p>
+                  <p className="text-white/40 text-[11px]">{b.statLabel}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Stats bar */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {stats.map((s, i) => (
+              <div
+                key={i}
+                className="flex items-center gap-3 rounded-xl px-5 py-4 border"
+                style={{ background: CARD_BG, borderColor: CARD_BORDER }}
+              >
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: "#894596" + "33" }}>
+                  <s.icon className="w-5 h-5" style={{ color: "#894596" }} />
+                </div>
+                <div>
+                  <p className="text-white font-bold text-base leading-tight">{s.value}</p>
+                  <p className="text-white/50 text-xs">{s.label}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="how-it-works" className="py-16 lg:py-24 bg-muted/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4" data-testid="text-how-it-works-title">How It Works</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Get started in minutes and transform your grading workflow
-            </p>
+      {/* ─── How It Works ─── */}
+      <section id="how-it-works" className="py-20 lg:py-28 border-t" style={{ background: DARK_BG, borderColor: CARD_BORDER }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="text-center mb-14">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5 border border-white/20 text-white/60">How It Works</span>
+            <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-3" data-testid="text-how-it-works-title">
+              Get Started in <span style={{ color: "#894596" }}>4 Simple Steps</span>
+            </h2>
+            <p className="text-white/50 text-base max-w-lg mx-auto">Get started in minutes and transform your grading workflow</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center" data-testid="step-1">
-              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">1</div>
-              <h3 className="text-xl font-semibold mb-2">Create Your Rubric</h3>
-              <p className="text-muted-foreground">Build custom grading rubrics or use our templates to define your evaluation criteria.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Step 1 */}
+            <div className="rounded-2xl border overflow-hidden" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="step-1">
+              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER }}>
+                {/* Mini rubric mockup */}
+                <div className="rounded-lg p-3 space-y-1.5 text-[10px]" style={{ background: "#0c0b1d" }}>
+                  <p className="text-white/70 font-semibold mb-2">Create Rubric</p>
+                  {[["Thesis Statement", "75"], ["Organization", "25"], ["Evidence & Support", "25"], ["Mechanics", "25"]].map(([n, v]) => (
+                    <div key={n} className="flex items-center justify-between">
+                      <span className="text-white/50">{n}</span>
+                      <span className="text-[#894596] font-bold">{v}</span>
+                    </div>
+                  ))}
+                  <div className="mt-2 rounded text-center py-1 text-[9px] font-semibold text-white" style={{ background: "#894596" }}>+ Add Criteria</div>
+                </div>
+              </div>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ background: "#894596" }}>1</div>
+                  <h3 className="text-white font-semibold text-sm">Create Your Rubric</h3>
+                </div>
+                <p className="text-white/50 text-xs leading-relaxed">Build custom grading rubrics or use our templates to define your evaluation criteria.</p>
+              </div>
             </div>
-            <div className="text-center" data-testid="step-2">
-              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">2</div>
-              <h3 className="text-xl font-semibold mb-2">Download the Anonymizer</h3>
-              <p className="text-muted-foreground">Install the desktop app for anonymizing files before uploading (based on subscription plan).</p>
+
+            {/* Step 2 */}
+            <div className="rounded-2xl border overflow-hidden" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="step-2">
+              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER }}>
+                <div className="rounded-lg p-3 space-y-2 text-[10px]" style={{ background: "#0c0b1d" }}>
+                  <p className="text-white/70 font-semibold mb-2">Anonymizer Settings</p>
+                  {["Remove student names", "Remove identifying info", "Assign random IDs"].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded flex items-center justify-center" style={{ background: "#4ade80" }}>
+                        <CheckCircle className="w-2 h-2 text-black" />
+                      </div>
+                      <span className="text-white/50">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ background: "#894596" }}>2</div>
+                  <h3 className="text-white font-semibold text-sm">Download the Anonymizer</h3>
+                </div>
+                <p className="text-white/50 text-xs leading-relaxed">Install the desktop app for anonymizing files before uploading (based on subscription plan).</p>
+              </div>
             </div>
-            <div className="text-center" data-testid="step-3">
-              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">3</div>
-              <h3 className="text-xl font-semibold mb-2">Upload & Evaluate Assignments</h3>
-              <p className="text-muted-foreground">Bulk upload up to 1500+ student assignments at once (based on subscription plan). MS Word and PDF formats supported.</p>
+
+            {/* Step 3 */}
+            <div className="rounded-2xl border overflow-hidden" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="step-3">
+              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER }}>
+                <div className="rounded-lg p-3 text-[10px] flex flex-col items-center justify-center gap-2" style={{ background: "#0c0b1d", minHeight: "80px" }}>
+                  <p className="text-white/70 font-semibold">Upload Assignments</p>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "#894596" + "33", border: "1.5px dashed #894596" }}>
+                    <UploadCloud className="w-5 h-5" style={{ color: "#894596" }} />
+                  </div>
+                  <p className="text-white/40">Drag & drop files or click to browse</p>
+                </div>
+              </div>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ background: "#894596" }}>3</div>
+                  <h3 className="text-white font-semibold text-sm">Upload & Evaluate Assignments</h3>
+                </div>
+                <p className="text-white/50 text-xs leading-relaxed">Bulk upload up to 1500+ student assignments at once (based on subscription plan). MS Word and PDF formats supported.</p>
+              </div>
             </div>
-            <div className="text-center" data-testid="step-4">
-              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold flex items-center justify-center mx-auto mb-4">4</div>
-              <h3 className="text-xl font-semibold mb-2">Evaluate & Assign</h3>
-              <p className="text-muted-foreground">Review assignment feedback against the professor's assessment; assign grade.</p>
+
+            {/* Step 4 */}
+            <div className="rounded-2xl border overflow-hidden" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="step-4">
+              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER }}>
+                <div className="rounded-lg p-3 space-y-2 text-[10px]" style={{ background: "#0c0b1d" }}>
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="text-white/70 font-semibold">Overall Score</p>
+                    <span className="text-[#4ade80] font-bold text-base">87%</span>
+                  </div>
+                  <p className="text-white/50 font-semibold">Feedback Summary</p>
+                  {["Strong thesis argument", "Good use of evidence", "Grammar: 2 issues noted"].map((line) => (
+                    <div key={line} className="flex items-start gap-1.5">
+                      <CheckCircle className="w-2.5 h-2.5 mt-0.5 flex-shrink-0" style={{ color: "#4ade80" }} />
+                      <span className="text-white/40">{line}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ background: "#894596" }}>4</div>
+                  <h3 className="text-white font-semibold text-sm">Evaluate & Assign</h3>
+                </div>
+                <p className="text-white/50 text-xs leading-relaxed">Review assignment feedback against the rubric, provide comments, and assign grades with confidence.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="pricing" className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ─── Pricing ─── */}
+      <section id="pricing" className="py-20 lg:py-28 border-t" style={{ background: "#0f0e22", borderColor: CARD_BORDER }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4" data-testid="text-pricing-title">Simple, Transparent Pricing</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            <h2 className="text-4xl font-extrabold text-white mb-4" data-testid="text-pricing-title">Simple, Transparent Pricing</h2>
+            <p className="text-white/50 text-base max-w-2xl mx-auto">
               Choose the plan that fits your needs. All plans include a 7-day free trial.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <Card className="p-6" data-testid="card-pricing-basic">
+            {/* Basic */}
+            <div className="rounded-2xl border p-6" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="card-pricing-basic">
               <div className="text-center mb-6">
-                <h3 className="text-xl font-semibold mb-2">Basic</h3>
-                <div className="text-4xl font-bold mb-1">$9.99<span className="text-lg text-muted-foreground font-normal">/mo</span></div>
-                <p className="text-muted-foreground text-sm">For individual educators</p>
+                <h3 className="text-xl font-semibold text-white mb-2">Basic</h3>
+                <div className="text-4xl font-bold text-white mb-1">$9.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
+                <p className="text-white/40 text-sm">For individual educators</p>
               </div>
               <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Unlimited grading</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Custom rubrics</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Email support</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Up to 100 assignments/month</li>
+                {["Unlimited grading", "Custom rubrics", "Email support", "Up to 100 assignments/month"].map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-white/70">
+                    <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: "#4ade80" }} />
+                    {f}
+                  </li>
+                ))}
               </ul>
               <Link href="/signup" data-testid="link-pricing-basic">
-                <Button variant="outline" className="w-full">Start Free Trial</Button>
+                <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">Start Free Trial</Button>
               </Link>
-            </Card>
-            <Card className="p-6 border-primary relative" data-testid="card-pricing-pro">
+            </div>
+
+            {/* Pro */}
+            <div className="rounded-2xl border p-6 relative" style={{ background: CARD_BG, borderColor: "#894596" }} data-testid="card-pricing-pro">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                <span className="bg-primary text-primary-foreground text-xs font-medium px-3 py-1 rounded-full">Most Popular</span>
+                <span className="text-white text-xs font-medium px-3 py-1 rounded-full" style={{ background: "#894596" }}>Most Popular</span>
               </div>
               <div className="text-center mb-6">
-                <h3 className="text-xl font-semibold mb-2">Pro</h3>
-                <div className="text-4xl font-bold mb-1">$19.99<span className="text-lg text-muted-foreground font-normal">/mo</span></div>
-                <p className="text-muted-foreground text-sm">For power users</p>
+                <h3 className="text-xl font-semibold text-white mb-2">Pro</h3>
+                <div className="text-4xl font-bold text-white mb-1">$19.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
+                <p className="text-white/40 text-sm">For power users</p>
               </div>
               <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Everything in Basic</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Advanced analytics</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Priority support</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Desktop app access</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Unlimited assignments</li>
+                {["Everything in Basic", "Advanced analytics", "Priority support", "Desktop app access", "Unlimited assignments"].map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-white/70">
+                    <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: "#4ade80" }} />
+                    {f}
+                  </li>
+                ))}
               </ul>
               <Link href="/signup" data-testid="link-pricing-pro">
-                <Button className="w-full">Start Free Trial</Button>
+                <Button className="w-full font-semibold" style={{ background: "#894596" }}>Start Free Trial</Button>
               </Link>
-            </Card>
-            <Card className="p-6" data-testid="card-pricing-enterprise">
+            </div>
+
+            {/* Enterprise */}
+            <div className="rounded-2xl border p-6" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="card-pricing-enterprise">
               <div className="text-center mb-6">
-                <h3 className="text-xl font-semibold mb-2">Enterprise</h3>
-                <div className="text-4xl font-bold mb-1">$49.99<span className="text-lg text-muted-foreground font-normal">/mo</span></div>
-                <p className="text-muted-foreground text-sm">For departments & teams</p>
+                <h3 className="text-xl font-semibold text-white mb-2">Enterprise</h3>
+                <div className="text-4xl font-bold text-white mb-1">$49.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
+                <p className="text-white/40 text-sm">For departments & teams</p>
               </div>
               <ul className="space-y-3 mb-6">
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Everything in Pro</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Team collaboration</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Custom integrations</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> Dedicated support</li>
-                <li className="flex items-center gap-2 text-sm"><CheckCircle className="w-4 h-4 text-accent flex-shrink-0" /> LMS integration</li>
+                {["Everything in Pro", "Team collaboration", "Custom integrations", "Dedicated support", "LMS integration"].map((f) => (
+                  <li key={f} className="flex items-center gap-2 text-sm text-white/70">
+                    <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: "#4ade80" }} />
+                    {f}
+                  </li>
+                ))}
               </ul>
               <Link href="/signup" data-testid="link-pricing-enterprise">
-                <Button variant="outline" className="w-full">Start Free Trial</Button>
+                <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">Start Free Trial</Button>
               </Link>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 lg:py-24 bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4" data-testid="text-cta-title">Ready to Transform Your Grading?</h2>
-          <p className="text-lg mb-8 opacity-90">
+      {/* ─── CTA ─── */}
+      <section className="py-16 lg:py-20 border-t" style={{ background: "#894596", borderColor: "#7a3d85" }}>
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4" data-testid="text-cta-title">Ready to Transform Your Grading?</h2>
+          <p className="text-white/80 text-lg mb-8">
             Start grading assignments faster and reclaim your time today.
           </p>
           <Link href="/signup" data-testid="link-cta-footer">
-            <Button size="lg" variant="secondary" className="text-lg px-8" data-testid="button-cta-footer">
+            <Button size="lg" className="text-lg px-8 bg-white font-bold hover:bg-white/90" style={{ color: "#894596" }} data-testid="button-cta-footer">
               Get Started Now
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
@@ -231,13 +500,12 @@ export default function Landing() {
         </div>
       </section>
 
-      <footer className="py-12 border-t">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ─── Footer ─── */}
+      <footer className="py-10 border-t" style={{ background: "#08071a", borderColor: CARD_BORDER }}>
+        <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <img src={logoImage} alt="GraderInsight" className="h-8" data-testid="img-logo-footer" />
-            </div>
-            <p className="text-sm text-muted-foreground">
+            <img src={logoImage} alt="GraderInsight" className="h-8" data-testid="img-logo-footer" />
+            <p className="text-sm text-white/30">
               Helping educators grade smarter since 2025
             </p>
           </div>
