@@ -45,25 +45,25 @@ const features = [
 export default function Landing() {
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+      <header className="sticky top-0 z-50 border-b border-white/10" style={{ background: "#0c0b1d" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 gap-4">
             <div className="flex items-center gap-2">
               <img src={logoImage} alt="GraderInsight" className="h-10" data-testid="img-logo" />
             </div>
             <nav className="hidden md:flex items-center gap-6">
-              <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-features">Features</a>
-              <a href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-benefits">Benefits</a>
-              <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-pricing">Pricing</a>
-              <a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-how-it-works">How It Works</a>
-              <Link href="/rubric-builder" className="text-muted-foreground hover:text-foreground transition-colors" data-testid="link-rubric">Rubric</Link>
+              <a href="#features" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-features">Features</a>
+              <a href="#benefits" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-benefits">Benefits</a>
+              <a href="#pricing" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-pricing">Pricing</a>
+              <a href="#how-it-works" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-how-it-works">How It Works</a>
+              <Link href="/rubric-builder" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-rubric">Rubric</Link>
             </nav>
             <div className="flex items-center gap-2">
               <Link href="/login" data-testid="link-login">
-                <Button variant="ghost" data-testid="button-login">Log In</Button>
+                <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10" data-testid="button-login">Log In</Button>
               </Link>
               <Link href="/signup" data-testid="link-signup-header">
-                <Button data-testid="button-signup-header">Get Started</Button>
+                <Button className="bg-[#894596] hover:bg-[#7a3d85] text-white font-semibold" data-testid="button-signup-header">Get Started</Button>
               </Link>
             </div>
           </div>
