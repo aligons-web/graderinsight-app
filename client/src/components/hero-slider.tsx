@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "wouter";
-import { ChevronLeft, ChevronRight, CheckCircle, BarChart2, FileText, UploadCloud, MessageSquare, ShieldCheck } from "lucide-react";
+import { ChevronLeft, ChevronRight, CheckCircle, BarChart2, FileText, UploadCloud, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import image1 from "@assets/image1r_1778623148758.jpg";
-import image2 from "@assets/image2r_1778623148758.jpg";
-import image3 from "@assets/image3r_1778623148759.jpg";
-import image4 from "@assets/image4r_1778623148759.jpg";
+import image1 from "@assets/i1_1778626320628.jpg";
+import image2 from "@assets/i2_1778626320629.jpg";
+import image3 from "@assets/I3_1778626320629.jpg";
+import image4 from "@assets/I4_1778626320629.jpg";
 
 type SlideFeature = { icon: React.ElementType; label: string };
 
@@ -18,29 +18,20 @@ type Slide = {
   description: string;
   badges?: string[];
   features?: SlideFeature[];
-  decorative: {
-    type: "circle" | "shield" | "card";
-    text?: string;
-    highlight?: string;
-    subtext?: string;
-    line1?: string;
-    line2?: string;
-  };
 };
 
 const slides: Slide[] = [
   {
-    image: image2,
+    image: image1,
     bg: "#0c0b1d",
     accent: "#f5c518",
     headline1: "Grade quicker.",
     headline2: "Teach more.",
     description: "AI-powered writing analysis that gives you clear insights, consistent grading, and hours back in your week.",
     badges: ["Accurate", "Consistent", "Time-Saving"],
-    decorative: { type: "circle", text: "Save up to", highlight: "10+", subtext: "hours per week" },
   },
   {
-    image: image3,
+    image: image2,
     bg: "#0c0b1d",
     accent: "#22d3ee",
     headline1: "Grade efficiently.",
@@ -52,27 +43,24 @@ const slides: Slide[] = [
       { icon: UploadCloud, label: "Bulk Grading" },
       { icon: MessageSquare, label: "Actionable Feedback" },
     ],
-    decorative: { type: "circle", text: "Grade", highlight: "400+", subtext: "assignments at once" },
   },
   {
-    image: image4,
+    image: image3,
     bg: "#071a0b",
     accent: "#4ade80",
     headline1: "Grade smarter.",
     headline2: "Empower students.",
     description: "Deliver better feedback, promote academic growth, and keep integrity at the center.",
     badges: ["Writing Analysis", "Originality Review", "Rubric-Based Grading", "Consistency You Can Trust"],
-    decorative: { type: "shield", text: "Support Academic Integrity" },
   },
   {
-    image: image1,
+    image: image4,
     bg: "#1a0c30",
     accent: "#d946ef",
     headline1: "Grade precisely.",
     headline2: "Inspire excellence.",
     description: "Detailed insights. Clear feedback. Better writing. Stronger results.",
     badges: ["Grammar & Clarity", "Thesis Evaluation", "Evidence Review", "Sentence-Level Feedback"],
-    decorative: { type: "card", line1: "Precision You Can See.", line2: "Results They Can Feel." },
   },
 ];
 
@@ -112,12 +100,16 @@ export function HeroSlider() {
           <div
             key={index}
             className="absolute inset-0"
-            style={{ opacity: active ? 1 : 0, zIndex: active ? 10 : 0, transition: "opacity 0.6s ease", pointerEvents: active ? "auto" : "none" }}
+            style={{
+              opacity: active ? 1 : 0,
+              zIndex: active ? 10 : 0,
+              transition: "opacity 0.6s ease",
+              pointerEvents: active ? "auto" : "none",
+            }}
             data-testid={`slide-${index}`}
           >
-            {/* Full-bleed image on the right half */}
+            {/* Full-bleed image fills the right half of the slide */}
             <div className="absolute inset-0 flex">
-              {/* left spacer so image starts at ~45% */}
               <div className="w-[45%] flex-shrink-0" />
               <div className="flex-1 relative">
                 <img
@@ -129,31 +121,31 @@ export function HeroSlider() {
               </div>
             </div>
 
-            {/* Gradient overlays for seamless blend */}
-            {/* left-to-right: solid bg → transparent (covers left 60%) */}
+            {/* Gradient: solid bg on left, fades out over image */}
             <div
               className="absolute inset-0"
               style={{
-                background: `linear-gradient(to right, ${s.bg} 0%, ${s.bg} 38%, ${s.bg}cc 50%, ${s.bg}55 62%, transparent 78%)`,
+                background: `linear-gradient(to right, ${s.bg} 0%, ${s.bg} 36%, ${s.bg}cc 50%, ${s.bg}55 62%, transparent 78%)`,
               }}
             />
-            {/* bottom fade for dot area */}
+
+            {/* Bottom fade for dot area readability */}
             <div
               className="absolute bottom-0 left-0 right-0 h-20"
-              style={{ background: `linear-gradient(to top, ${s.bg}cc, transparent)` }}
+              style={{ background: `linear-gradient(to top, ${s.bg}bb, transparent)` }}
             />
 
-            {/* Left content — sits on top of gradients */}
+            {/* Left content */}
             <div className="absolute inset-0 flex items-center">
               <div
-                className="w-full max-w-7xl mx-auto px-8 lg:px-12"
+                className="w-full max-w-7xl mx-auto px-8 lg:px-14"
                 style={{
                   opacity: active && animating ? 1 : 0,
                   transform: active && animating ? "translateX(0)" : "translateX(-24px)",
                   transition: "opacity 0.7s ease, transform 0.7s ease",
                 }}
               >
-                <div className="max-w-[520px]">
+                <div className="max-w-[500px]">
                   <h1 className="text-5xl lg:text-6xl font-extrabold leading-tight mb-4 text-white">
                     {s.headline1}
                     <br />
@@ -200,47 +192,6 @@ export function HeroSlider() {
                 </div>
               </div>
             </div>
-
-            {/* Decorative badge — bottom-right of image area */}
-            <div
-              className="absolute bottom-10 right-8 z-20"
-              style={{
-                opacity: active && animating ? 1 : 0,
-                transform: active && animating ? "translateY(0)" : "translateY(16px)",
-                transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
-              }}
-            >
-              {s.decorative.type === "circle" && (
-                <div
-                  className="w-32 h-32 rounded-full flex flex-col items-center justify-center text-center shadow-2xl border-4"
-                  style={{ background: s.bg, borderColor: s.accent }}
-                >
-                  <span className="text-white/60 text-[10px] font-medium leading-tight px-2">{s.decorative.text}</span>
-                  <span className="text-4xl font-extrabold leading-none" style={{ color: s.accent }}>{s.decorative.highlight}</span>
-                  <span className="text-white/60 text-[10px] leading-tight px-2">{s.decorative.subtext}</span>
-                </div>
-              )}
-
-              {s.decorative.type === "shield" && (
-                <div
-                  className="w-32 flex flex-col items-center justify-center text-center rounded-t-3xl rounded-b-[40%] shadow-2xl border-2 px-3 py-4"
-                  style={{ background: `${s.accent}1a`, borderColor: s.accent }}
-                >
-                  <ShieldCheck className="w-10 h-10 mb-2" style={{ color: s.accent }} />
-                  <span className="text-white text-[11px] font-semibold leading-snug">{s.decorative.text}</span>
-                </div>
-              )}
-
-              {s.decorative.type === "card" && (
-                <div
-                  className="w-40 rounded-2xl shadow-2xl border px-4 py-4"
-                  style={{ background: `${s.accent}1a`, borderColor: `${s.accent}66` }}
-                >
-                  <p className="text-white text-sm font-bold leading-snug mb-1">{s.decorative.line1}</p>
-                  <p className="text-sm leading-snug font-medium" style={{ color: s.accent }}>{s.decorative.line2}</p>
-                </div>
-              )}
-            </div>
           </div>
         );
       })}
@@ -264,12 +215,12 @@ export function HeroSlider() {
       </button>
 
       {/* Dot indicators */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 flex gap-2 items-center">
         {slides.map((s, i) => (
           <button
             key={i}
             onClick={() => goToSlide(i)}
-            className="rounded-full transition-all"
+            className="rounded-full transition-all duration-300"
             style={{
               width: i === currentSlide ? "24px" : "8px",
               height: "8px",
