@@ -17,11 +17,6 @@ const benefits = [
     description: "Apply custom rubrics consistently across all assignments, ensuring fair and objective evaluations.",
   },
   {
-    icon: Shield,
-    title: "AI & Plagiarism Detection",
-    description: "Automatically detect AI-generated content and plagiarism to maintain academic integrity.",
-  },
-  {
     icon: Zap,
     title: "Bulk Assignment Processing",
     description: "Upload and process up to 400+ assignments at once, perfect for large classes and multiple sections.",
@@ -43,8 +38,6 @@ const features = [
   "Thesis statement evaluation",
   "Topic sentence analysis",
   "Supporting content review",
-  "AI content detection",
-  "Plagiarism scanning",
   "Custom rubric builder",
   "Bulk assignment uploads",
 ];
@@ -87,7 +80,7 @@ export default function Landing() {
               Comprehensive writing analysis and evaluation tools designed specifically for educators.
             </p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {features.map((feature, index) => (
               <Card key={index} className="p-4 text-center" data-testid={`card-feature-${index}`}>
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
