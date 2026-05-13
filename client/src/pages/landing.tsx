@@ -444,8 +444,8 @@ export default function Landing() {
                 <span className="text-white text-xs font-medium px-3 py-1 rounded-full" style={{ background: "#894596" }}>Most Popular</span>
               </div>
               <div className="text-center mb-6">
-                <h3 className="text-xl font-semibold text-white mb-2">Desktop App</h3>
-                <div className="text-4xl font-bold text-white mb-1">$22.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
+                <h3 className="text-xl font-semibold text-white mb-2">Desktop App Plan</h3>
+                <div className="text-4xl font-bold text-white mb-1">$21.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
                 <p className="text-white/40 text-sm">For power users</p>
               </div>
               <ul className="space-y-3 mb-6">
@@ -471,8 +471,8 @@ export default function Landing() {
             <div className="rounded-2xl border p-6" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="card-pricing-enterprise">
               <div className="text-center mb-6">
                 <h3 className="text-xl font-semibold text-white mb-2">Web App Plan</h3>
-                <div className="text-4xl font-bold text-white mb-1">$26.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
-                <p className="text-white/40 text-sm">For departments & teams</p>
+                <div className="text-4xl font-bold text-white mb-1">$29.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
+                <p className="text-white/40 text-sm">* Education</p>
               </div>
               <ul className="space-y-3 mb-6">
                 {["Anonymizer App", "Customized rubric", "800 assignments", "Dedicated support"].map((f) => (
@@ -482,6 +482,9 @@ export default function Landing() {
                   </li>
                 ))}
               </ul>
+              <p className="text-white/40 text-xs italic mb-4 leading-relaxed">
+                *For Schools, Colleges, and Universities seeking a FERPA compliance agreement
+              </p>
               <Link href="/signup" data-testid="link-pricing-enterprise">
                 <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">Start Free Trial</Button>
               </Link>
