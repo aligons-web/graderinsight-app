@@ -422,11 +422,11 @@ export default function Landing() {
             <div className="rounded-2xl border p-6" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="card-pricing-basic">
               <div className="text-center mb-6">
                 <h3 className="text-xl font-semibold text-white mb-2">Basic</h3>
-                <div className="text-4xl font-bold text-white mb-1">$9.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
+                <div className="text-4xl font-bold text-white mb-1">$14.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
                 <p className="text-white/40 text-sm">For individual educators</p>
               </div>
               <ul className="space-y-3 mb-6">
-                {["Unlimited grading", "Custom rubrics", "Email support", "Up to 100 assignments/month"].map((f) => (
+                {["Test-drive AI off-line grading with API Key", "Custom rubrics", "Up to 100 assignments/month"].map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-white/70">
                     <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: "#4ade80" }} />
                     {f}
@@ -438,20 +438,26 @@ export default function Landing() {
               </Link>
             </div>
 
-            {/* Pro */}
+            {/* Desktop App */}
             <div className="rounded-2xl border p-6 relative" style={{ background: CARD_BG, borderColor: "#894596" }} data-testid="card-pricing-pro">
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                 <span className="text-white text-xs font-medium px-3 py-1 rounded-full" style={{ background: "#894596" }}>Most Popular</span>
               </div>
               <div className="text-center mb-6">
-                <h3 className="text-xl font-semibold text-white mb-2">Pro</h3>
-                <div className="text-4xl font-bold text-white mb-1">$19.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
+                <h3 className="text-xl font-semibold text-white mb-2">Desktop App</h3>
+                <div className="text-4xl font-bold text-white mb-1">$22.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
                 <p className="text-white/40 text-sm">For power users</p>
               </div>
               <ul className="space-y-3 mb-6">
-                {["Everything in Basic", "Advanced analytics", "Priority support", "Desktop app access", "Unlimited assignments"].map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-sm text-white/70">
-                    <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: "#4ade80" }} />
+                {[
+                  "Everything in Basic",
+                  "On-going use of API Key for off-line (desktop processing) AI grading (subscription-based)",
+                  "Priority support",
+                  "Desktop app access",
+                  "Unlimited assignments",
+                ].map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm text-white/70">
+                    <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" style={{ color: "#4ade80" }} />
                     {f}
                   </li>
                 ))}
@@ -461,15 +467,15 @@ export default function Landing() {
               </Link>
             </div>
 
-            {/* Enterprise */}
+            {/* Web App Plan */}
             <div className="rounded-2xl border p-6" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="card-pricing-enterprise">
               <div className="text-center mb-6">
-                <h3 className="text-xl font-semibold text-white mb-2">Enterprise</h3>
-                <div className="text-4xl font-bold text-white mb-1">$49.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
+                <h3 className="text-xl font-semibold text-white mb-2">Web App Plan</h3>
+                <div className="text-4xl font-bold text-white mb-1">$26.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
                 <p className="text-white/40 text-sm">For departments & teams</p>
               </div>
               <ul className="space-y-3 mb-6">
-                {["Everything in Pro", "Team collaboration", "Custom integrations", "Dedicated support", "LMS integration"].map((f) => (
+                {["Anonymizer App", "Customized rubric", "800 assignments", "Dedicated support"].map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-white/70">
                     <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: "#4ade80" }} />
                     {f}
