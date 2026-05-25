@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "wouter";
 import { ChevronLeft, ChevronRight, CheckCircle, BarChart2, FileText, UploadCloud, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import image1 from "@assets/i1_1778626320628.jpg";
+import image1 from "@assets/i1_1779742652462.jpg";
 import image2 from "@assets/i2_1778626320629.jpg";
 import image3 from "@assets/I3_1778626320629.jpg";
 import image4 from "@assets/I4_1778626320629.jpg";
