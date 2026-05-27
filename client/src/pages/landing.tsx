@@ -313,7 +313,7 @@ export default function Landing() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Step 1 */}
             <div className="rounded-2xl border overflow-hidden" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="step-1">
-              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER }}>
+              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER, height: "190px" }}>
                 {/* Mini rubric mockup */}
                 <div className="rounded-lg p-3 space-y-1.5 text-[10px]" style={{ background: "#0c0b1d" }}>
                   <p className="text-white/70 font-semibold mb-2">Create Rubric</p>
@@ -337,7 +337,7 @@ export default function Landing() {
 
             {/* Step 2 */}
             <div className="rounded-2xl border overflow-hidden" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="step-2">
-              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER }}>
+              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER, height: "190px" }}>
                 <div className="rounded-lg p-3 space-y-2 text-[10px]" style={{ background: "#0c0b1d" }}>
                   <p className="text-white/70 font-semibold mb-2">Anonymizer Settings</p>
                   {["Remove student names", "Remove identifying info", "Assign random IDs"].map((item) => (
@@ -361,7 +361,7 @@ export default function Landing() {
 
             {/* Step 3 */}
             <div className="rounded-2xl border overflow-hidden" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="step-3">
-              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER }}>
+              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER, height: "190px" }}>
                 <div className="rounded-lg p-3 text-[10px] flex flex-col items-center justify-center gap-2" style={{ background: "#0c0b1d", minHeight: "80px" }}>
                   <p className="text-white/70 font-semibold">Upload Assignments</p>
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "#894596" + "33", border: "1.5px dashed #894596" }}>
@@ -381,7 +381,7 @@ export default function Landing() {
 
             {/* Step 4 */}
             <div className="rounded-2xl border overflow-hidden" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="step-4">
-              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER }}>
+              <div className="p-4 border-b" style={{ borderColor: CARD_BORDER, height: "190px" }}>
                 <div className="rounded-lg p-3 space-y-2 text-[10px]" style={{ background: "#0c0b1d" }}>
                   <div className="flex items-center justify-between mb-1">
                     <p className="text-white/70 font-semibold">Overall Score</p>
