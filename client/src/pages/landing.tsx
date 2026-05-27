@@ -90,10 +90,10 @@ const benefitCards = [
 ];
 
 const stats = [
-  { icon: Users, value: "10,000+", label: "Educators Trust Us" },
-  { icon: GraduationCap, value: "500K+", label: "Students Impacted" },
-  { icon: Star, value: "4.9/5", label: "Average Rating" },
-  { icon: Award, value: "2M+", label: "Assignments Graded" },
+  { icon: Users, value: "To reach 10,000+", label: "Educators Trust Us" },
+  { icon: GraduationCap, value: "To reach 500K+", label: "Students Impacted" },
+  { icon: Star, value: "To reach 4.9/5", label: "Average Rating" },
+  { icon: Award, value: "To reach 2M+", label: "Assignments Graded" },
 ];
 
 export default function Landing() {
@@ -249,10 +249,10 @@ export default function Landing() {
           <div className="text-center mb-12">
             <span className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5 border border-white/20 text-white/60">Benefits</span>
             <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-4" data-testid="text-benefits-title">
-              Why Educators <span style={{ color: "#894596" }}>Love</span> GraderInsight
+              Why Educators will<span style={{ color: "#894596" }}> Love</span> GraderInsight
             </h2>
             <p className="text-white/50 text-base max-w-xl mx-auto leading-relaxed">
-              Join thousands of professors, instructors, and teachers who have transformed their grading workflow.
+              Be part of Grader Insight's mission to impact thousands of professors, instructors, and teachers who have transformed their grading workflow.
             </p>
           </div>
 
@@ -472,7 +472,7 @@ export default function Landing() {
               <div className="text-center mb-6">
                 <h3 className="text-xl font-semibold text-white mb-2">Web App Plan</h3>
                 <div className="text-4xl font-bold text-white mb-1">$29.99<span className="text-lg text-white/40 font-normal">/mo</span></div>
-                <p className="text-white/40 text-sm">* Education</p>
+                <p className="text-white/40 text-sm">* Higher Education Plan Agreement Phase II </p>
               </div>
               <ul className="space-y-3 mb-6">
                 {["Anonymizer App", "Customized rubric", "800 assignments", "Dedicated support"].map((f) => (
@@ -485,9 +485,7 @@ export default function Landing() {
               <p className="text-white/40 text-xs italic mb-4 leading-relaxed">
                 *For Schools, Colleges, and Universities seeking a FERPA compliance agreement
               </p>
-              <Link href="/signup" data-testid="link-pricing-enterprise">
-                <Button variant="outline" className="w-full border-white/20 text-white hover:bg-white/10">Start Free Trial</Button>
-              </Link>
+              <p className="text-center text-white font-semibold text-sm py-2" data-testid="text-pricing-enterprise-soon">Coming Soon</p>
             </div>
           </div>
         </div>
