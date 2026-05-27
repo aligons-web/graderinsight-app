@@ -110,6 +110,8 @@ export default function Landing() {
               <a href="#features" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-features">Features</a>
               <a href="#benefits" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-benefits">Benefits</a>
               <a href="#pricing" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-pricing">Pricing</a>
+              <a href="#how-it-works" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-how-it-works">How It Works</a>
+              <Link href="/rubric-builder" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-rubric">Rubric</Link>
             </nav>
             <div className="flex items-center gap-2">
               <Link href="/login" data-testid="link-login">
