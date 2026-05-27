@@ -259,7 +259,7 @@ export default function Landing() {
             {benefitCards.map((b, i) => (
               <div
                 key={i}
-                className="rounded-2xl border p-5 flex flex-col items-center text-center w-full md:w-[calc(20%-16px)] min-w-[180px]"
+                className="rounded-2xl border p-5 flex flex-col items-center text-center w-full md:w-[calc(33.333%-16px)] min-w-[220px] max-w-[320px]"
                 style={{ background: CARD_BG, borderColor: CARD_BORDER }}
                 data-testid={`card-benefit-${i}`}
               >
@@ -306,7 +306,7 @@ export default function Landing() {
               Choose the plan that fits your needs. All plans include a 7-day free trial.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* Basic */}
             <div className="rounded-2xl border p-6" style={{ background: CARD_BG, borderColor: CARD_BORDER }} data-testid="card-pricing-basic">
               <div className="text-center mb-6">
