@@ -164,7 +164,7 @@ export default function Landing() {
             {/* Right: Dashboard mockup */}
             <div className="lg:w-[420px] flex-shrink-0 relative">
               {/* AI badge */}
-              <div className="absolute -top-3 -right-3 z-10 flex items-center gap-2 px-3 py-2 rounded-xl border border-[#894596] text-xs font-semibold text-white shadow-lg" style={{ background: "#894596" }}>
+              <div className="absolute -top-14 right-0 z-10 flex items-center gap-2 px-3 py-2 rounded-xl border border-[#894596] text-xs font-semibold text-white shadow-lg" style={{ background: "#894596" }}>
                 <ZapIcon className="w-3.5 h-3.5" />
                 AI-Powered Grading Assistant
               </div>
