@@ -303,9 +303,9 @@ export default function Landing() {
       <section id="how-it-works" className="py-20 lg:py-28 border-t" style={{ background: DARK_BG, borderColor: CARD_BORDER }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="text-center mb-14">
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5 border border-white/20 text-white/60">How It Works</span>
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5 border border-white/20 text-white/60">How the Web App Works</span>
             <h2 className="text-4xl lg:text-5xl font-extrabold text-white mb-3" data-testid="text-how-it-works-title">
-              Get Started in <span style={{ color: "#894596" }}>4 Simple Steps</span>
+              Coming Soon: A web app with <span style={{ color: "#894596" }}>4 Simple Steps</span>
             </h2>
             <p className="text-white/50 text-base max-w-lg mx-auto">Get started in minutes and transform your grading workflow</p>
           </div>

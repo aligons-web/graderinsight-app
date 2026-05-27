@@ -34,7 +34,7 @@ const menuItems = [
   },
   {
     title: "Subscriptions",
-    url: "/subscriptions",
+    url: "/#pricing",
     icon: CreditCard,
   },
 ];

@@ -149,9 +149,11 @@ function SubscriptionCard() {
         )}
 
         {isTrialActive && (
-          <Button className="w-full" variant="default">
-            Upgrade Subscription
-          </Button>
+          <a href="/#pricing">
+            <Button className="w-full" variant="default">
+              Upgrade Subscription
+            </Button>
+          </a>
         )}
       </CardContent>
     </Card>
@@ -628,9 +630,11 @@ function AnalyticsSection() {
                 <span>Score distribution visualization</span>
               </div>
             </div>
-            <Button className="w-full" variant="default">
-              Upgrade to Plus for Analytics
-            </Button>
+            <a href="/#pricing">
+              <Button className="w-full" variant="default">
+                Upgrade to Plus for Analytics
+              </Button>
+            </a>
           </div>
         </CardContent>
       </Card>
