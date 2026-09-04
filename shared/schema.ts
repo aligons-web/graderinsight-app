@@ -172,6 +172,36 @@ export const auditLogs = pgTable("audit_logs", {
 export type AuditLog = typeof auditLogs.$inferSelect;
 
 // ============================================
+// PORTAL DOWNLOADS & ONBOARDING
+// ============================================
+
+export const downloadLogs = pgTable("download_logs", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  user_id: uuid("user_id").references(() => users.id, { onDelete: 'cascade' }).notNull(),
+  file_type: varchar("file_type", { length: 50 }).notNull(),
+  downloaded_at: timestamp("downloaded_at").defaultNow().notNull(),
+}, (table) => ({
+  userIdIdx: index("download_logs_user_id_idx").on(table.user_id),
+  downloadedAtIdx: index("download_logs_downloaded_at_idx").on(table.downloaded_at),
+}));
+
+export const onboardingProgress = pgTable("onboarding_progress", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  user_id: uuid("user_id").references(() => users.id, { onDelete: 'cascade' }).notNull().unique(),
+  step_account_created: boolean("step_account_created").default(true).notNull(),
+  step_app_downloaded: boolean("step_app_downloaded").default(false).notNull(),
+  step_csv_viewer_downloaded: boolean("step_csv_viewer_downloaded").default(false).notNull(),
+  step_tutorial_watched: boolean("step_tutorial_watched").default(false).notNull(),
+  step_first_rubric_created: boolean("step_first_rubric_created").default(false).notNull(),
+  updated_at: timestamp("updated_at").defaultNow().notNull(),
+}, (table) => ({
+  userIdIdx: index("onboarding_progress_user_id_idx").on(table.user_id),
+}));
+
+export type DownloadLog = typeof downloadLogs.$inferSelect;
+export type OnboardingProgress = typeof onboardingProgress.$inferSelect;
+
+// ============================================
 // RUBRICS TABLE
 // ============================================
 
@@ -423,6 +453,8 @@ export const usersRelations = relations(users, ({ many }) => ({
   desktopSessions: many(desktopSessions),
   assignmentUploads: many(assignmentUploads),
   auditLogs: many(auditLogs),
+  downloadLogs: many(downloadLogs),
+  onboardingProgress: many(onboardingProgress),
   academicIntegrityChecks: many(academicIntegrityChecks),
   errorPatterns: many(errorPatterns),
   criterionPerformance: many(criterionPerformance),
@@ -501,6 +533,20 @@ export const assignmentUploadsRelations = relations(assignmentUploads, ({ one })
 export const auditLogsRelations = relations(auditLogs, ({ one }) => ({
   user: one(users, {
     fields: [auditLogs.user_id],
+    references: [users.id],
+  }),
+}));
+
+export const downloadLogsRelations = relations(downloadLogs, ({ one }) => ({
+  user: one(users, {
+    fields: [downloadLogs.user_id],
+    references: [users.id],
+  }),
+}));
+
+export const onboardingProgressRelations = relations(onboardingProgress, ({ one }) => ({
+  user: one(users, {
+    fields: [onboardingProgress.user_id],
     references: [users.id],
   }),
 }));

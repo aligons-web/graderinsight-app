@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import {
   CheckCircle, Clock, FileText, Zap, Users, ArrowRight,
-  SpellCheck, BookOpen, AlignLeft, Quote, LayoutTemplate, Upload,
+  SpellCheck, BookOpen, AlignLeft, Quote, LayoutTemplate, DownloadCloud,
   Zap as ZapIcon, Shield, BarChart2, Heart, UploadCloud, GraduationCap, Star, Award
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,18 +16,18 @@ const CARD_BORDER = "#2a2850";
 const featureCards = [
   {
     icon: SpellCheck,
-    title: "Grammar & Punctuation Checking",
-    description: "Identify grammar issues, spelling errors, and punctuation mistakes with precision.",
+    title: "Download the Desktop Grader",
+    description: "Grade locally on your Windows computer while student data stays in your control.",
   },
   {
     icon: BookOpen,
-    title: "Thesis Statement Evaluation",
-    description: "Get detailed feedback on thesis clarity, strength, and overall effectiveness.",
+    title: "Build Rubric Templates",
+    description: "Create reusable criteria that work consistently across your courses.",
   },
   {
     icon: AlignLeft,
-    title: "Topic Sentence Analysis",
-    description: "Analyze topic sentences for relevance, clarity, and paragraph focus.",
+    title: "Manage Your Subscription",
+    description: "Keep your desktop app access, billing, and account details in one place.",
   },
   {
     icon: Quote,
@@ -40,9 +40,9 @@ const featureCards = [
     description: "Create, customize, and save rubrics that align with your evaluation criteria.",
   },
   {
-    icon: Upload,
-    title: "Bulk Assignment Uploads",
-    description: "Upload and process up to 400+ assignments at once with ease and efficiency.",
+    icon: DownloadCloud,
+    title: "Private, Local Workflow",
+    description: "Import LMS files and export reports directly from the desktop app.",
   },
 ];
 
@@ -66,7 +66,7 @@ const benefitCards = [
   {
     icon: ZapIcon,
     title: "Bulk Assignment Processing",
-    description: "Upload and process up to 400+ assignments at once, perfect for large classes and multiple sections.",
+    description: "Import and process up to 400+ assignments locally in the desktop app, perfect for large classes and multiple sections.",
     stat: "400+",
     statLabel: "Assignments at Once",
     color: "#f5c518",
@@ -108,6 +108,7 @@ export default function Landing() {
             </div>
             <nav className="hidden md:flex items-center gap-6">
               <a href="#features" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-features">Features</a>
+              <a href="#how-it-works" className="text-white/70 hover:text-white transition-colors text-sm font-medium">How It Works</a>
               <a href="#benefits" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-benefits">Benefits</a>
               <a href="#pricing" className="text-white/70 hover:text-white transition-colors text-sm font-medium" data-testid="link-pricing">Pricing</a>
             </nav>
@@ -293,6 +294,35 @@ export default function Landing() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── How it works ─── */}
+      <section id="how-it-works" className="py-20 lg:py-24 border-t" style={{ background: DARK_BG, borderColor: CARD_BORDER }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="text-center mb-12">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-5 border border-white/20 text-white/60">How it works</span>
+            <h2 className="text-4xl font-extrabold text-white mb-3">A better grading workflow starts here</h2>
+            <p className="text-white/50 max-w-2xl mx-auto">Use this portal to manage your account, then do your grading privately in the GraderInsight desktop app.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ["01", "Sign up and choose your plan", "Start your 7-day trial and manage your account here."],
+              ["02", "Download the desktop app", "Install GraderInsight on your Windows computer."],
+              ["03", "Import and grade locally", "Bring in LMS exports and grade batches with AI."],
+              ["04", "Review and export feedback", "Keep results on your computer and export reports."],
+            ].map(([number, title, text]) => <div key={number} className="rounded-xl border p-5" style={{ background: CARD_BG, borderColor: CARD_BORDER }}><p className="text-[#4ade80] font-bold mb-4">{number}</p><h3 className="text-white font-semibold mb-2">{title}</h3><p className="text-white/50 text-sm leading-relaxed">{text}</p></div>)}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 border-t" style={{ background: "#0f0e22", borderColor: CARD_BORDER }}>
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <p className="text-white/50 text-sm font-semibold uppercase tracking-widest mb-3">Works with your existing LMS</p>
+          <h2 className="text-3xl font-extrabold text-white mb-8">Import assignment exports from the tools you already use</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {["D2L Brightspace", "Canvas", "Blackboard", "Moodle"].map((lms) => <div key={lms} className="rounded-xl border px-4 py-5 text-white font-semibold" style={{ background: CARD_BG, borderColor: CARD_BORDER }}>{lms}</div>)}
           </div>
         </div>
       </section>

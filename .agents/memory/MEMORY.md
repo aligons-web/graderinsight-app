@@ -1,0 +1,1 @@
+- [Portal and desktop boundary](portal-desktop-boundary.md) — the web app manages accounts and resources; student data and grading stay in the local desktop app.

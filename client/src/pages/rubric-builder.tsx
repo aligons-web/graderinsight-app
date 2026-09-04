@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getAuthToken } from "@/lib/api";
 
 interface RubricCriterion {
   id: string;
@@ -34,8 +35,9 @@ interface RubricTemplate {
 }
 
 export default function RubricBuilder() {
-  const [, params] = useRoute("/rubric-builder/:id");
+  const [, params] = useRoute("/rubric-templates/:id");
   const [, setLocation] = useLocation();
+  const rubricId = params?.id === "new" ? undefined : params?.id;
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -48,32 +50,28 @@ export default function RubricBuilder() {
 
   // Fetch existing rubric if editing
   const { data: existingRubric, isLoading: isLoadingRubric } = useQuery({
-    queryKey: ['/api/rubrics', params?.id],
+    queryKey: ['/api/rubric-templates', rubricId],
     queryFn: async () => {
-      if (!params?.id) return null;
-      const response = await fetch(`/api/rubrics/${params.id}`, {
+      if (!rubricId) return null;
+      const response = await fetch(`/api/rubric-templates/${rubricId}`, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${getAuthToken()}`
         }
       });
       if (!response.ok) throw new Error('Failed to fetch rubric');
       const data = await response.json();
-      return data.rubric;
+      return data.template;
     },
-    enabled: !!params?.id,
+    enabled: !!rubricId,
   });
 
   // Fetch templates
   const { data: templates, isLoading: isLoadingTemplates } = useQuery({
-    queryKey: ['/api/rubrics/templates', rubricType, academicLevel],
+    queryKey: ['/api/rubric-templates'],
     queryFn: async () => {
-      const params = new URLSearchParams();
-      if (rubricType) params.append('rubric_type', rubricType);
-      if (academicLevel) params.append('academic_level', academicLevel);
-
-      const response = await fetch(`/api/rubrics/templates?${params}`, {
+      const response = await fetch('/api/rubric-templates?limit=100', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${getAuthToken()}`
         }
       });
       if (!response.ok) throw new Error('Failed to fetch templates');
@@ -96,11 +94,11 @@ export default function RubricBuilder() {
   // Create rubric mutation
   const createRubric = useMutation({
     mutationFn: async (rubricData: any) => {
-      const response = await fetch('/api/rubrics', {
-        method: 'POST',
+      const response = await fetch(rubricId ? `/api/rubric-templates/${rubricId}` : '/api/rubric-templates', {
+        method: rubricId ? 'PUT' : 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
+          'Authorization': `Bearer ${getAuthToken()}`
         },
         body: JSON.stringify(rubricData),
       });
@@ -115,10 +113,10 @@ export default function RubricBuilder() {
     onSuccess: () => {
       toast({
         title: "Success!",
-        description: "Rubric created successfully",
+        description: rubricId ? "Rubric updated successfully" : "Rubric created successfully",
       });
-      queryClient.invalidateQueries({ queryKey: ['/api/rubrics'] });
-      setLocation('/');
+      queryClient.invalidateQueries({ queryKey: ['/api/rubric-templates'] });
+      setLocation('/rubric-templates');
     },
     onError: (error: Error) => {
       toast({
@@ -214,7 +212,7 @@ export default function RubricBuilder() {
     createRubric.mutate(rubricData);
   };
 
-  if (isLoadingRubric && params?.id) {
+  if (isLoadingRubric && rubricId) {
     return (
       <div className="space-y-6">
         <Skeleton className="h-12 w-64" />
@@ -231,17 +229,17 @@ export default function RubricBuilder() {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => setLocation('/')}
+            onClick={() => setLocation('/rubric-templates')}
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back
           </Button>
           <div>
             <h1 className="text-3xl font-bold">
-              {params?.id ? 'Edit Rubric' : 'Create Rubric'}
+               {rubricId ? 'Edit Rubric Template' : 'Create Rubric Template'}
             </h1>
             <p className="text-muted-foreground">
-              {params?.id ? 'Modify your grading rubric' : 'Build a custom grading rubric'}
+               {rubricId ? 'Modify your reusable grading template' : 'Build a reusable grading template'}
             </p>
           </div>
         </div>
@@ -513,7 +511,7 @@ export default function RubricBuilder() {
 
       {/* Save Button (Bottom) */}
       <div className="flex justify-end gap-2">
-        <Button variant="outline" onClick={() => setLocation('/')}>
+          <Button variant="outline" onClick={() => setLocation('/rubric-templates')}>
           Cancel
         </Button>
         <Button onClick={handleSave} disabled={createRubric.isPending}>

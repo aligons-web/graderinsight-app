@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, Upload, PenTool, CreditCard, LogOut } from "lucide-react";
+import { LayoutDashboard, DownloadCloud, ClipboardCheck, Settings, LogOut } from "lucide-react";
 import logoImage from "@assets/logo4_1767212330511.png";
 import {
   Sidebar,
@@ -23,19 +23,19 @@ const menuItems = [
     icon: LayoutDashboard,
   },
   {
-    title: "Upload Assignments",
-    url: "/upload",
-    icon: Upload,
+    title: "Downloads",
+    url: "/downloads",
+    icon: DownloadCloud,
   },
   {
-    title: "Rubric Builder",
-    url: "/rubric-builder",
-    icon: PenTool,
+    title: "Rubric Templates",
+    url: "/rubric-templates",
+    icon: ClipboardCheck,
   },
   {
-    title: "Subscriptions",
-    url: "/#pricing",
-    icon: CreditCard,
+    title: "Settings",
+    url: "/settings",
+    icon: Settings,
   },
 ];
 
@@ -61,7 +61,7 @@ export function AppSidebar() {
             <SidebarMenu>
               {menuItems.map((item) => {
                 const isActive = location === item.url || 
-                  (item.url === "/rubric-builder" && location.startsWith("/rubric-builder"));
+                  (item.url === "/rubric-templates" && location.startsWith("/rubric-templates"));
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild isActive={isActive}>

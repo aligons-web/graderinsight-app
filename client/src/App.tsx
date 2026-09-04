@@ -1,4 +1,3 @@
-import Apps from "@/pages/apps";
 import { Switch, Route, useLocation, Redirect } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -11,9 +10,10 @@ import Landing from "@/pages/landing";
 import Login from "@/pages/login";
 import Signup from "@/pages/signup";
 import Dashboard from "@/pages/dashboard";
-import BulkUpload from "@/pages/upload";
 import RubricBuilder from "@/pages/rubric-builder";
-import Subscriptions from "@/pages/subscriptions";
+import RubricTemplates from "@/pages/rubric-templates";
+import Downloads from "@/pages/downloads";
+import Settings from "@/pages/settings";
 import { isAuthenticated } from "@/lib/api";
 
 function AuthenticatedLayout({ children }: { children: React.ReactNode }) {
@@ -64,11 +64,16 @@ function Router() {
     <AuthenticatedLayout>
       <Switch>
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/upload" component={BulkUpload} />
-        <Route path="/rubric-builder" component={RubricBuilder} />
-        <Route path="/rubric-builder/:id" component={RubricBuilder} />
-        <Route path="/subscriptions" component={Subscriptions} />
-        <Route path="/apps" component={Apps} />
+        <Route path="/downloads" component={Downloads} />
+        <Route path="/rubric-templates" component={RubricTemplates} />
+        <Route path="/rubric-templates/new" component={RubricBuilder} />
+        <Route path="/rubric-templates/:id" component={RubricBuilder} />
+        <Route path="/settings" component={Settings} />
+        <Route path="/upload"><Redirect to="/dashboard" /></Route>
+        <Route path="/subscriptions"><Redirect to="/settings#subscription" /></Route>
+        <Route path="/rubric-builder"><Redirect to="/rubric-templates" /></Route>
+        <Route path="/rubric-builder/:id"><Redirect to="/rubric-templates" /></Route>
+        <Route path="/apps"><Redirect to="/downloads" /></Route>
         <Route component={NotFound} />
       </Switch>
     </AuthenticatedLayout>

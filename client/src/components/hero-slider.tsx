@@ -25,9 +25,9 @@ const slides: Slide[] = [
     image: image1,
     bg: "#0c0b1d",
     accent: "#f5c518",
-    headline1: "Grade quicker.",
-    headline2: "Teach more.",
-    description: "AI-powered writing analysis that gives you clear insights, consistent grading, and hours back in your week.",
+    headline1: "Grade efficiently.",
+    headline2: "Drive impact.",
+    description: "Manage your account here, then use the private GraderInsight desktop app to grade assignments on your own computer.",
     badges: ["Accurate", "Consistent", "Time-Saving"],
   },
   {
@@ -36,7 +36,7 @@ const slides: Slide[] = [
     accent: "#22d3ee",
     headline1: "Grade efficiently.",
     headline2: "Drive impact.",
-    description: "Powerful AI tools to evaluate writing, deliver meaningful feedback, and elevate student success.",
+    description: "Your subscription portal for desktop app downloads, reusable rubrics, and account management.",
     features: [
       { icon: BarChart2, label: "Deep Analysis" },
       { icon: FileText, label: "Custom Rubrics" },
@@ -50,7 +50,7 @@ const slides: Slide[] = [
     accent: "#4ade80",
     headline1: "Grade smarter.",
     headline2: "Empower students.",
-    description: "Deliver better feedback, promote academic growth, and keep integrity at the center.",
+    description: "Import LMS exports, review results, and keep student work safely on your local computer.",
     badges: ["Writing Analysis", "Originality Review", "Rubric-Based Grading", "Consistency You Can Trust"],
   },
   {
@@ -59,7 +59,7 @@ const slides: Slide[] = [
     accent: "#d946ef",
     headline1: "Grade precisely.",
     headline2: "Inspire excellence.",
-    description: "Detailed insights. Clear feedback. Better writing. Stronger results.",
+    description: "Build rubric templates here, then take them into your desktop grading workflow.",
     badges: ["Grammar & Clarity", "Thesis Evaluation", "Evidence Review", "Sentence-Level Feedback"],
   },
 ];
