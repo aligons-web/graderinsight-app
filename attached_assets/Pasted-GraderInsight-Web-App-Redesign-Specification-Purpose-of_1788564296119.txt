@@ -1,0 +1,409 @@
+GraderInsight Web App — Redesign Specification
+Purpose of This Document
+
+This is a rebuild spec for the GraderInsight web application. The current MVP has pages and features that don't align with the product's actual architecture. Use this document to modify the existing Replit codebase — removing pages that don't belong, restructuring the ones that stay, and adding new components where needed.
+
+Architecture Context (Read First)
+
+GraderInsight is a two-part system:
+
+Desktop App (Python/tkinter) — Installed locally on the educator's computer. This is where all grading happens. Educators download assignments from their LMS (D2L, Canvas, Blackboard, Moodle), import files into the desktop app, configure rubric criteria, run AI-powered batch grading via the Anthropic API, review results, and export CSV reports. All student data stays on the educator's machine. Nothing is uploaded to our servers.
+Web App (this Replit project) — A subscription portal and resource hub. Its job is: account management, subscription/billing, desktop app downloads, rubric template management, and onboarding guidance. It is NOT a grading tool. It does NOT receive or store student assignments.
+
+This distinction is critical. Every page and component in the web app must serve the portal/hub role, not duplicate the desktop app's grading workflow.
+
+What to REMOVE
+Pages to Delete Entirely
+Bulk Upload / Upload Assignments page (/upload or /upload-assignments)
+This page has a drag-and-drop file uploader for student assignments
+REMOVE IT COMPLETELY — assignments are never uploaded to the web app
+Remove the sidebar nav link "Upload Assignments"
+Remove any associated API routes, file storage logic, and database tables for uploaded assignments
+Remove any server-side file handling middleware for student submissions
+Grading Review page (if it exists in the codebase)
+Any page that displays AI-generated grades alongside student submissions
+This workflow lives in the desktop app only
+Student Submissions page (if it exists)
+Individual student submission views belong in the desktop app
+Components/Features to Remove from Existing Pages
+Dashboard stat cards that reference grading data: "Assignments Graded", "Time Saved", "Average Grade", "Pending Review" — remove these unless they can be populated from actual data (they currently show zeros/placeholder values and have no data source since grading is local)
+"Upload Assignments" quick action card on the Dashboard
+"Advanced Analytics" upsell panel on the Dashboard (Academic integrity tracking, Common error pattern analysis, etc.) — remove for now; these features don't exist yet and reference data that stays local
+Any API endpoints that accept file uploads for grading purposes
+Any database tables storing assignment content, grading results, or student submission data
+Revised Page Structure (6 pages + admin)
+1. Landing Page (/)
+
+Keep and refine. The current landing page (Image 8 reference) is strong. Adjust messaging to clarify the two-part system.
+
+Changes needed:
+
+Hero section: Keep "Grade efficiently. Drive impact." headline
+Adjust subtext to clarify: the web app is where you manage your account; the desktop app is where you grade
+Feature highlights should reference: "Download the desktop grader", "Build rubric templates", "Manage your subscription"
+CTA: "Start Your 7-Day Trial →" is good — keep it
+Add a "How It Works" section with 3-4 steps:
+Sign up and choose your plan
+Download the GraderInsight desktop app
+Import assignments from your LMS and grade with AI
+Review results and export feedback
+Pricing section: keep as-is
+Add a section showing supported LMS platforms (D2L Brightspace, Canvas, Blackboard, Moodle)
+2. Sign Up (/signup)
+
+Keep as-is. The current registration flow is fine.
+
+3. Login (/login)
+
+Keep as-is. Current login page (Image 1 reference) is clean and functional.
+
+4. Dashboard (/dashboard) — MAJOR REWORK
+
+This is the most significant change. Transform from a grading-stats dashboard into a subscription portal and resource hub.
+
+New Dashboard Layout:
+
+┌─────────────────────────────────────────────────────────┐
+│  SIDEBAR (keep existing style)                          │
+│  ┌───────────────┐  ┌─────────────────────────────────┐ │
+│  │ GraderInsight │  │ Welcome back, [Name]!           │ │
+│  │               │  │                                 │ │
+│  │ Main Menu     │  │ ┌─────────────────────────────┐ │ │
+│  │ ▪ Dashboard   │  │ │ SUBSCRIPTION STATUS CARD    │ │ │
+│  │ ▪ Downloads   │  │ │ Plan: [Free/Plus/Pro]       │ │ │
+│  │ ▪ Rubric      │  │ │ Status: Active              │ │ │
+│  │   Templates   │  │ │ Renews: [date]              │ │ │
+│  │ ▪ Settings    │  │ │ [Manage Plan]               │ │ │
+│  │               │  │ └─────────────────────────────┘ │ │
+│  │               │  │                                 │ │
+│  │               │  │ ┌─────────────────────────────┐ │ │
+│  │               │  │ │ GETTING STARTED             │ │ │
+│  │               │  │ │ (interactive checklist)      │ │ │
+│  │               │  │ │ see spec below               │ │ │
+│  │               │  │ └─────────────────────────────┘ │ │
+│  │               │  │                                 │ │
+│  │               │  │ ┌────────────┐ ┌──────────────┐ │ │
+│  │               │  │ │ QUICK      │ │ YOUR RUBRIC  │ │ │
+│  │               │  │ │ ACTIONS    │ │ TEMPLATES    │ │ │
+│  │               │  │ │            │ │              │ │ │
+│  │               │  │ │ Download   │ │ Recent list  │ │ │
+│  │               │  │ │ Desktop App│ │ or empty     │ │ │
+│  │               │  │ │            │ │ state        │ │ │
+│  │               │  │ │ Browse     │ │              │ │ │
+│  │               │  │ │ Rubric     │ │              │ │ │
+│  │               │  │ │ Templates  │ │              │ │ │
+│  │               │  │ └────────────┘ └──────────────┘ │ │
+│  └───────────────┘  └─────────────────────────────────┘ │
+└─────────────────────────────────────────────────────────┘
+
+Dashboard Components:
+
+A. Subscription Status Card (top of page)
+Show current plan name (Free Trial / Plus / Pro)
+Show status (Active / Expired / Trial — X days remaining)
+Show renewal date
+"Manage Plan" button → links to Settings/Subscriptions
+If trial, show a progress bar of days remaining with upgrade CTA
+B. Getting Started Checklist (interactive, collapsible)
+
+Replace the current checklist. New steps:
+
+Step	Label	Description	Action
+1	Create your account	You've already completed this step	✓ Complete
+2	Download the desktop app	Install the GraderInsight batch grader on your computer	[Download] button
+3	Download the CSV viewer	View and analyze your grading results	[Download] button
+4	Watch the quick start guide	Learn how to grade your first batch in under 5 minutes	[Watch] button (link to video or in-app tutorial)
+5	Build your first rubric template	Create reusable grading criteria for your courses	[Start] button → links to Rubric Templates page
+Each step should have a completion state (stored in user profile/localStorage)
+Checkmark icon when complete, numbered circle when pending
+Collapsible after all steps are done, with "Show getting started" toggle
+C. Quick Actions (2 cards, side by side on desktop, stacked on mobile)
+
+Card 1: Download Desktop App
+
+Icon + "Download GraderInsight"
+Subtitle: "Windows desktop application for batch grading"
+Arrow icon → links to Downloads page
+Use the existing card style from the current "Upload Assignments" quick action
+
+Card 2: Browse Rubric Templates
+
+Icon + "Rubric Templates"
+Subtitle: "Build and manage reusable grading criteria"
+Arrow icon → links to Rubric Templates page
+D. Your Rubric Templates (small panel)
+Show 3 most recently created/edited rubric templates
+Empty state: "No templates yet" with "Create Your First Template" button
+"View All" link → Rubric Templates page
+5. Downloads Page (/downloads) — NEW PAGE
+
+Purpose: Central place to download the desktop app, CSV viewer, and documentation.
+
+┌─────────────────────────────────────────────────────┐
+│  Downloads                                          │
+│  Everything you need to start grading               │
+│                                                     │
+│  ┌───────────────────────────────────────────────┐  │
+│  │  GraderInsight Desktop App                    │  │
+│  │  Version 4.0 · Windows · Last updated [date]  │  │
+│  │                                               │  │
+│  │  The batch grading engine. Import assignments  │  │
+│  │  from your LMS, grade with AI, and export     │  │
+│  │  detailed feedback — all on your computer.     │  │
+│  │                                               │  │
+│  │  [Download for Windows]  (primary button)      │  │
+│  │                                               │  │
+│  │  System requirements:                          │  │
+│  │  · Windows 10 or later                         │  │
+│  │  · Anthropic API key (included with your plan) │  │
+│  └───────────────────────────────────────────────┘  │
+│                                                     │
+│  ┌───────────────────────────────────────────────┐  │
+│  │  CSV Report Viewer                             │  │
+│  │  Browser-based tool · No installation needed   │  │
+│  │                                               │  │
+│  │  View and navigate your exported grading       │  │
+│  │  reports. Open the HTML file in Chrome and     │  │
+│  │  drag in your CSV export.                      │  │
+│  │                                               │  │
+│  │  [Download CSV Viewer]  (secondary button)     │  │
+│  └───────────────────────────────────────────────┘  │
+│                                                     │
+│  ┌───────────────────────────────────────────────┐  │
+│  │  Quick Start Guide                             │  │
+│  │  PDF · Step-by-step setup instructions         │  │
+│  │                                               │  │
+│  │  [Download Guide]  (secondary button)          │  │
+│  └───────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────┘
+
+Implementation notes:
+
+Download buttons can initially link to placeholder URLs or external file hosts (Google Drive, GitHub Releases, etc.)
+Store download URLs in environment variables or a config so they're easy to update
+Track download clicks in the database (user_id, file_type, timestamp) for analytics
+Gate downloads behind authentication — user must be logged in
+If user is on expired trial, show the download cards but disable buttons with "Upgrade to download" message
+6. Rubric Templates (/rubric-templates) — REWORKED FROM RUBRIC BUILDER
+
+Rename the current "Rubric Builder" sidebar link to "Rubric Templates"
+
+Keep the existing rubric builder form (Image 5 reference) — the Basic Information section (name, description, type, academic level) and Grading Criteria section are well-designed. But reframe the page:
+
+Page structure:
+
+┌─────────────────────────────────────────────────────┐
+│  Rubric Templates                                   │
+│  Create and manage reusable grading templates        │
+│                                                     │
+│  [+ Create New Template]           [Search...]      │
+│                                                     │
+│  ┌─────────────────────────────────────────────────┐│
+│  │  Your Templates                                 ││
+│  │                                                 ││
+│  │  ┌──────────────────┐  ┌──────────────────┐    ││
+│  │  │ Template Card    │  │ Template Card     │    ││
+│  │  │ Name: Essay...   │  │ Name: Research... │    ││
+│  │  │ Type: Essay      │  │ Type: Paper       │    ││
+│  │  │ Level: College   │  │ Level: Graduate   │    ││
+│  │  │ Criteria: 5      │  │ Criteria: 4       │    ││
+│  │  │ [Edit] [Export]  │  │ [Edit] [Export]    │    ││
+│  │  └──────────────────┘  └──────────────────┘    ││
+│  │                                                 ││
+│  │  Empty state: "No templates yet."               ││
+│  │  "Create your first rubric template to use      ││
+│  │   with the desktop grader."                     ││
+│  └─────────────────────────────────────────────────┘│
+└─────────────────────────────────────────────────────┘
+
+Key changes to current Rubric Builder:
+
+Add a template LIST view as the default (shows all saved templates as cards)
+"Create New Template" button opens the existing builder form (current Rubric Builder page becomes the create/edit view)
+Add an "Export" button to each template card — exports the rubric as a JSON or text file that can be loaded into the desktop app
+Add "Duplicate" and "Delete" actions to each template card
+The builder form stays the same: name, description, type, academic level, and grading criteria with the "+ Add Criterion" interface
+
+Database: The existing rubrics table should be fine. Ensure it has:
+
+id, user_id, name, description, type, academic_level, criteria (JSON), created_at, updated_at
+RLS policy: users can only see/edit their own templates
+7. Settings (/settings)
+
+Keep and simplify. Should include:
+
+Sections:
+
+Profile — Name, email (read-only or changeable), avatar
+Subscription & Billing — Current plan, payment method, billing history, upgrade/downgrade/cancel options (integrate with Stripe portal)
+API Key — Display masked Anthropic API key associated with their subscription (if applicable), or instructions for how API access works with their plan
+Password — Change password form
+Account — Delete account option, logout
+
+Remove (if present):
+
+Notification preferences (not needed for MVP)
+Integration settings / LMS settings (the desktop app handles LMS file imports locally)
+8. Admin Panel (/admin)
+
+Keep as-is. No changes needed for the redesign. Continue to include:
+
+User management table
+Search/filter users
+User actions (view, suspend, activate, delete)
+Role management
+Basic system stats
+Sidebar Navigation Update
+
+Current sidebar:
+
+Main Menu
+├── Dashboard
+├── Upload Assignments    ← REMOVE
+├── Rubric Builder        ← RENAME
+└── Subscriptions         ← MOVE to Settings
+
+New sidebar:
+
+Main Menu
+├── Dashboard
+├── Downloads              ← NEW
+├── Rubric Templates       ← RENAMED from "Rubric Builder"
+└── Settings               ← absorbs Subscriptions
+
+Sidebar implementation notes:
+
+Keep the existing sidebar styling and collapse behavior
+The user info panel at the bottom (avatar, name, email, logout) stays
+Active page highlight stays (
+#894596 background tint)
+Icons: Dashboard (grid), Downloads (download-cloud), Rubric Templates (clipboard-check or tag), Settings (gear)
+Routing Changes
+KEEP:
+  /                    → Landing Page
+  /login               → Login
+  /signup              → Sign Up
+  /dashboard           → Dashboard (reworked)
+  /settings            → Settings (absorbs /subscriptions content)
+  /admin               → Admin Panel
+
+ADD:
+  /downloads           → Downloads Page (new)
+  /rubric-templates    → Rubric Templates list view
+  /rubric-templates/new    → Create new template (current rubric builder form)
+  /rubric-templates/:id    → Edit existing template
+
+REMOVE:
+  /upload              → DELETE (or /upload-assignments, whatever the current path is)
+  /subscriptions       → REDIRECT to /settings#subscription (or merge content into Settings)
+
+RENAME/REDIRECT:
+  /rubric-builder      → REDIRECT to /rubric-templates
+Design System (Keep Existing)
+
+No changes to the visual design system. Current palette and typography work well:
+
+Primary:    #894596 (purple — CTAs, active states, brand elements)
+Secondary:  #828282 (gray — secondary text, borders)
+Accent:     #44e489 (green — success states, completion indicators)
+Background: #fafafa
+Text:       #1a1a1a (or current dark text color)
+
+Font: Poppins (headings + body)
+Border radius: 8-12px
+Shadows: subtle, current style
+Data Model Changes
+Tables to ADD (if not already present)
+sql
+-- Track download activity
+CREATE TABLE IF NOT EXISTS download_logs (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id),
+  file_type VARCHAR(50) NOT NULL, -- 'desktop_app', 'csv_viewer', 'quick_start_guide'
+  downloaded_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Track getting-started checklist progress
+CREATE TABLE IF NOT EXISTS onboarding_progress (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) UNIQUE,
+  step_account_created BOOLEAN DEFAULT TRUE,
+  step_app_downloaded BOOLEAN DEFAULT FALSE,
+  step_csv_viewer_downloaded BOOLEAN DEFAULT FALSE,
+  step_tutorial_watched BOOLEAN DEFAULT FALSE,
+  step_first_rubric_created BOOLEAN DEFAULT FALSE,
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+Tables to REMOVE or DEPRECATE
+Any table storing uploaded assignment files or file metadata
+Any table storing grading results or AI feedback
+Any table storing student submission data
+
+Do NOT delete these tables immediately if they exist — rename them with a _deprecated suffix first so data isn't lost. Remove them in a future migration after confirming no code references them.
+
+Tables to KEEP
+users — account data
+rubrics — rubric templates (rename to rubric_templates if desired)
+subscriptions / subscription_plans — billing data
+sessions — auth sessions
+Any Stripe-related tables
+API Route Changes
+Routes to ADD
+GET    /api/downloads/config          → returns download URLs from env vars
+POST   /api/downloads/log             → logs a download event
+GET    /api/onboarding                → returns user's onboarding progress
+PATCH  /api/onboarding/:step          → marks a step as complete
+GET    /api/rubric-templates          → list user's templates (paginated)
+GET    /api/rubric-templates/:id      → get single template
+POST   /api/rubric-templates          → create template
+PUT    /api/rubric-templates/:id      → update template
+DELETE /api/rubric-templates/:id      → delete template
+GET    /api/rubric-templates/:id/export → export template as JSON file
+Routes to REMOVE
+POST   /api/upload                    → file upload endpoint
+POST   /api/assignments               → assignment creation
+GET    /api/assignments               → assignment listing
+GET    /api/grading-results           → grading results
+Any route handling file storage or grading data
+Environment Variables to Add
+env
+# Download URLs (update these when new versions are released)
+DESKTOP_APP_DOWNLOAD_URL=https://placeholder.com/graderinsight-setup.exe
+CSV_VIEWER_DOWNLOAD_URL=https://placeholder.com/csv-viewer.html
+QUICK_START_GUIDE_URL=https://placeholder.com/quick-start-guide.pdf
+
+# Desktop app version info
+DESKTOP_APP_VERSION=4.0
+DESKTOP_APP_LAST_UPDATED=2026-05-27
+Implementation Priority
+
+Work through these in order:
+
+Remove the Upload Assignments page and its sidebar link, routes, and any file storage logic
+Rework the Dashboard — remove stat cards and analytics upsell, add subscription status card, getting started checklist, and quick actions
+Add the Downloads page — new page with download cards
+Rename Rubric Builder to Rubric Templates — add list view, keep builder form as create/edit sub-route, add export functionality
+Merge Subscriptions into Settings — consolidate into one settings page with sections
+Update sidebar navigation — new links, remove old ones
+Update routing — add new routes, remove old ones, add redirects
+Clean up unused code — remove orphaned components, API routes, and database queries related to removed features
+Mobile Considerations
+All new pages must be responsive (the current MVP already handles this)
+Dashboard cards stack vertically on mobile
+Downloads page cards are full-width on mobile
+Rubric template cards are single-column on mobile
+Sidebar collapses to hamburger menu (keep existing behavior)
+Empty States
+
+Every list/collection view needs an empty state:
+
+Rubric Templates (no templates): "No templates yet. Create your first rubric template to use with the desktop grader." + [Create Template] button
+Your Rubric Templates panel on Dashboard (no templates): "No rubrics yet" + [Create Your First Rubric] button (keep current design from Image 3)
+Getting Started (all complete): Collapsed by default, expandable, with a "All set! You're ready to grade." message
+Notes for Replit AI Agent
+This project uses: Vite, React, TypeScript, Tailwind CSS, Node/Express server, Drizzle ORM, PostgreSQL
+Preserve all existing authentication logic — login, signup, session management, protected routes
+Preserve all existing Stripe integration for subscriptions
+Preserve the existing sidebar component structure — just update the nav items
+When removing pages, also check for and remove any related imports in the router configuration
+Run the app after each major change to verify nothing is broken before proceeding to the next step
